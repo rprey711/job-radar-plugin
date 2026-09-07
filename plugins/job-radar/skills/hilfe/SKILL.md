@@ -18,7 +18,7 @@ Fragt der Freund, wie eines der Skripte aufgerufen wird, steht die Antwort in `$
 
 ## Verbindung fehlt
 
-In Cowork: Plugin-Seite öffnen und die Verbindung „Job Radar“ anmelden. In Claude Code: `/mcp` eingeben, `jobradar` wählen, „Authenticate“. Die Anmeldung läuft im Browser mit dem Konto des Job-Radar-Dashboards; kein Passwort in den Chat.
+In Cowork: Plugin-Seite öffnen und die Verbindung „Job Radar“ anmelden. In Claude Code: `/mcp` eingeben, `jobradar` wählen, „Authenticate“. Die Anmeldung läuft im Browser mit dem Konto des Job-Radar-Dashboards; kein Passwort in den Chat. Danach den Befehl neu eingeben.
 
 ## Regeln
 

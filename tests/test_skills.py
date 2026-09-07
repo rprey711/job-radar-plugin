@@ -23,7 +23,7 @@ THIN = {
     "kalibrierung": "kalibrierung",
     "hilfe": "hilfe",
 }
-WITH_ARGUMENT = {"bewerbung", "review", "interview"}
+WITH_ARGUMENT = {"bewerbung", "interview"}
 
 
 def _frontmatter(skill: str) -> tuple[dict, str]:

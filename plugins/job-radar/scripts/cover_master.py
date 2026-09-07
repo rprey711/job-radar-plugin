@@ -336,7 +336,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"FEHLER: {exc}. Die Vorlage braucht einen {{{{BODY}}}}-Absatz.")
         return 1
     except Exception as exc:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
-        print(f"FEHLER: Vorlage nicht lesbar: {args.template} ({exc})")
+        print(f"FEHLER: Rendern fehlgeschlagen ({args.template} -> {docx_path}): {exc}")
         return 1
 
     drift = False
