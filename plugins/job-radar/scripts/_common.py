@@ -116,3 +116,20 @@ def count_pdf_pages(pdf: Path) -> int | None:
         return None
     count = len(_PAGE_OBJECT.findall(data))
     return count or None
+
+
+def ensure_utf8_stdout() -> None:
+    """Die Ausgabe auf UTF-8 stellen, einmal beim Import dieses Moduls.
+
+    Windows-Konsolen laufen ohne gesetzte Codepage unter cp1252 (`chcp`); print() mit Umlauten
+    schlägt dann fehl oder erzeugt Bytes, die ein UTF-8-Leser (etwa subprocess mit
+    encoding="utf-8") nicht decodieren kann. Streams ohne reconfigure (pytest-Capture) bleiben
+    unberührt.
+    """
+    if not hasattr(sys.stdout, "reconfigure"):
+        return
+    if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+        sys.stdout.reconfigure(encoding="utf-8")
+
+
+ensure_utf8_stdout()

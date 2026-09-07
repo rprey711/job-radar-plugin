@@ -13,12 +13,6 @@ import sys
 
 import _common
 
-# Windows liefert für Konsolen ohne UTF-8-Codepage sonst cp1252 (`chcp`), und print() mit
-# Umlauten schlägt fehl oder erzeugt Bytes, die ein UTF-8-Leser (etwa subprocess mit
-# encoding="utf-8") nicht decodieren kann. Ohne diese Zeile bricht die Ausgabe unter Windows.
-if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
-    sys.stdout.reconfigure(encoding="utf-8")
-
 MIN_PYTHON = (3, 10)
 PACKAGES = {"python-docx": "docx", "docxtpl": "docxtpl", "pyyaml": "yaml"}
 
