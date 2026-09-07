@@ -181,4 +181,60 @@ def test_cli_pdf_flag_without_converter_keeps_docx_and_exits_4(
         pytest.skip("Word hat konvertiert")
     assert code == 4, log
     assert data["pdf"] is None
+    assert data["hinweis"]
+    assert "PDF" in log
     assert (workdir / data["docx"]).is_file()
+
+
+def test_sanitize_filename_is_the_shared_one():
+    assert cv_master.sanitize_filename is _common.sanitize_filename
+
+
+def test_cli_top_level_list_yaml_is_a_hard_error(plugin_root: Path, workdir: Path):
+    data_file = workdir / "liste.yml"
+    data_file.write_text("- a\n- b\n", encoding="utf-8")
+    code, data, log = _run(
+        plugin_root, "--data", str(data_file), "--name", "A", "--output-dir", ".", cwd=workdir
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "FEHLER" in log
+
+
+def test_cli_output_dir_that_is_a_file_is_a_hard_error(
+    plugin_root: Path, dummy_data: Path, workdir: Path
+):
+    (workdir / "Ordner").write_text("belegt", encoding="utf-8")
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(dummy_data),
+        "--name",
+        "A",
+        "--output-dir",
+        "Ordner",
+        cwd=workdir,
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "Zielordner nicht anlegbar" in log
+
+
+def test_cli_template_that_is_no_docx_is_a_hard_error(
+    plugin_root: Path, dummy_data: Path, workdir: Path
+):
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(dummy_data),
+        "--name",
+        "A",
+        "--output-dir",
+        ".",
+        "--template",
+        str(dummy_data),
+        cwd=workdir,
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "Vorlage nicht lesbar" in log

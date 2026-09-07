@@ -125,8 +125,8 @@ def ensure_utf8_stdout() -> None:
 
     Windows-Konsolen laufen ohne gesetzte Codepage unter cp1252 (`chcp`); print() mit Umlauten
     schlägt dann fehl oder erzeugt Bytes, die ein UTF-8-Leser (etwa subprocess mit
-    encoding="utf-8") nicht decodieren kann. Streams ohne reconfigure (pytest-Capture) bleiben
-    unberührt.
+    encoding="utf-8") nicht decodieren kann. Streams, die schon UTF-8 sind (pytest-Capture),
+    bleiben unberührt.
     """
     if not hasattr(sys.stdout, "reconfigure"):
         return

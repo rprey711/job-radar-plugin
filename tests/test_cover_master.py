@@ -197,3 +197,134 @@ def test_cli_pdf_page_count_decides(
     assert code == 0, log
     assert data["pdf"].endswith("_v1.pdf")
     assert data["seiten"] in (1, None)
+
+
+def test_sanitize_filename_is_the_shared_one():
+    assert cover_master.sanitize_filename is _common.sanitize_filename
+
+
+def test_cli_top_level_list_yaml_is_a_hard_error(
+    plugin_root: Path, cover_template: Path, workdir: Path
+):
+    data_file = workdir / "liste.yml"
+    data_file.write_text("- a\n- b\n", encoding="utf-8")
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(data_file),
+        "--name",
+        "A",
+        "--firma",
+        "F",
+        "--output-dir",
+        ".",
+        "--template",
+        str(cover_template),
+        cwd=workdir,
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "FEHLER" in log
+
+
+def test_cli_body_must_be_a_list_of_paragraphs(
+    plugin_root: Path, cover_template: Path, workdir: Path
+):
+    data_file = workdir / "string_body.yml"
+    data_file.write_text(
+        'empfaenger: Firma\nbetreff: B\nanrede: Hallo,\nbody: "nur ein String"\n',
+        encoding="utf-8",
+    )
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(data_file),
+        "--name",
+        "A",
+        "--firma",
+        "F",
+        "--output-dir",
+        ".",
+        "--template",
+        str(cover_template),
+        cwd=workdir,
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "FEHLER" in log
+
+
+def test_cli_output_dir_that_is_a_file_is_a_hard_error(
+    plugin_root: Path, cover_template: Path, cover_dummy_data: Path, workdir: Path
+):
+    (workdir / "Ordner").write_text("belegt", encoding="utf-8")
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(cover_dummy_data),
+        "--name",
+        "A",
+        "--firma",
+        "F",
+        "--output-dir",
+        "Ordner",
+        "--template",
+        str(cover_template),
+        cwd=workdir,
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "Zielordner nicht anlegbar" in log
+
+
+def test_cli_template_that_is_no_docx_is_a_hard_error(
+    plugin_root: Path, cover_dummy_data: Path, workdir: Path
+):
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(cover_dummy_data),
+        "--name",
+        "A",
+        "--firma",
+        "F",
+        "--output-dir",
+        ".",
+        "--template",
+        str(cover_dummy_data),
+        cwd=workdir,
+    )
+    assert code == 1, log
+    assert data == {}
+    assert "Vorlage nicht lesbar" in log
+
+
+def test_cli_reports_the_pdf_hint_without_a_converter(
+    plugin_root: Path,
+    cover_template: Path,
+    cover_dummy_data: Path,
+    workdir: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    monkeypatch.setenv("JOBRADAR_SOFFICE", str(workdir / "fehlt.exe"))
+    code, data, log = _run(
+        plugin_root,
+        "--data",
+        str(cover_dummy_data),
+        "--name",
+        "Anna Test",
+        "--firma",
+        "Beispiel GmbH",
+        "--output-dir",
+        ".",
+        "--template",
+        str(cover_template),
+        "--pdf",
+        cwd=workdir,
+    )
+    if code == 0:
+        pytest.skip("Word hat konvertiert")
+    assert code == 4, log
+    assert "PDF" in log
+    assert data["hinweis"]
+    assert (workdir / data["docx"]).is_file()

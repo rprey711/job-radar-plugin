@@ -12,6 +12,7 @@ Aufruf:
 Ausgabe: <ordner>/Anschreiben_<Name>_<Firma>_v<N>.docx (+ .pdf mit --pdf), letzte Zeile
 JOBRADAR_RESULT {...}. Exit-Codes: 0 ok, 1 harter Fehler, 2 Style-Drift (Ausgabe bleibt),
 3 länger als eine Seite (Ausgabe bleibt), 4 PDF nicht erzeugt (DOCX bleibt).
+Exit 2 ohne Ergebniszeile ist ein Aufruffehler von argparse (falsche Argumente).
 
 Einseitigkeit: mit PDF zählt die Seitenzahl des PDFs, ohne PDF die Wortzahl gegen --max-words.
 """
@@ -278,7 +279,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--firma", type=str, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
-    parser.add_argument("--version", type=int, default=None)
+    parser.add_argument(
+        "--version",
+        type=int,
+        default=None,
+        help=(
+            "Fassungsnummer, sonst die nächste freie, "
+            "eine vorhandene Datei dieser Nummer wird ersetzt"
+        ),
+    )
     parser.add_argument("--max-words", type=int, default=400)
     parser.add_argument("--pdf", action="store_true")
     args = parser.parse_args(argv)
@@ -297,15 +306,25 @@ def main(argv: list[str] | None = None) -> int:
     except (AttributeError, TypeError, yaml.YAMLError) as exc:
         print(f"FEHLER: kein gültiges YAML: {exc}")
         return 1
+    if not isinstance(data.body, list) or not all(isinstance(p, str) for p in data.body):
+        print("FEHLER: body muss eine Liste von Absätzen sein, ein Text je Eintrag")
+        return 1
     if not data.body:
         print("FEHLER: Kein Brieftext (body leer)")
+        return 1
+    if not isinstance(data.empfaenger, str):
+        print("FEHLER: empfaenger muss Text sein, eine Zeile je Adresszeile")
         return 1
     if not data.empfaenger.strip():
         print("FEHLER: Kein Empfänger (empfaenger leer)")
         return 1
 
     out = args.output_dir
-    out.mkdir(parents=True, exist_ok=True)
+    try:
+        out.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        print(f"FEHLER: Zielordner nicht anlegbar: {out} ({exc})")
+        return 1
     stem = f"Anschreiben_{sanitize_filename(args.name)}_{sanitize_filename(args.firma)}"
     version = args.version or _common.next_version(out, stem)
     docx_path = out / f"{stem}_v{version}.docx"
@@ -315,6 +334,9 @@ def main(argv: list[str] | None = None) -> int:
         render_docx(args.template, data, docx_path, name=args.name)
     except MarkerNotFoundError as exc:
         print(f"FEHLER: {exc}. Die Vorlage braucht einen {{{{BODY}}}}-Absatz.")
+        return 1
+    except Exception as exc:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
+        print(f"FEHLER: Vorlage nicht lesbar: {args.template} ({exc})")
         return 1
 
     drift = False
@@ -326,6 +348,9 @@ def main(argv: list[str] | None = None) -> int:
         drift = True
 
     pdf_result = to_pdf.to_pdf(docx_path) if args.pdf else None
+    if args.pdf:
+        marke = "OK" if pdf_result["pdf"] else "WARN"
+        print(f"{marke} PDF: {pdf_result['pdf'] or pdf_result['hinweis']}")
     seiten = pdf_result["seiten"] if pdf_result else None
     lang = too_long(data, seiten, args.max_words)
     if lang:
@@ -343,6 +368,7 @@ def main(argv: list[str] | None = None) -> int:
             "pdf": pdf_result["pdf"] if pdf_result else None,
             "pdf_methode": pdf_result["methode"] if pdf_result else None,
             "seiten": seiten,
+            "hinweis": pdf_result["hinweis"] if pdf_result else None,
             "woerter": count_body_words(data),
             "dateiname": docx_path.name,
             "version": version,
