@@ -1,0 +1,31 @@
+name: Anna Test
+ort: Berlin
+phone: +49 30 1234 5678
+email: anna.test@example.com
+geburtsdatum: ""
+
+positions:
+  - datum: 03.2022 – heute
+    rolle: Marketing Manager
+    firma: Beispiel GmbH
+    bullets:
+      - "Konzeption und Durchführung von Newsletter-Kampagnen für DTC-Kundengruppe (~50.000 Empfänger, monatlich)"
+      - "Aufbau einer Content-Strategie für Social Media (LinkedIn + Instagram)"
+      - "Koordination von Agentur-Partnerschaften (3 externe Dienstleister)"
+  - datum: 09.2019 – 02.2022
+    rolle: Junior Marketing Specialist
+    firma: Anders GmbH
+    bullets:
+      - "Mitwirkung bei der Entwicklung von B2B-Whitepapers"
+      - "Analyse von Conversion-Daten via Google Analytics"
+
+education:
+  - datum: 09.2016 – 08.2019
+    titel: B.A. Marketing & Kommunikation
+    institution: Universität Beispielstadt
+    detail: "Abschlussnote: 1,8"
+
+skills_section: "Tools: Google Analytics, HubSpot, Hootsuite | Methoden: Content-Strategie, A/B-Testing, SEO-Basics"
+sprachen_line: "Deutsch (Muttersprache) | Englisch B2"
+international: []
+weiteres: []

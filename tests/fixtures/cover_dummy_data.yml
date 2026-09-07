@@ -1,0 +1,12 @@
+empfaenger: |
+  Beispiel GmbH
+  Personalabteilung
+  Musterstraße 1
+  12345 Musterstadt
+betreff: "Bewerbung als Marketing Manager"
+anrede: "Sehr geehrte Frau Muster,"
+datum: ""
+body:
+  - "mit großem Interesse habe ich Ihre Stellenausschreibung gelesen und bewerbe mich auf die Position."
+  - "In meiner aktuellen Rolle habe ich Newsletter-Kampagnen für rund 50.000 Empfänger verantwortet."
+  - "Über ein persönliches Gespräch freue ich mich sehr."
