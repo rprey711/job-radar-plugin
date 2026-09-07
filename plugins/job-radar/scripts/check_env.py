@@ -40,7 +40,7 @@ def report() -> dict:
     elif not ok:
         requirements = _common.PLUGIN_ROOT / "requirements.txt"
         hinweis = (
-            f'Fehlende Pakete installieren: {sys.executable} -m pip install -r "{requirements}"'
+            f'Fehlende Pakete installieren: "{sys.executable}" -m pip install -r "{requirements}"'
         )
     return {
         "ok": ok,

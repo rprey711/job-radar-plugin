@@ -2,6 +2,8 @@
 
 Aufruf: python to_pdf.py <datei.docx> [--outdir <ordner>]
 Exit 0 mit PDF, Exit 4 ohne (das DOCX bleibt unangetastet). Letzte Zeile: JOBRADAR_RESULT.
+Ein PDF mit demselben Stamm im Zielordner wird überschrieben; die Fassungsnummern vergeben die
+Render-Skripte, nicht dieses Skript.
 """
 
 from __future__ import annotations
@@ -59,7 +61,9 @@ def _convert_with_word(docx: Path, outdir: Path) -> Path | None:
 
 
 def to_pdf(docx: Path, outdir: Path | None = None) -> dict:
-    """Konvertieren und beschreiben. `pdf` ist der Pfad relativ zum Arbeitsordner oder None."""
+    """Konvertieren und beschreiben. `pdf` ist der Pfad relativ zum Arbeitsordner oder None.
+    Liegt im Zielordner schon ein PDF mit demselben Stamm, wird es überschrieben; die
+    Fassungsnummern vergeben die Render-Skripte."""
     docx = docx.resolve()
     target = (outdir or docx.parent).resolve()
     target.mkdir(parents=True, exist_ok=True)

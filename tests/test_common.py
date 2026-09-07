@@ -64,6 +64,15 @@ def test_find_soffice_prefers_the_env_override(tmp_path: Path, monkeypatch: pyte
     assert _common.find_soffice() is None
 
 
+def test_find_soffice_override_pointing_nowhere_does_not_fall_back(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """Ein gesetzter, aber falscher Pfad soll auffallen, nicht still durch die Suche ersetzt
+    werden. `shutil.which` und `KNOWN_SOFFICE` bleiben hier absichtlich unangetastet."""
+    monkeypatch.setenv("JOBRADAR_SOFFICE", str(tmp_path / "gibt_es_nicht.exe"))
+    assert _common.find_soffice() is None
+
+
 def test_count_pdf_pages_reads_page_objects(tmp_path: Path):
     two_pages = (
         b"%PDF-1.4\n1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj\n"
