@@ -8,7 +8,7 @@ Marketplace und Plugin `job-radar` für Cowork und Claude Code. Gehört zu [Job 
 |---|---|
 | `.claude-plugin/marketplace.json` | Marketplace-Manifest, ein Eintrag: `plugins/job-radar` |
 | `plugins/job-radar/.claude-plugin/plugin.json` | Plugin-Manifest, Version |
-| `plugins/job-radar/.mcp.json` | Connector `jobradar` auf `https://jobs.162-55-50-225.nip.io/mcp`, OAuth |
+| `plugins/job-radar/.mcp.json` | Connector `jobradar` auf `https://jobs.162-55-50-225.nip.io/mcp` (OAuth über die 401-Antwort des Servers, kein `oauth`-Schlüssel, siehe unten) |
 | `plugins/job-radar/skills/` | vierzehn Slash-Befehle; `/einrichten` mit eigenem Inhalt, die anderen holen ihr Skript vom Server |
 | `plugins/job-radar/scripts/` | `check_env.py`, `einrichten.py`, `cv_master.py`, `cover_master.py`, `to_pdf.py`, `_common.py` |
 | `plugins/job-radar/templates/` | DOCX-Vorlagen, Ordner-README und CLAUDE.md, Profilvorlagen |
@@ -28,6 +28,10 @@ Danach in einem Ordner „Job Radar“ Claude Code starten und `/einrichten` ein
 **Cowork**: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Stand 2026-09-07 lädt Cowork private GitHub-Repos nicht (Issues #28125 und #61271 in anthropics/claude-code); bis das Repo öffentlich ist, geht nur der Weg über Claude Code.
 
 **Voraussetzungen beim Freund**: ein Konto im Job-Radar-Dashboard (Einladung von Raul), Claude Pro, in Claude Code zusätzlich Python 3.10 oder neuer. Die Pakete der Skripte: `python -m pip install -r plugins/job-radar/requirements.txt` (in Claude Code auf dem Rechner; `/einrichten` sagt den genauen Befehl). PDF entsteht über LibreOffice, sonst über Word, sonst per Hand.
+
+## Connector-Deklaration
+
+`.mcp.json` nennt nur `type` und `url`. Die Boolean-Form `"oauth": true`, die die Cowork-Dokumentation zeigt, lässt Claude Code 2.1 die ganze Deklaration verwerfen (am 2026-09-07 live geprüft: mit `true` fehlt der Server in `claude mcp list`, ohne den Schlüssel oder mit einem Objekt erscheint er als `plugin:job-radar:jobradar`). Claude Code findet den OAuth-Server über die 401-Antwort und die Protected-Resource-Metadaten von selbst. Ob Cowork ohne den Schlüssel beim Installieren nach der Anmeldung fragt oder erst beim ersten Werkzeugaufruf, zeigt Rauls Cowork-Test; falls Cowork den Schlüssel braucht, ist ein Objekt (`"oauth": {}`) der nächste Versuch, weil Claude Code diese Form annimmt.
 
 ## Vertrag mit dem Server
 
