@@ -32,6 +32,8 @@ def test_missing_package_fails_with_pip_hint(monkeypatch: pytest.MonkeyPatch):
     assert report["ok"] is False
     assert "pip install -r" in report["hinweis"]
     assert "requirements.txt" in report["hinweis"]
+    # Beide Pfade in Anführungszeichen: venv-Pfade unter OneDrive enthalten Leerzeichen.
+    assert f'"{sys.executable}" -m pip install -r "' in report["hinweis"]
 
 
 def test_old_python_fails(monkeypatch: pytest.MonkeyPatch):

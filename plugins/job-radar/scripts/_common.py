@@ -91,7 +91,9 @@ def dashboard_url() -> str:
 
 
 def find_soffice() -> Path | None:
-    """LibreOffice: Umgebungsvariable, PATH, dann die üblichen Installationsorte."""
+    """LibreOffice: Umgebungsvariable, PATH, dann die üblichen Installationsorte. Zeigt
+    `JOBRADAR_SOFFICE` ins Leere, gibt es absichtlich None statt auf die Suche zurückzufallen,
+    damit ein falsch gesetzter Pfad auffällt."""
     override = os.environ.get("JOBRADAR_SOFFICE")
     if override:
         candidate = Path(override)
