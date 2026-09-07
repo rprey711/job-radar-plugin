@@ -296,7 +296,7 @@ def test_cli_template_that_is_no_docx_is_a_hard_error(
     )
     assert code == 1, log
     assert data == {}
-    assert "Vorlage nicht lesbar" in log
+    assert "Rendern fehlgeschlagen" in log
 
 
 def test_cli_reports_the_pdf_hint_without_a_converter(

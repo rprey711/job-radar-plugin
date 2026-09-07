@@ -237,4 +237,36 @@ def test_cli_template_that_is_no_docx_is_a_hard_error(
     )
     assert code == 1, log
     assert data == {}
-    assert "Vorlage nicht lesbar" in log
+    assert "Rendern fehlgeschlagen" in log
+
+
+def test_cli_master_flag_switches_the_reported_art(
+    plugin_root: Path, dummy_data: Path, workdir: Path
+):
+    """`/lebenslauf` rendert den Master mit `--master`; `/bewerbung` ohne die Fahne."""
+    code, master, log = _run(
+        plugin_root,
+        "--data",
+        str(dummy_data),
+        "--name",
+        "Anna Test",
+        "--output-dir",
+        "Bewerbungsmaterialien",
+        "--master",
+        cwd=workdir,
+    )
+    assert code == 0, log
+    assert master["art"] == "master_lebenslauf"
+
+    code, angepasst, log = _run(
+        plugin_root,
+        "--data",
+        str(dummy_data),
+        "--name",
+        "Anna Test",
+        "--output-dir",
+        "Bewerbungen/Beispiel_GmbH",
+        cwd=workdir,
+    )
+    assert code == 0, log
+    assert angepasst["art"] == "lebenslauf"

@@ -32,7 +32,7 @@ Dieser Ordner gehört {{NAME}} und wird von Claude über das Plugin Job Radar be
 | `/bewerten` | morgens, neue Jobs bewerten |
 | `/triage` | Ja-Jobs prüfen: Go, Vielleicht, Skip |
 | `/bewerbung <Firma>` | Unterlagen für einen Go-Job |
-| `/review <Firma>` | Unterlagen gegenlesen |
+| `/review` | nach dem Versand, gesendete Fassung ablegen und Lernnotizen ziehen |
 | `/interview <Firma>` | Briefing vor dem Gespräch |
 | `/scout` | Jobs jenseits der Portale |
 | `/kalibrierung` | nach einigen Wochen, Gewichte der Bewertung prüfen |

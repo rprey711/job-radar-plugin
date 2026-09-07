@@ -71,7 +71,7 @@ def test_docx_templates_are_present():
 @pytest.mark.parametrize(
     "name", sorted(p.relative_to(TEMPLATES).as_posix() for p in TEMPLATES.rglob("*.md"))
 )
-def test_profile_templates_are_v2_clean(name: str):
+def test_markdown_templates_are_v2_clean(name: str):
     text = _read(name)
     assert text.startswith("# ")
     for word in FORBIDDEN:

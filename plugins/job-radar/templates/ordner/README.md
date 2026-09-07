@@ -22,7 +22,7 @@ Der Ordner bleibt auf deinem Rechner. Zum Server gehen nur Scores, Entscheidunge
 
 ## Befehle
 
-`/einrichten`, `/kurzprofil`, `/onboarding`, `/lebenslauf`, `/anschreiben-vorlage`, `/suchprofil`, `/bewerten`, `/triage`, `/bewerbung <Firma>`, `/review <Firma>`, `/interview <Firma>`, `/scout`, `/kalibrierung`, `/hilfe`. Die Seite „Hilfe“ im Dashboard erklärt jeden Befehl mit Dauer, Voraussetzung und empfohlenem Modell.
+`/einrichten`, `/kurzprofil`, `/onboarding`, `/lebenslauf`, `/anschreiben-vorlage`, `/suchprofil`, `/bewerten`, `/triage`, `/bewerbung <Firma>`, `/review`, `/interview <Firma>`, `/scout`, `/kalibrierung`, `/hilfe`. Die Seite „Hilfe“ im Dashboard erklärt jeden Befehl mit Dauer, Voraussetzung und empfohlenem Modell.
 
 ## Wenn etwas hakt
 

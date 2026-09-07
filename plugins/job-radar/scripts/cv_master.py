@@ -307,6 +307,11 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     parser.add_argument("--pdf", action="store_true", help="danach PDF über to_pdf.py erzeugen")
+    parser.add_argument(
+        "--master",
+        action="store_true",
+        help="Master-Lebenslauf aus /lebenslauf; meldet art=master_lebenslauf",
+    )
     args = parser.parse_args(argv)
 
     if not args.template.is_file():
@@ -339,7 +344,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         render_docx(args.template, data, docx_path)
     except Exception as exc:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
-        print(f"FEHLER: Vorlage nicht lesbar: {args.template} ({exc})")
+        print(f"FEHLER: Rendern fehlgeschlagen ({args.template} -> {docx_path}): {exc}")
         return 1
     write_markdown_source(data, md_path)
 
@@ -358,7 +363,7 @@ def main(argv: list[str] | None = None) -> int:
 
     _common.print_result(
         {
-            "art": "lebenslauf",
+            "art": "master_lebenslauf" if args.master else "lebenslauf",
             "docx": _common.relative_posix(docx_path),
             "markdown": _common.relative_posix(md_path),
             "pdf": pdf_result["pdf"] if pdf_result else None,
