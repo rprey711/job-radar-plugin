@@ -180,7 +180,7 @@ Jedes Interview-Briefing MUSS die folgenden Sektionen enthalten. Die Reihenfolge
 **2. Gesprächspartner-Profil**
 - Rolle, Ausbildung, Werdegang (LinkedIn recherchieren)
 - Beziehung zur Stelle (direkter Vorgesetzter? HR? Fachbereich?)
-- *"Was bedeutet das für dich"*: Erwarte Fachtiefe oder Standardfragen?
+- *"Was bedeutet das für dich"*, die Einschätzung: Erwarte Fachtiefe oder Standardfragen?
 - Gesprächsansatz: Wie solltest du den Ton setzen?
 
 **3. Unternehmensprofil (ausführlich)**
