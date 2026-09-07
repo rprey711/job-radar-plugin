@@ -69,10 +69,10 @@ def test_docx_templates_are_present():
 
 
 @pytest.mark.parametrize(
-    "name", ["Kandidatenprofil.md", "Bewerbungsmethode.md", "Style_Guide.md", "Lernnotizen.md"]
+    "name", sorted(p.relative_to(TEMPLATES).as_posix() for p in TEMPLATES.rglob("*.md"))
 )
 def test_profile_templates_are_v2_clean(name: str):
-    text = _read(f"profil/{name}")
+    text = _read(name)
     assert text.startswith("# ")
     for word in FORBIDDEN:
         assert word not in text, f"{word!r} steht noch in {name}"

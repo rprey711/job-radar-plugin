@@ -68,8 +68,10 @@ def test_find_soffice_override_pointing_nowhere_does_not_fall_back(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
     """Ein gesetzter, aber falscher Pfad soll auffallen, nicht still durch die Suche ersetzt
-    werden. `shutil.which` und `KNOWN_SOFFICE` bleiben hier absichtlich unangetastet."""
+    werden. `shutil.which` liefert hier absichtlich einen Treffer, damit der Test auch auf
+    Rechnern ohne LibreOffice auf dem PATH etwas prüft und nicht zufällig grün ist."""
     monkeypatch.setenv("JOBRADAR_SOFFICE", str(tmp_path / "gibt_es_nicht.exe"))
+    monkeypatch.setattr(_common.shutil, "which", lambda name: "/usr/bin/soffice")
     assert _common.find_soffice() is None
 
 
