@@ -87,3 +87,26 @@ def test_count_pdf_pages_reads_page_objects(tmp_path: Path):
     assert _common.count_pdf_pages(pdf) == 2
     (tmp_path / "leer.pdf").write_bytes(b"%PDF-1.4\n%%EOF\n")
     assert _common.count_pdf_pages(tmp_path / "leer.pdf") is None
+
+
+class _FakeStdout:
+    """Ein Stream, der nur Kodierung meldet und jeden reconfigure-Aufruf mitschreibt."""
+
+    def __init__(self, encoding: str):
+        self.encoding = encoding
+        self.calls: list[str] = []
+
+    def reconfigure(self, *, encoding: str) -> None:
+        self.calls.append(encoding)
+
+
+def test_ensure_utf8_stdout_reconfigures_a_cp1252_stream(monkeypatch: pytest.MonkeyPatch):
+    cp1252 = _FakeStdout("cp1252")
+    monkeypatch.setattr(_common.sys, "stdout", cp1252)
+    _common.ensure_utf8_stdout()
+    assert cp1252.calls == ["utf-8"]
+
+    utf8 = _FakeStdout("utf-8")
+    monkeypatch.setattr(_common.sys, "stdout", utf8)
+    _common.ensure_utf8_stdout()
+    assert utf8.calls == []

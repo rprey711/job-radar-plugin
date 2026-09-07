@@ -12,6 +12,7 @@ Ausgabe:
 
 Exit-Codes: 0 ok, 1 harter Fehler (nichts erzeugt), 2 Style-Drift (Ausgabe bleibt),
 4 PDF nicht erzeugt (DOCX bleibt). Ohne --version nimmt das Skript die nächste freie Nummer.
+Exit 2 ohne Ergebniszeile ist ein Aufruffehler von argparse (falsche Argumente).
 Die Style-Prüfung vergleicht Schriftart, Größe und Absatzstil der ersten Überschrift
 zwischen Vorlage und Ausgabe; bei Drift bleibt die Markdown-Quelle die Wahrheit.
 """
@@ -297,7 +298,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output-dir", type=Path, required=True, help="Zielordner")
     parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE, help="DOCX-Vorlage")
     parser.add_argument(
-        "--version", type=int, default=None, help="Fassungsnummer, sonst die nächste freie"
+        "--version",
+        type=int,
+        default=None,
+        help=(
+            "Fassungsnummer, sonst die nächste freie, "
+            "eine vorhandene Datei dieser Nummer wird ersetzt"
+        ),
     )
     parser.add_argument("--pdf", action="store_true", help="danach PDF über to_pdf.py erzeugen")
     args = parser.parse_args(argv)
@@ -313,19 +320,27 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     try:
         data = load_data(args.data)
-    except (KeyError, TypeError, yaml.YAMLError) as exc:
+    except (AttributeError, KeyError, TypeError, yaml.YAMLError) as exc:
         print(f"FEHLER: Daten unvollständig oder kein gültiges YAML: {exc}")
         return 1
 
     out = args.output_dir
-    out.mkdir(parents=True, exist_ok=True)
+    try:
+        out.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        print(f"FEHLER: Zielordner nicht anlegbar: {out} ({exc})")
+        return 1
     stem = f"Lebenslauf_{sanitize_filename(args.name)}"
     version = args.version or _common.next_version(out, stem)
     docx_path = out / f"{stem}_v{version}.docx"
     md_path = out / f"{stem}_v{version}.md"
 
     print(f"-> Rendere {docx_path.name} ...")
-    render_docx(args.template, data, docx_path)
+    try:
+        render_docx(args.template, data, docx_path)
+    except Exception as exc:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
+        print(f"FEHLER: Vorlage nicht lesbar: {args.template} ({exc})")
+        return 1
     write_markdown_source(data, md_path)
 
     drift = False
@@ -349,6 +364,7 @@ def main(argv: list[str] | None = None) -> int:
             "pdf": pdf_result["pdf"] if pdf_result else None,
             "pdf_methode": pdf_result["methode"] if pdf_result else None,
             "seiten": pdf_result["seiten"] if pdf_result else None,
+            "hinweis": pdf_result["hinweis"] if pdf_result else None,
             "dateiname": docx_path.name,
             "version": version,
             "vorlage": args.template.resolve().as_posix(),
