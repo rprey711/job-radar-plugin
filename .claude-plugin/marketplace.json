@@ -1,0 +1,22 @@
+{
+  "name": "job-radar",
+  "owner": {
+    "name": "Raul Prey",
+    "url": "https://github.com/rprey711"
+  },
+  "metadata": {
+    "description": "Job Radar v2: Slash-Befehle, Render-Skripte und Vorlagen fuer die KI-gestuetzte Jobsuche mit Cowork oder Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "job-radar",
+      "source": "./plugins/job-radar",
+      "description": "Job Radar: Ordner einrichten, Jobs bewerten, Bewerbungen schreiben. Braucht ein Konto im Job-Radar-Dashboard.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Raul Prey"
+      },
+      "keywords": ["jobsuche", "bewerbung", "lebenslauf", "anschreiben"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "jobradar": {
+      "type": "http",
+      "url": "https://jobs.162-55-50-225.nip.io/mcp",
+      "oauth": true
+    }
+  }
+}
