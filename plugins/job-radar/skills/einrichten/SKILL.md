@@ -1,6 +1,6 @@
 ---
 name: einrichten
-description: Richtet den Job-Radar-Ordner ein, in dem Cowork oder Claude Code gerade arbeitet. Legt die Ordnerstruktur an, schreibt README und CLAUDE.md, kopiert die Profilvorlagen, sortiert abgelegte Dateien, prüft Python und LibreOffice, verbindet mit dem Server und meldet das Modul „ordner". Erster Schritt nach der Installation, dauert fünf Minuten.
+description: Richtet den Job-Radar-Ordner ein, in dem Cowork oder Claude Code gerade arbeitet. Legt die Ordnerstruktur an, schreibt README und CLAUDE.md, kopiert die Profilvorlagen, sortiert abgelegte Dateien, prüft Python und LibreOffice, verbindet mit dem Server und meldet das Modul „ordner“. Erster Schritt nach der Installation, dauert fünf Minuten.
 disable-model-invocation: true
 ---
 
@@ -21,7 +21,7 @@ python "${CLAUDE_PLUGIN_ROOT}/scripts/check_env.py"
 Windows ohne `python` auf dem PATH: `py` statt `python`. macOS und Linux: `python3`. Die letzte Ausgabezeile ist `JOBRADAR_RESULT {...}`; lies sie.
 
 - Exit 0: weiter mit Schritt 2. Merke dir `pdf_moeglich` und `libreoffice` für den Bericht am Ende.
-- Exit 1 mit „Python ... zu alt" oder gar kein Python: in Claude Code die Installation anleiten (Windows: `winget install Python.Python.3.12` oder python.org mit dem Haken „Add python.exe to PATH"; macOS: `brew install python` oder python.org). Danach Schritt 1 wiederholen. In Cowork sollte das nicht vorkommen; wenn doch, abbrechen und bitten, es Raul zu melden.
+- Exit 1 mit „Python ... zu alt“ oder gar kein Python: in Claude Code die Installation anleiten (Windows: `winget install Python.Python.3.12` oder python.org mit dem Haken „Add python.exe to PATH“; macOS: `brew install python` oder python.org). Danach Schritt 1 wiederholen. In Cowork sollte das nicht vorkommen; wenn doch, abbrechen und bitten, es Raul zu melden.
 - Exit 1 mit fehlenden Paketen: den ausgegebenen pip-Befehl ausführen, Schritt 1 wiederholen.
 
 ## 2. Name erfragen
@@ -40,12 +40,12 @@ python "${CLAUDE_PLUGIN_ROOT}/scripts/einrichten.py" --name "<Name>" --oberflaec
 
 Rufe `job_radar_status` auf.
 
-- Das Werkzeug ist nicht da oder die Antwort ist ein Anmeldefehler: In Cowork auf die Plugin-Seite gehen und die Verbindung „Job Radar" anmelden; in Claude Code `/mcp` eingeben, `jobradar` wählen, „Authenticate". Es öffnet sich der Browser mit der Anmeldung des Job-Radar-Dashboards; dort mit dem eigenen Konto anmelden und „Verbinden" bestätigen. Kein Passwort in den Chat. Danach `job_radar_status` erneut aufrufen.
+- Das Werkzeug ist nicht da oder die Antwort ist ein Anmeldefehler: In Cowork auf die Plugin-Seite gehen und die Verbindung „Job Radar“ anmelden; in Claude Code `/mcp` eingeben, `jobradar` wählen, „Authenticate“. Es öffnet sich der Browser mit der Anmeldung des Job-Radar-Dashboards; dort mit dem eigenen Konto anmelden und „Verbinden“ bestätigen. Kein Passwort in den Chat. Danach `job_radar_status` erneut aufrufen.
 - Die Antwort enthält `name`, `paket`, `phase`, `naechster_schritt`, `dashboard`. Wenn `paket` leer ist, wurde die Tour im Dashboard noch nicht abgeschlossen; das ist in Ordnung, der nächste Schritt sagt es.
 
 ## 5. Modul melden
 
-Erst wenn Schritt 3 ohne Fehler war: `job_radar_status(modul_erledigt="ordner")`. Die Antwort ist der neue Stand; „schon erledigt" ist kein Fehler.
+Erst wenn Schritt 3 ohne Fehler war: `job_radar_status(modul_erledigt="ordner")`. Die Antwort ist der neue Stand; „schon erledigt“ ist kein Fehler.
 
 ## 6. Abschluss
 
