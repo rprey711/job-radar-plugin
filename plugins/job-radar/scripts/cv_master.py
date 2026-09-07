@@ -2,7 +2,7 @@
 
 Aufruf:
     python cv_master.py --data <daten.yml> --name "<Vor- und Nachname>" --output-dir <ordner>
-                        [--template <vorlage.docx>] [--version N] [--pdf]
+                        [--template <vorlage.docx>] [--version N] [--master] [--pdf]
 
 Ausgabe:
     <ordner>/Lebenslauf_<Name>_v<N>.docx      das Dokument
