@@ -50,4 +50,4 @@ Läuft ein Schritt erkennbar mit dem falschen Modell, einmal darauf hinweisen un
 
 ## Python-Skripte des Plugins
 
-Lebenslauf und Anschreiben entstehen über die Skripte des Plugins (`scripts/cv_master.py`, `scripts/cover_master.py`, `scripts/to_pdf.py`, `scripts/check_env.py`). Aufruf, Argumente, Exit-Codes und die Ergebniszeile `JOBRADAR_RESULT` stehen in `docs/WERKZEUGE.md` des Plugins. Windows: `py` oder `python`, macOS und Linux: `python3`. Die Skripte schreiben nur in den Zielordner, den sie bekommen.
+Lebenslauf und Anschreiben entstehen über die Skripte des Plugins (`scripts/cv_master.py`, `scripts/cover_master.py`, `scripts/to_pdf.py`, `scripts/check_env.py`); vorhandene DOCX-Dateien liest `scripts/read_docx.py`. Aufruf, Argumente, Exit-Codes und die Ergebniszeile `JOBRADAR_RESULT` stehen in `docs/WERKZEUGE.md` des Plugins. Windows: `py` oder `python`, macOS und Linux: `python3`. Die Skripte schreiben nur in den Zielordner, den sie bekommen.

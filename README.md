@@ -10,7 +10,7 @@ Marketplace und Plugin `job-radar` für Cowork und Claude Code. Gehört zu [Job 
 | `plugins/job-radar/.claude-plugin/plugin.json` | Plugin-Manifest, Version |
 | `plugins/job-radar/.mcp.json` | Connector `jobradar` auf `https://jobs.162-55-50-225.nip.io/mcp` (OAuth über die 401-Antwort des Servers, kein `oauth`-Schlüssel, siehe unten) |
 | `plugins/job-radar/skills/` | vierzehn Slash-Befehle; `/einrichten` mit eigenem Inhalt, die anderen holen ihr Skript vom Server |
-| `plugins/job-radar/scripts/` | `check_env.py`, `einrichten.py`, `cv_master.py`, `cover_master.py`, `to_pdf.py`, `_common.py` |
+| `plugins/job-radar/scripts/` | `check_env.py`, `einrichten.py`, `read_docx.py`, `cv_master.py`, `cover_master.py`, `to_pdf.py`, `_common.py` |
 | `plugins/job-radar/templates/` | DOCX-Vorlagen, Ordner-README und CLAUDE.md, Profilvorlagen |
 | `plugins/job-radar/docs/WERKZEUGE.md` | Aufruf und Ergebnisformat der Skripte, gelesen von Claude |
 
