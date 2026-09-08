@@ -13,11 +13,11 @@ Der Lebenslauf wird stellenspezifisch angepasst. Master-Dokument als .docx pfleg
 - Was bringst du mit (Kernkompetenz)
 - Was suchst du (Richtung/Zielposition)
 
-Beim "Was suchst du"-Satz NICHT den exakten Jobtitel aus der Stellenausschreibung übernehmen. Das liest sich wie Copy-Paste. Stattdessen die Richtung / Art der Rolle beschreiben, die auch über diese eine Stelle hinaus stimmt. Spezifisch genug zum Matchen, ehrlich genug zum Glauben.
+Beim „Was suchst du“-Satz NICHT den exakten Jobtitel aus der Stellenausschreibung übernehmen. Das liest sich wie Copy-Paste. Stattdessen die Richtung / Art der Rolle beschreiben, die auch über diese eine Stelle hinaus stimmt. Spezifisch genug zum Matchen, ehrlich genug zum Glauben.
 
 ### Keyword-Spiegelung (vor dem Anpassen)
 
-Exakte Begriffe aus der Stellenausschreibung identifizieren und im CV spiegeln, nicht nur Synonyme, sondern wörtliche Übernahme. Bei Fachbegriffen sowohl Abkürzung als auch ausgeschriebene Form verwenden: *"Corporate Sustainability Reporting Directive (CSRD)"*. Das ist entscheidend für ATS-Filterung.
+Exakte Begriffe aus der Stellenausschreibung identifizieren und im CV spiegeln, nicht nur Synonyme, sondern wörtliche Übernahme. Bei Fachbegriffen sowohl Abkürzung als auch ausgeschriebene Form verwenden: *„Corporate Sustainability Reporting Directive (CSRD)“*. Das ist entscheidend für ATS-Filterung.
 
 ### 3-Filter-Methode
 
@@ -30,12 +30,12 @@ Drei Filter nacheinander anwenden:
 - Kontext hinzufügen, wenn thematisch passend
 
 **Filter 2: Konkretheit (XYZ-Formel)**
-- Keine Allgemeinaussagen (*"verantwortlich für"*, *"beteiligt an"*, *"zuständig für"*)
-- Bullet Points nach der XYZ-Formel: *"Accomplished [X] as measured by [Y], by doing [Z]"*
+- Keine Allgemeinaussagen (*„verantwortlich für“*, *„beteiligt an“*, *„zuständig für“*)
+- Bullet Points nach der XYZ-Formel: *„Accomplished [X] as measured by [Y], by doing [Z]“*
 - X = Ergebnis (beginnt mit starkem Aktivitätsverb), Y = Messgröße (Zahl, Prozent, Zeitersparnis), Z = Methode
 - Kein Aktivitätsverb mehr als 2x im gesamten Lebenslauf verwenden
 - Stärkster Bullet immer zuerst unter jeder Position (Personaler scannen im F-Muster)
-- Quantifizierung ohne offensichtliche Zahlen: Datenvolumen, Teamgrößen, Reichweite, Zeitvorsprünge, Vergleichsmaßstäbe. *"ca."* und *"~"* sind akzeptabel.
+- Quantifizierung ohne offensichtliche Zahlen: Datenvolumen, Teamgrößen, Reichweite, Zeitvorsprünge, Vergleichsmaßstäbe. *„ca.“* und *„~“* sind akzeptabel.
 
 **Filter 3: Nachvollziehbarkeit**
 - Einfache Sprache, keine internen Abkürzungen
@@ -66,7 +66,7 @@ Kernregel: Nicht beschreiben, was man erforscht hat, sondern beschreiben, was ma
 - Keine Inhalte in Kopf-/Fußzeilen (von den meisten ATS nicht lesbar)
 - Keine Skill-Balken, Sternbewertungen oder Infografiken
 - Einspaltiges Layout, Standardschriften (Calibri, Arial, Aptos)
-- Standardüberschriften: *"Berufserfahrung"*, *"Bildung"*, *"Kenntnisse"*
+- Standardüberschriften: *„Berufserfahrung“*, *„Bildung“*, *„Kenntnisse“*
 - Konsistente Datumsformate (MM.YYYY)
 - PDF exportieren aus Word (text-basiert, nicht gescannt)
 
@@ -84,7 +84,7 @@ Nicht jede Bewerbung braucht ein Anschreiben. Bevor geschrieben wird, entscheide
 
 - **Die Ausschreibung verlangt eines** → schreiben.
 - **Die Ausschreibung schweigt, die Firma erwartet es aber** (deutsche Großkonzerne, öffentlicher Sektor, klassische Beratung, HR-geführte Prozesse, gehobene Stellen) → schreiben.
-- **Die Ausschreibung sagt explizit "optional" oder "kein Anschreiben nötig"** (MBB DACH, viele Startups, manche Scale-ups) → nur schreiben, wenn ein klarer Mehrwert entsteht, den der CV nicht liefert. Entweder richtig gut oder weglassen. Ein mittelmäßiger Brief schadet in diesen Kontexten mehr, als er nützt.
+- **Die Ausschreibung sagt explizit „optional“ oder „kein Anschreiben nötig“** (MBB DACH, viele Startups, manche Scale-ups) → nur schreiben, wenn ein klarer Mehrwert entsteht, den der CV nicht liefert. Entweder richtig gut oder weglassen. Ein mittelmäßiger Brief schadet in diesen Kontexten mehr, als er nützt.
 - **Netzwerk-/Initiativbewerbung** → kurze E-Mail-Variante (4–6 Sätze, Referrer-Name wenn vorhanden, Kernfit, Anhänge). Kein ausgearbeitetes Anschreiben nötig.
 
 **Entscheidungshilfe:** Wenn du nicht in drei Sätzen einen Grund nennen kannst, warum dieser Brief dem CV etwas Substanzielles hinzufügt, schreib ihn nicht.
@@ -112,7 +112,7 @@ Aus dem Archetypen-Repertoire in `Profil/Style_Guide.md` wählen, was zur Stelle
 
 Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite.
 
-**Umgekehrte Linse als Grundbewegung** (siehe `Profil/Style_Guide.md`): Das Skill ist das Thema, das Projekt ist der Beleg. Nicht *"In meinem Projekt habe ich ..."*, sondern *"Skill X, das ich im Projekt <UNTERNEHMEN> gelernt habe, als ..."*.
+**Umgekehrte Linse als Grundbewegung** (siehe `Profil/Style_Guide.md`): Das Skill ist das Thema, das Projekt ist der Beleg. Nicht *„In meinem Projekt habe ich ...“*, sondern *„Skill X, das ich im Projekt <UNTERNEHMEN> gelernt habe, als ...“*.
 
 Pro Beleg:
 - Welche Fähigkeit will ich zeigen, die für diese Rolle konkret gebraucht wird?
@@ -128,7 +128,7 @@ Pro Beleg:
 
 Wenn die Stelle eine Qualifikation klar verlangt, die du nicht hast: max. zwei Sätze. Tatsache adressieren, Label meiden. Positive Pivot auf einen konkreten Wert, den du stattdessen lieferst. Siehe `Profil/Style_Guide.md` (Sektion *Gap ohne Demut*) für Formulierungsmuster.
 
-Kein Konjunktiv, keine *"aber ich arbeite mich schnell ein"*-Floskel, kein *"ich komme ehrlich gesagt nicht aus ..."*. Wenn kein relevanter Gap vorhanden, diesen Schritt überspringen.
+Kein Konjunktiv, keine *„aber ich arbeite mich schnell ein“*-Floskel, kein *„ich komme ehrlich gesagt nicht aus ...“*. Wenn kein relevanter Gap vorhanden, diesen Schritt überspringen.
 
 ### Schritt 5: Abschluss
 
@@ -142,7 +142,7 @@ Drei Pflicht-Tests vor Abgabe (siehe `Profil/Style_Guide.md`):
 2. **Der Satz, den nur ich sagen kann.** Mindestens ein Satz, den ein anderer Bewerber mit ähnlichem Profil nicht schreiben würde.
 3. **Kein CV-Echo.** Jeder Mittelteil-Absatz enthält mindestens einen Gedanken, der so nicht im CV steht.
 
-Ein Brief, der an einem Test scheitert, geht zurück in die Überarbeitung. Das ist der Unterschied zu "gut genug".
+Ein Brief, der an einem Test scheitert, geht zurück in die Überarbeitung. Das ist der Unterschied zu „gut genug“.
 
 ### Variante für Consulting-Bewerbungen
 
@@ -150,7 +150,7 @@ Gleiche Schritte 0–6, aber:
 - **200–250 Wörter**, nicht 300–400. Deutsche Consulting-Briefe sind straffer.
 - **Drei-Warum-Struktur explizit** (Why Consulting / Why Firm / Why Office).
 - **Office-/Practice-spezifische Referenz** (Partner-Name, öffentlich diskutierter Report, Standort-Profil).
-- **Akademischen Hintergrund selbstbewusst positionieren** (McKinsey DE: "Advanced Industry Hire"). Nicht wegerklären, als Stärke framen.
+- **Akademischen Hintergrund selbstbewusst positionieren** (McKinsey DE: „Advanced Industry Hire“). Nicht wegerklären, als Stärke framen.
 - **Null Demut-Gesten.** Im Consulting besonders streng.
 - **Der Swap-the-firm-name-Test ist hier besonders hart.** Consulting-Recruiter lesen Hunderte pro Saison; jede Austauschware wird sofort erkannt.
 
@@ -159,7 +159,7 @@ Gleiche Schritte 0–6, aber:
 Aus dem Vorgängerprozess bewusst entfernt:
 
 - **Variante A (Persönlicher Einstieg) vs. Variante B (Impact First) als Binary-Frage.** Der Einstieg wird aus dem Archetypen-Repertoire gewählt, nicht aus zwei Optionen.
-- **Dreifach-Stärkenprofil mit Bold-Überschriften** (*"Projektmanagement mit Ergebnisverantwortung:"*, *"Stakeholdermanagement:"*, *"Analytisches Denken:"*). Das ist zur Checkliste geworden. Stattdessen: zwei Belege im Fließtext, umgekehrte Linse.
+- **Dreifach-Stärkenprofil mit Bold-Überschriften** (*„Projektmanagement mit Ergebnisverantwortung:“*, *„Stakeholdermanagement:“*, *„Analytisches Denken:“*). Das ist zur Checkliste geworden. Stattdessen: zwei Belege im Fließtext, umgekehrte Linse.
 - **Stärken-Pool als generische Zugriffsliste.** Der Anker-Pool in `Profil/Style_Guide.md` hat das abgelöst: konkrete Anker mit Fragmenten, nicht abstrakte Stärken.
 - **Signature-Phrasen-Katalog.** Wiederkehrende Wendungen werden zur Schablone, auch wenn sie isoliert gut klingen. Max. eine wiederkehrende Wendung pro Brief.
 - **Automatischer Einstieg mit einem festen Projekt-/Positions-Satz.** Das ist ein Baustein, kein Default.
@@ -180,7 +180,7 @@ Jedes Interview-Briefing MUSS die folgenden Sektionen enthalten. Die Reihenfolge
 **2. Gesprächspartner-Profil**
 - Rolle, Ausbildung, Werdegang (LinkedIn recherchieren)
 - Beziehung zur Stelle (direkter Vorgesetzter? HR? Fachbereich?)
-- *"Was bedeutet das für dich"*, die Einschätzung: Erwarte Fachtiefe oder Standardfragen?
+- *„Was bedeutet das für dich“*, die Einschätzung: Erwarte Fachtiefe oder Standardfragen?
 - Gesprächsansatz: Wie solltest du den Ton setzen?
 
 **3. Unternehmensprofil (ausführlich)**
@@ -188,7 +188,7 @@ Jedes Interview-Briefing MUSS die folgenden Sektionen enthalten. Die Reihenfolge
 - Produkte/Services im Detail (nicht nur auflisten, sondern erklären)
 - Geschäftsmodell (wie verdienen sie Geld?)
 - Führungsteam (CEO, CFO, relevante Personen)
-- Schlüsselpersonen-Tabelle mit *"Für dich relevant weil..."*-Spalte
+- Schlüsselpersonen-Tabelle mit *„Für dich relevant weil...“*-Spalte
 - Tochtergesellschaften, Marken, Partnerschaften
 - Zertifizierungen, Mitgliedschaften (falls relevant)
 - Kultur-Signale (Bewertungen, Benefits, Duzen/Siezen, Arbeitsumgebung)
@@ -234,14 +234,14 @@ Jedes Interview-Briefing MUSS die folgenden Sektionen enthalten. Die Reihenfolge
 **10. Erwartbare Fragen & Antworten (8-10 Fragen)**
 - Stärken/Schwächen (gestützt auf Stärken-Themen aus `Profil/Kandidatenprofil.md`)
 - Motivation (Unternehmen + Stelle getrennt)
-- Lücken-Frage (*"Du hast keine Erfahrung in X..."*)
-- Prozess-/Methoden-Frage (*"Wie gehst du an X ran?"*)
+- Lücken-Frage (*„Du hast keine Erfahrung in X...“*)
+- Prozess-/Methoden-Frage (*„Wie gehst du an X ran?“*)
 - Gehalt, Starttermin, Zukunftsvision
 - Antworten ausformuliert als Blockquotes
 
-**11. Eigene Fragen (priorisiert + "NICHT fragen")**
+**11. Eigene Fragen (priorisiert + „NICHT fragen“)**
 - Priorisiert nach: Zur Stelle / Zum Team / Zur Einarbeitung / Zum Unternehmen
-- *"NICHT fragen"*-Liste mit Begründung (heikle Themen)
+- *„NICHT fragen“*-Liste mit Begründung (heikle Themen)
 - Fragen sollen Recherche-Tiefe zeigen
 
 **12. Wettbewerber & Marktkontext**
@@ -259,8 +259,8 @@ Jedes Interview-Briefing MUSS die folgenden Sektionen enthalten. Die Reihenfolge
 - Ehrliche Einschätzung, nicht beschönigen
 
 **15. Lernplan bis [Datum]**
-- Priorisiert in 3 Stufen: *"Höchste Priorität (heute)"* / *"Mittlere Priorität"* / *"Bei Nachfrage"*
-- Konkrete Aktionen (z. B. *"Selbstpräsentation laut üben"*, *"Konzept-Referenz §7 in eigenen Worten zusammenfassen"*)
+- Priorisiert in 3 Stufen: *„Höchste Priorität (heute)“* / *„Mittlere Priorität“* / *„Bei Nachfrage“*
+- Konkrete Aktionen (z. B. *„Selbstpräsentation laut üben“*, *„Konzept-Referenz §7 in eigenen Worten zusammenfassen“*)
 - Bezug zum Interviewtermin
 
 **16. Quick-Reference: Talking Points**
@@ -277,10 +277,10 @@ Jedes Interview-Briefing MUSS die folgenden Sektionen enthalten. Die Reihenfolge
 - **Detaillevel:** So hoch, dass du dich ALLEIN mit dem Briefing vorbereiten kannst
 - **Konzept-Referenz:** IMMER Fließtext, KEINE kompakten Tabellen. Du musst die Konzepte nach dem Lesen verstehen, nicht nur Definitionen gesehen haben
 - **Web Search ist Pflicht:** Nicht aus dem Kopf erklären. Aktuelle, verlässliche Quellen nutzen. Lieber eine Lücke kennzeichnen als Halbwissen liefern.
-- **Ehrlichkeit:** Bei Wissenslücken ehrlich sein. *"Einarbeitungsbedarf"* ist keine Schwäche wenn es mit Strategie kommt
+- **Ehrlichkeit:** Bei Wissenslücken ehrlich sein. *„Einarbeitungsbedarf“* ist keine Schwäche wenn es mit Strategie kommt
 - **Gesprächspartner recherchieren:** LinkedIn, XING, Google. Gemeinsame Bezugspunkte finden (z. B. gleiche Uni, ähnliche Erfahrung)
 - **Unternehmensspezifische Projekte/Initiativen** recherchieren und im Detail beschreiben
-- **Status im Dashboard** auf *"Interview"* setzen, damit der Verlauf der Bewerbung stimmt
+- **Status im Dashboard** auf *„Interview“* setzen, damit der Verlauf der Bewerbung stimmt
 
 ### 3.3 Recherche-Checkliste (parallel ausführen)
 
@@ -304,11 +304,11 @@ Stellenspezifisch formulieren. `<HIER PERSÖNLICHE WERTE-/HINTERGRUND-AUSSAGEN E
 - Prozess-/Methoden-Frage (wie gehst du an X ran?)
 - Arbeitsstil und gewünschte Rahmenbedingungen
 - Gehaltsvorstellung (wenn relevant)
-- *"Wo sehen Sie sich in 5 Jahren?"* (Bezug zum eigenen Karriere-Pfad aus dem Onboarding herstellen)
-- *"Warum verlässt du [deine bisherige Laufbahn]?"*
+- *„Wo sehen Sie sich in 5 Jahren?“* (Bezug zum eigenen Karriere-Pfad aus dem Onboarding herstellen)
+- *„Warum verlässt du [deine bisherige Laufbahn]?“*
 
 ### 3.6 Eigene Fragen ans Unternehmen
-Vorbereiten basierend auf der Recherche. Zeigt echtes Interesse. Priorisieren und *"NICHT fragen"*-Liste führen.
+Vorbereiten basierend auf der Recherche. Zeigt echtes Interesse. Priorisieren und *„NICHT fragen“*-Liste führen.
 
 ### 3.7 Sympathie-Faktoren
 - Gut vorbereitet sein (wichtigster Faktor)
