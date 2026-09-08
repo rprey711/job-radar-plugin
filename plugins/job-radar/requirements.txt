@@ -1,4 +1,4 @@
 # Pakete der Render-Skripte. Installation: python -m pip install -r requirements.txt
-python-docx>=1.1
-docxtpl>=0.16.7
-pyyaml>=6.0
+python-docx==1.2.0
+docxtpl==0.20.2
+pyyaml==6.0.3

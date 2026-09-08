@@ -6,6 +6,11 @@ import json
 import re
 from pathlib import Path
 
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10: tomllib landet erst in 3.11
+    import tomli as tomllib  # kommt transitiv ueber pytest's eigene 3.10-Abhaengigkeit mit
+
 ROOT = Path(__file__).resolve().parent.parent
 PLUGIN = ROOT / "plugins" / "job-radar"
 SEMVER = re.compile(r"^\d+\.\d+\.\d+$")
@@ -50,6 +55,29 @@ def test_requirements_match_pyproject():
     wanted = {"python-docx", "docxtpl", "pyyaml"}
     lines = (PLUGIN / "requirements.txt").read_text(encoding="utf-8").splitlines()
     names = {
-        line.split(">=")[0].strip() for line in lines if line.strip() and not line.startswith("#")
+        re.split(r"[<>=]", line, maxsplit=1)[0].strip()
+        for line in lines
+        if line.strip() and not line.startswith("#")
     }
     assert names == wanted
+
+
+def test_requirements_pinned_to_lockfile():
+    """requirements.txt fixiert exakte Versionen, die zum aktuellen uv.lock passen."""
+    lock = tomllib.loads((ROOT / "uv.lock").read_text(encoding="utf-8"))
+    locked_versions = {pkg["name"]: pkg["version"] for pkg in lock["package"]}
+
+    lines = [
+        line.strip()
+        for line in (PLUGIN / "requirements.txt").read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith("#")
+    ]
+    assert lines, "requirements.txt sollte Pakete enthalten"
+
+    for line in lines:
+        assert "==" in line, f"{line!r} ist nicht mit == auf eine exakte Version gepinnt"
+        name, version = line.split("==", 1)
+        assert name in locked_versions, f"{name} steht nicht in uv.lock"
+        assert version == locked_versions[name], (
+            f"{name}=={version} in requirements.txt weicht von uv.lock ({locked_versions[name]}) ab"
+        )
