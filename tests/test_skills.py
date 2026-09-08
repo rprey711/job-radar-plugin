@@ -76,7 +76,14 @@ def test_thin_skill_fetches_its_script_from_the_server(skill: str, thema: str):
 
 def test_werkzeuge_doc_names_every_script_and_the_result_line():
     text = (SKILLS.parent / "docs" / "WERKZEUGE.md").read_text(encoding="utf-8")
-    for script in ("check_env.py", "einrichten.py", "cv_master.py", "cover_master.py", "to_pdf.py"):
+    for script in (
+        "check_env.py",
+        "einrichten.py",
+        "read_docx.py",
+        "cv_master.py",
+        "cover_master.py",
+        "to_pdf.py",
+    ):
         assert script in text
     assert "JOBRADAR_RESULT" in text and "dokument_registrieren" in text
     for kind in (
