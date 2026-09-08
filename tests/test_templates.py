@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
 
 TEMPLATES = Path(__file__).resolve().parent.parent / "plugins" / "job-radar" / "templates"
+CODE_SPAN = re.compile(r"`[^`]*`")
 PLACEHOLDERS = ("{{NAME}}", "{{DATUM}}", "{{PLUGIN_VERSION}}", "{{DASHBOARD}}")
 FORBIDDEN = (
     "Notion",
@@ -76,6 +78,13 @@ def test_markdown_templates_are_v2_clean(name: str):
     assert text.startswith("# ")
     for word in FORBIDDEN:
         assert word not in text, f"{word!r} steht noch in {name}"
+
+
+@pytest.mark.parametrize("name", sorted(p.name for p in (TEMPLATES / "profil").glob("*.md")))
+def test_profile_templates_use_german_quotes(name: str):
+    """Gerade Anfuehrungszeichen gehoeren in Code-Spans, sonst nirgends."""
+    ohne_code = CODE_SPAN.sub("", _read(f"profil/{name}"))
+    assert '"' not in ohne_code, f"gerades Anfuehrungszeichen in profil/{name}"
 
 
 def test_profile_templates_name_the_v2_commands():

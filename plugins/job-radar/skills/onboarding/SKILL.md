@@ -1,6 +1,6 @@
 ---
 name: onboarding
-description: "Tageinz-Onboarding in zwei Sitzungen für das Paket Komplett: Kandidatenprofil, Bewerbungsmethode, optional der Stärkentest, am Ende die Profilkopie auf dem Server. Je Sitzung etwa 60 bis 90 Minuten."
+description: "Tageinz-Onboarding in zwei Sitzungen für das Paket Komplett: Kandidatenprofil, Bewerbungsmethode, optional der Stärkentest, am Ende die Profilkopie auf dem Server. Je Sitzung etwa 45 bis 60 Minuten."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: bewerten
-description: Neue Jobs mit Score, Begründung und Kategorie bewerten, in Zehnerpaketen über die Werkzeuge; Jobs ohne Beschreibung werden gesammelt gemeldet statt geraten. Die Ja-Nein-Entscheidung bleibt im Dashboard.
+description: Neue Jobs mit Score, Begründung und Kategorie bewerten, in Paketen bis 20 über die Werkzeuge; Jobs ohne Beschreibung werden gesammelt gemeldet statt geraten. Die Ja-Nein-Entscheidung bleibt im Dashboard.
 disable-model-invocation: true
 ---
 
