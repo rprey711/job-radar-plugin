@@ -88,6 +88,24 @@ def test_an_unreadable_file_is_an_error(
     assert "FEHLER" in capsys.readouterr().out
 
 
+def test_table_nested_in_a_cell_is_read(tmp_path: Path):
+    """Eine Tabelle, die in einer Zelle einer anderen Tabelle steckt, muss mit auftauchen."""
+    doc = Document()
+    doc.add_paragraph("Start")
+    aussen = doc.add_table(rows=1, cols=1)
+    zelle = aussen.cell(0, 0)
+    zelle.text = "Außenzelle"
+    innen = zelle.add_table(rows=1, cols=2)
+    innen.cell(0, 0).text = "Innen A"
+    innen.cell(0, 1).text = "Innen B"
+    doc.save(str(tmp_path / "verschachtelt.docx"))
+
+    text, ergebnis = read_docx.read_docx(tmp_path / "verschachtelt.docx")
+    assert "Innen A" in text
+    assert "Innen B" in text
+    assert ergebnis["tabellen"] == 2
+
+
 def test_cli_prints_the_text_and_the_result_line(tmp_path: Path, plugin_root: Path):
     docx = _docx(tmp_path / "cli.docx")
     proc = subprocess.run(

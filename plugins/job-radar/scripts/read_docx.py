@@ -4,8 +4,11 @@ Aufruf: python read_docx.py <datei.docx> [--max-zeichen N]
 
 Absätze und Tabellen kommen in Dokumentreihenfolge: das Skript läuft die Kinder des Body durch
 (`w:p` und `w:tbl`), nicht erst `document.paragraphs` und dann `document.tables`. Leere Absätze
-werden weggelassen, Tabellenzeilen als Zellen mit „ | “ dazwischen ausgegeben. `--max-zeichen`
-schneidet den Text ab und hängt „[gekürzt]“ an; die Ergebniszeile sagt es mit `gekuerzt` auch.
+werden weggelassen, Tabellenzeilen als Zellen mit „ | “ dazwischen ausgegeben. Steckt in einer
+Zelle wieder eine Tabelle, läuft dieselbe Kinder-Durchsicht rekursiv über die Zelle weiter; ihre
+Zeilen erscheinen direkt danach, pro Verschachtelungsebene um zwei Leerzeichen eingerückt.
+`--max-zeichen` schneidet den Text ab und hängt „[gekürzt]“ an; die Ergebniszeile sagt es mit
+`gekuerzt` auch.
 
 Exit 0 mit dem Text, Exit 1 mit `FEHLER: …` bei fehlender, fremder oder unlesbarer Datei.
 Letzte Zeile: JOBRADAR_RESULT mit `datei`, `zeichen` (Länge des ausgegebenen Textes ohne die
@@ -28,15 +31,39 @@ from docx.text.paragraph import Paragraph
 
 ZELLTRENNER = " | "
 KUERZUNGSMARKE = "[gekürzt]"
+EINRUECKUNG = "  "
 
 
-def _blocks(document) -> Iterator[Paragraph | Table]:
-    """Absätze und Tabellen in der Reihenfolge, in der sie im Dokument stehen."""
-    for child in document.element.body.iterchildren():
+def _blocks(element, parent) -> Iterator[Paragraph | Table]:
+    """Absätze und Tabellen in der Reihenfolge, in der sie unter `element` stehen.
+
+    `element` ist das lxml-Element mit den `w:p`- und `w:tbl`-Kindern (Dokument-Body oder
+    `w:tc` einer Zelle), `parent` das zugehörige python-docx-Objekt für Paragraph/Table.
+    """
+    for child in element.iterchildren():
         if child.tag == qn("w:p"):
-            yield Paragraph(child, document)
+            yield Paragraph(child, parent)
         elif child.tag == qn("w:tbl"):
-            yield Table(child, document)
+            yield Table(child, parent)
+
+
+def _tabellenzeilen(tabelle: Table, tiefe: int) -> tuple[list[str], int]:
+    """Zeilen einer Tabelle einsammeln, verschachtelte Tabellen in Zellen rekursiv mit auf.
+
+    Gibt die Zeilen und die Anzahl der Tabellen (diese plus alle verschachtelten) zurück.
+    """
+    zeilen: list[str] = []
+    anzahl = 1
+    praefix = EINRUECKUNG * tiefe
+    for row in tabelle.rows:
+        zeilen.append(praefix + ZELLTRENNER.join(zelle.text.strip() for zelle in row.cells))
+        for zelle in row.cells:
+            for kind in _blocks(zelle._tc, zelle):
+                if isinstance(kind, Table):
+                    unter_zeilen, unter_anzahl = _tabellenzeilen(kind, tiefe + 1)
+                    zeilen.extend(unter_zeilen)
+                    anzahl += unter_anzahl
+    return zeilen, anzahl
 
 
 def read_docx(datei: Path, max_zeichen: int | None = None) -> tuple[str, dict]:
@@ -45,16 +72,16 @@ def read_docx(datei: Path, max_zeichen: int | None = None) -> tuple[str, dict]:
     zeilen: list[str] = []
     absaetze = 0
     tabellen = 0
-    for block in _blocks(document):
+    for block in _blocks(document.element.body, document):
         if isinstance(block, Paragraph):
             text = block.text.strip()
             if text:
                 absaetze += 1
                 zeilen.append(text)
         else:
-            tabellen += 1
-            for row in block.rows:
-                zeilen.append(ZELLTRENNER.join(zelle.text.strip() for zelle in row.cells))
+            tabellenzeilen, anzahl = _tabellenzeilen(block, 0)
+            tabellen += anzahl
+            zeilen.extend(tabellenzeilen)
     text = "\n".join(zeilen)
     gekuerzt = max_zeichen is not None and len(text) > max_zeichen
     if gekuerzt:
