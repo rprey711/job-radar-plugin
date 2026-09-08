@@ -31,7 +31,7 @@ Nur aus `/einrichten`. Idempotent. `--neu-schreiben` ersetzt README und CLAUDE.m
 python "${CLAUDE_PLUGIN_ROOT}/scripts/read_docx.py" <datei.docx> [--max-zeichen N]
 ```
 
-Vorhandene Unterlagen lesen, etwa den alten Lebenslauf aus `Bewerbungsmaterialien/`: DOCX-Dateien liest `read_docx.py`, PDFs das normale Lesen. Ausgegeben werden Absätze und Tabellen in Dokumentreihenfolge, jede Tabellenzeile als Zellen mit „ | “ dazwischen; leere Absätze fallen weg. `--max-zeichen N` deckelt die Ausgabe und hängt „[gekürzt]“ an, sinnvoll bei langen Zeugnissen. Ergebniszeile: `datei`, `zeichen` (Länge des ausgegebenen Textes), `absaetze`, `tabellen`, `gekuerzt`. Exit 0, Exit 1 mit `FEHLER: …`, wenn die Datei fehlt, kein DOCX ist oder nicht gelesen werden kann. Das Skript schreibt nichts und meldet nichts; gelesene Unterlagen bleiben im Ordner.
+Vorhandene Unterlagen lesen, etwa den alten Lebenslauf aus `Bewerbungsmaterialien/`: DOCX-Dateien liest `read_docx.py`, PDFs das normale Lesen. Ausgegeben werden Absätze und Tabellen in Dokumentreihenfolge, jede Tabellenzeile als Zellen mit „ | “ dazwischen; leere Absätze fallen weg. Tabellen, die in einer Zelle verschachtelt sind, liest das Skript rekursiv mit und rückt ihre Zeilen pro Ebene um zwei Leerzeichen ein. `--max-zeichen N` deckelt die Ausgabe und hängt „[gekürzt]“ an, sinnvoll bei langen Zeugnissen. Ergebniszeile: `datei`, `zeichen` (Länge des ausgegebenen Textes), `absaetze`, `tabellen`, `gekuerzt`. Exit 0, Exit 1 mit `FEHLER: …`, wenn die Datei fehlt, kein DOCX ist oder nicht gelesen werden kann. Das Skript schreibt nichts und meldet nichts; gelesene Unterlagen bleiben im Ordner.
 
 ## `cv_master.py`
 
