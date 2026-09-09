@@ -2,6 +2,9 @@
 
 Marketplace und Plugin `job-radar` für Cowork und Claude Code. Gehört zu [Job Radar v2](https://github.com/rprey711/job-radar), dem Server mit Dashboard, Sammler und Connector. Das Plugin ist bewusst dünn: die Abläufe, Lernseiten und die Hilfe liegen im Server-Repo unter `content/` und kommen über den Connector (`anleitung_laden`). Hier liegen nur die Dinge, die lokal sein müssen.
 
+> Das Repo ist öffentlich, damit Cowork und Claude Code das Plugin laden können. Nutzen lässt es sich nur mit einem Konto im Job-Radar-Dashboard, das Raul per Einladung anlegt. Lizenz: alle Rechte vorbehalten, siehe `LICENSE`.
+
+
 ## Was drin ist
 
 | Pfad | Zweck |
@@ -25,7 +28,7 @@ claude plugin install job-radar@job-radar
 
 Danach in einem Ordner „Job Radar“ Claude Code starten und `/einrichten` eingeben. Die Verbindung zum Server wird beim ersten Werkzeugaufruf über `/mcp` angemeldet.
 
-**Cowork**: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Stand 2026-09-07 lädt Cowork private GitHub-Repos nicht (Issues #28125 und #61271 in anthropics/claude-code); bis das Repo öffentlich ist, geht nur der Weg über Claude Code.
+**Cowork**: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Das Repo ist seit dem 2026-09-09 öffentlich, weil Cowork private GitHub-Repos nicht lädt (Issues #28125 und #61271 in anthropics/claude-code).
 
 **Voraussetzungen beim Freund**: ein Konto im Job-Radar-Dashboard (Einladung von Raul), Claude Pro, in Claude Code zusätzlich Python 3.10 oder neuer. Die Pakete der Skripte: `python -m pip install -r plugins/job-radar/requirements.txt` (in Claude Code auf dem Rechner; `/einrichten` sagt den genauen Befehl). PDF entsteht über LibreOffice, sonst über Word, sonst per Hand.
 
