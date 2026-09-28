@@ -38,7 +38,7 @@ Danach in einem Ordner „Job Radar“ Claude Code starten und `/einrichten` ein
 
 ## Vertrag mit dem Server
 
-Die vierzehn Themen von `anleitung_laden` stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Befehle, die das Dashboard anzeigt, in `tools_status.COMMANDS`. Ändert sich dort etwas, ändern sich hier die Skills. Die Adresse in `.mcp.json` ist die des Servers; bei einem Domainwechsel Version anheben.
+Die vierzehn Themen von `anleitung_laden` stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Schritte des Plans mit ihren Befehlen in `repo/plan.STEPS`. Ändert sich dort etwas, ändern sich hier die Skills. Modellnamen stehen nur in `model_tiers.py` auf dem Server und kommen über `job_radar_status` und `anleitung_laden`. Skills und Vorlagen nennen keinen, das prüft `test_no_model_names_in_plugin_texts`. Die Adresse in `.mcp.json` ist die des Servers. Bei einem Domainwechsel Version anheben.
 
 ## Entwicklung
 
