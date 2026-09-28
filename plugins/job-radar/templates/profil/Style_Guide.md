@@ -27,7 +27,7 @@ Jeder fertige Brief muss durch drei Prüfsteine laufen. Ein Brief, der an einem 
 
 **Archetypen-Repertoire** (keine Pflichtwahl, keine Binary). Wähle, was zur Stelle und zum Anlass wirklich passt:
 - **Persönlicher Arbeitsmodus:** Ein Satz, der zeigt, wie du denkst oder arbeitest, gefolgt von einer konkreten Szene, die diesen Modus belegt, dann Brücke zur Stelle.
-- **Konkrete Szene aus dem eigenen Werk:** Eine spezifische Projektszene (nicht der ganze Projektblock), die zum Thema der Stelle passt. Kurzes Framing, dann Brücke.
+- **Konkrete Szene aus der eigenen Arbeit:** Eine spezifische Situation (nicht die ganze Station), die zum Thema der Stelle passt. Kurzes Framing, dann Brücke.
 - **Ehrliche Verbindung zum Unternehmen:** Wie bist du auf die Stelle/das Unternehmen gestoßen, was hat dich hängen lassen. Nur wenn diese Verbindung real ist, nie konstruieren.
 - **Argumentatives Bindeglied:** Eine These, die zwei Welten verbindet, wenn dein Hintergrund und die Stelle auf den ersten Blick nicht zusammenpassen.
 - **Anti-Frage:** *„Sie fragen sich vielleicht, was ein [Profil-A-Person] bei einer [Rolle-B] sucht ...“* Funktioniert nur, wenn ein offensichtlicher Fit-Bruch existiert, den man dreht statt entschuldigt.
@@ -42,7 +42,7 @@ Jeder fertige Brief muss durch drei Prüfsteine laufen. Ein Brief, der an einem 
 
 **Ziel:** Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite. Jeder Beleg: Situation → Handlung → quantifizierbarer oder greifbarer Effekt → was das über dich verallgemeinerbar zeigt.
 
-**Umgekehrte Linse als Grundbewegung.** Das Skill ist das Thema, das Projekt ist der Beleg. Nicht *„Im Projekt bei <UNTERNEHMEN> habe ich Meilensteine gesteuert“*, sondern *„Komplexe Projekte in Teilprobleme zu zerlegen, habe ich im Projekt bei <UNTERNEHMEN> gelernt, als ...“*. Der Fokus des Absatzes ist die Fähigkeit, die der Leser in der Rolle braucht, nicht die Chronik des Projekts.
+**Umgekehrte Linse als Grundbewegung.** Die Fähigkeit ist das Thema, die Station ist der Beleg. Nicht *„Bei <UNTERNEHMEN> habe ich Bestellungen bearbeitet“*, sondern *„Lieferengpässe früh zu erkennen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*. Der Fokus des Absatzes ist die Fähigkeit, die der Leser in der Rolle braucht, nicht die Chronik der Station.
 
 **Fragment-Auswahl statt Chronik.** Jeder Anker hat mehrere Facetten (siehe Anker-Pool unten). Pro Brief kommt nur die rollenrelevante Facette im Vordergrund vor, nicht das ganze Projekt. Haupt-Beleg ca. 6–8 Zeilen, Neben-Beleg 2–3 Zeilen. Wenn eine Facette nicht passt, weglassen, nicht künstlich biegen.
 
@@ -74,11 +74,11 @@ Anker sind wiederkehrende Story-Quellen, aus denen für jeden Brief die passende
 ### Primär (breit einsetzbar, decken die meisten Rollen ab)
 
 **`<PRIMÄRANKER 1, z.B. die längste Station oder das wichtigste Projekt>`.** Fragmente:
-- Problem-Framing und Konzeption
+- Aufgabe klären und Vorgehen planen
 - Umsetzung im Alltag (z.B. Bestellabwicklung, Dienstplanung, Warenannahme)
-- Stakeholder-Navigation (Workshops, Präsentationen, Berichte)
+- Abstimmung mit anderen (Team, Vorgesetzte, Kundschaft, Lieferanten)
 - Fachliche Sorgfalt (z.B. Hygienevorschriften, Vergaberecht, Gefahrgutregeln)
-- Outcome (konkrete Handlungsempfehlungen oder Ergebnisse)
+- Ergebnis (z.B. weniger Retouren, pünktlichere Touren, ein bestandenes Audit)
 
 **`<PRIMÄRANKER 2, z.B. Ausbildung, zweite Station oder Ehrenamt>`.** Fragmente:
 - Eigenständige Planung
@@ -88,8 +88,9 @@ Anker sind wiederkehrende Story-Quellen, aus denen für jeden Brief die passende
 
 <!-- Ergänze hier situative Anker aus deiner Biografie. Beispiele: -->
 <!-- - Ehrenamt oder Verein: für Koordinations- und Organisationsrollen -->
-<!-- - Besonderes Analyse-Projekt: für Operations-, Customer-Journey-nahe Rollen -->
+<!-- - Verbesserung im eigenen Ablauf (z.B. neue Lagerordnung, geänderte Übergabe): für Operations- und Prozessrollen -->
 <!-- - Nebenjob mit Kundenkontakt: für Vertrieb, Einzelhandel, Kundenservice -->
+<!-- - Social-Media-Auftritt für Verein oder Laden: für Marketing- und Kommunikationsrollen -->
 <!-- - Weiterbildung mit Abschluss: für Stellen, die genau diese Qualifikation nennen -->
 <!-- - Einarbeitung neuer Kolleginnen und Kollegen: für Trainee-, Team- und Schulungsrollen -->
 <!-- - Auslandserfahrung: für international ausgerichtete Rollen -->
@@ -208,7 +209,7 @@ Jeder Brief braucht mindestens eine persönliche Szene, die so nur aus deiner Er
 
 ## Beim Wechsel des Berufsfelds zusätzlich beachten
 
-**Das Fachwort des alten Berufs durch Umfang und Handlung ersetzen.** Nicht *„Ich habe die Tourenplanung übernommen.“*, sondern *„Ich habe für zwölf Fahrer die Einsätze geplant und Engpässe früh gemeldet.“*
+**Das Fachwort des alten Berufs durch Umfang und Handlung ersetzen.** Nicht *„Ich habe die Tourenplanung übernommen“*, sondern *„Ich habe für zwölf Fahrer die Einsätze geplant und Engpässe früh gemeldet.“*
 
 **Transferable Skills betonen.** Planung, Teamkoordination, Kundenkontakt, Umgang mit Zahlen und Budgets. Das sind die Fähigkeiten, die Arbeitgeber interessieren, nicht die Fachdetails des bisherigen Berufs.
 
@@ -237,19 +238,19 @@ Echte Verbindung zum Unternehmen:
 > *„[Unternehmen] begleitet mich schon länger, bevor ich die Stellenausschreibung gesehen habe. [Persönlicher konkreter Bezug].“*
 
 Ein spezifisches Projekt-Detail, nicht der Standard-Block:
-> *„Erst vor kurzem habe ich für <UNTERNEHMEN> [konkrete Aufgabe] analysiert und einen Report über [Ergebnis] erstellt.“*
+> *„Erst vor kurzem habe ich bei <UNTERNEHMEN> [konkrete Aufgabe] übernommen. Seitdem [messbares Ergebnis].“*
 
 Argumentatives Bindeglied:
-> *„[Fähigkeit] ist der Kern meiner bisherigen Arbeit und genau die Aufgabe, vor der auch [Kontext der Stelle] steht.“*
+> *„[Bisheriges Feld] und [Feld der Stelle] lösen dieselbe Aufgabe, nämlich [gemeinsame Aufgabe]. Ich kenne sie bisher von der anderen Seite.“*
 
 Positionierung mit Haltung:
 > *„[Ort/Thema] ist mir wichtig, und ich will an [Thema] mitarbeiten, nicht nur darüber lesen.“*
 
 ### Umgekehrte Linse: Primäranker (Formulierungsmuster)
 
-Jeder dieser Sätze macht das Skill zum Thema, das Projekt zum Beleg. Anpassen auf die eigenen Anker:
+Jeder dieser Sätze macht die Fähigkeit zum Thema, die Station zum Beleg. Anpassen auf die eigenen Anker:
 
-> *„Komplexe Projekte in verhandelbare Teilprobleme zu zerlegen, habe ich in einem mehrjährigen Projekt bei <UNTERNEHMEN> gelernt, als ...“*
+> *„Einen Dienstplan so zu bauen, dass auch zwei Ausfälle hineinpassen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*
 
 > *„Dass man sich erst auf die Frage einigen muss und dann auf die Zahl, habe ich bei <UNTERNEHMEN> gelernt, als zwei Abteilungen dieselbe Kennzahl verschieden berechnen wollten.“*
 
@@ -272,7 +273,7 @@ Sachlich ohne „aber“:
 
 ### Konkrete Projektszene im Mittelteil
 
-> *„Zwei Abteilungen wollten dieselbe Kennzahl verschieden berechnen. Wir haben uns erst auf die Frage geeinigt, dann auf die Zahl.“*
+> *„Früh- und Spätschicht haben Retouren verschieden gebucht. Wir haben einen gemeinsamen Ablauf festgelegt, danach stimmte der Bestand wieder.“*
 
 ### Starke Abschlüsse
 

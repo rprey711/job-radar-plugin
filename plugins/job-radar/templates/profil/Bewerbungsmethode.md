@@ -81,7 +81,7 @@ Nicht jede Bewerbung braucht ein Anschreiben. Bevor geschrieben wird, entscheide
 
 - **Die Ausschreibung verlangt eines** → schreiben.
 - **Die Ausschreibung schweigt, die Firma erwartet es aber** (deutsche Großkonzerne, öffentlicher Sektor, klassische Beratung, HR-geführte Prozesse, gehobene Stellen) → schreiben.
-- **Die Ausschreibung sagt explizit „optional“ oder „kein Anschreiben nötig“** (MBB DACH, viele Startups, manche Scale-ups) → nur schreiben, wenn ein klarer Mehrwert entsteht, den der CV nicht liefert. Entweder richtig gut oder weglassen. Ein mittelmäßiger Brief schadet in diesen Kontexten mehr, als er nützt.
+- **Die Ausschreibung sagt explizit „optional“ oder „kein Anschreiben nötig“** (große Strategieberatungen wie McKinsey, BCG und Bain, viele Startups, manche Scale-ups) → nur schreiben, wenn ein klarer Mehrwert entsteht, den der CV nicht liefert. Entweder richtig gut oder weglassen. Ein mittelmäßiger Brief schadet in diesen Kontexten mehr, als er nützt.
 - **Netzwerk-/Initiativbewerbung** → kurze E-Mail-Variante (4–6 Sätze, Referrer-Name wenn vorhanden, Kernfit, Anhänge). Kein ausgearbeitetes Anschreiben nötig.
 
 **Entscheidungshilfe:** Wenn du nicht in drei Sätzen einen Grund nennen kannst, warum dieser Brief dem CV etwas Substanzielles hinzufügt, schreib ihn nicht.
@@ -103,13 +103,13 @@ Aus dem Archetypen-Repertoire in `Profil/Style_Guide.md` wählen, was zur Stelle
 2. Gibt es ein spezifisches Projekt-Detail aus dem Anker-Pool, das direkt zur Stelle passt? → Szenen-Opener.
 3. Gibt es einen offensichtlichen Fit-Bruch, den man drehen kann (z.B. jemand aus der Pflege bewirbt sich im Qualitätsmanagement)? → Anti-Frage.
 4. Sucht die Stelle einen bestimmten Arbeitsmodus, den du hast? → Arbeitsmodus-Opener.
-5. Fallback: Konkrete Szene aus dem eigenen Werk.
+5. Fallback: Konkrete Szene aus der eigenen Arbeit.
 
 ### Schritt 3: Mittelteil schreiben
 
 Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite.
 
-**Umgekehrte Linse als Grundbewegung** (siehe `Profil/Style_Guide.md`): Das Skill ist das Thema, das Projekt ist der Beleg. Nicht *„In meinem Projekt habe ich ...“*, sondern *„Skill X, das ich im Projekt <UNTERNEHMEN> gelernt habe, als ...“*.
+**Umgekehrte Linse als Grundbewegung** (siehe `Profil/Style_Guide.md`): Die Fähigkeit ist das Thema, die Station ist der Beleg. Nicht *„In meinem Projekt habe ich ...“*, sondern *„Skill X, das ich im Projekt <UNTERNEHMEN> gelernt habe, als ...“*.
 
 Pro Beleg:
 - Welche Fähigkeit will ich zeigen, die für diese Rolle konkret gebraucht wird?
