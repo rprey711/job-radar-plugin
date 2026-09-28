@@ -10,7 +10,7 @@ Diese Datei füllt `/onboarding` (Komplett) oder `/kurzprofil` (Schnellstart). D
 
 ## Kernkompetenzen
 
-<!-- Skills, Tools, Methoden, konkret. Lieber „Python (pandas, scikit-learn) auf Datensätzen mit 50.000 Zeilen“ als „Datenanalyse“ -->
+<!-- Skills, Tools, Methoden, konkret. Lieber „SAP MM, Excel (Pivot-Tabellen, SVERWEIS), Lieferantenverhandlungen“ als „Einkaufserfahrung“ -->
 
 - ...
 

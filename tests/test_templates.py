@@ -97,7 +97,8 @@ def test_profile_templates_name_the_v2_commands():
 BACKGROUND = re.compile(
     r"\b(Leipzig|Dresden|Erfurt|Halle|Dissertation|Doktorand\w*|Drittmittel\w*|ESG|CSRD|"
     r"Kreislaufwirtschaft|Längsschnitt\w*|Befragungsergebnisse|Raul Prey|"
-    r"Lehrveranstaltung\w*|Konferenzvortr\w*)\b"
+    r"Lehrveranstaltung\w*|Konferenzvortr\w*|pandas|scikit-learn|Executive-Board|"
+    r"Analytische Phase|Methodische Tiefe)\b"
 )
 PLUGIN_TEXTS = sorted(
     [p for p in TEMPLATES.rglob("*.md")]

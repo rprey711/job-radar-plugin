@@ -75,9 +75,9 @@ Anker sind wiederkehrende Story-Quellen, aus denen für jeden Brief die passende
 
 **`<PRIMÄRANKER 1, z.B. die längste Station oder das wichtigste Projekt>`.** Fragmente:
 - Problem-Framing und Konzeption
-- Analytische Phase (Tools, Datenbasis, Methode)
+- Umsetzung im Alltag (z.B. Bestellabwicklung, Dienstplanung, Warenannahme)
 - Stakeholder-Navigation (Workshops, Präsentationen, Berichte)
-- Methodische Tiefe
+- Fachliche Sorgfalt (z.B. Hygienevorschriften, Vergaberecht, Gefahrgutregeln)
 - Outcome (konkrete Handlungsempfehlungen oder Ergebnisse)
 
 **`<PRIMÄRANKER 2, z.B. Ausbildung, zweite Station oder Ehrenamt>`.** Fragmente:
@@ -253,7 +253,7 @@ Jeder dieser Sätze macht das Skill zum Thema, das Projekt zum Beleg. Anpassen a
 
 > *„Dass man sich erst auf die Frage einigen muss und dann auf die Zahl, habe ich bei <UNTERNEHMEN> gelernt, als zwei Abteilungen dieselbe Kennzahl verschieden berechnen wollten.“*
 
-> *„Dass Datenanalyse erst dann wirkt, wenn sie für die Adressaten aufbereitet ist, habe ich bei <UNTERNEHMEN> gelernt: die gleichen Ergebnisse tragen im Executive-Board anders als im Arbeitsgruppen-Workshop.“*
+> *„Dass eine Neuerung erst ankommt, wenn sie für jede Gruppe anders erklärt wird, habe ich bei <UNTERNEHMEN> gelernt, als ich die neue Pflegedokumentation erst der Stationsleitung und dann dem Nachtdienst vorgestellt habe.“*
 
 > *„[Fähigkeit] ist der Kern meiner Arbeit bei <UNTERNEHMEN> und genau die Aufgabe, die hier ansteht.“*
 
