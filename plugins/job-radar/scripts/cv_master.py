@@ -149,11 +149,14 @@ def render_docx(template_path: Path, data: CVData, output_path: Path) -> str | N
         if not foto_path.is_file():
             hinweis = f"Foto nicht gefunden: {data.foto}"
         else:
-            # python-docx liest das Bild erst beim Rendern; ein HEIC mit .jpg-Endung, eine
-            # leere oder abgeschnittene Datei würde dann den ganzen Lebenslauf verhindern.
+            # python-docx liest und skaliert das Bild erst beim Rendern. Ein HEIC mit
+            # .jpg-Endung, eine leere oder abgeschnittene Datei, Breite oder Höhe 0 oder eine
+            # Auflösung von 0 dpi würde dann den ganzen Lebenslauf verhindern. Deshalb läuft
+            # hier vorab dieselbe Rechnung wie in InlineImage.
             try:
                 bild = Image.from_file(str(foto_path))
-                lesbar = bild.px_width > 0 and bild.px_height > 0  # sonst Division durch 0
+                _breite, hoehe = bild.scaled_dimensions(PHOTO_WIDTH, None)
+                lesbar = hoehe > 0
             except Exception:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
                 lesbar = False
             if lesbar:

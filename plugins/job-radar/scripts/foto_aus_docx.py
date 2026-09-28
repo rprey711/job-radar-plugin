@@ -22,20 +22,22 @@ import _common
 BILDENDUNGEN = {".png", ".jpg", ".jpeg"}
 
 
-def groesstes_bild(docx: Path) -> tuple[str, bytes] | None:
-    """Endung und Inhalt des größten PNG oder JPEG unter word/media, sonst None."""
-    with zipfile.ZipFile(docx) as z:
-        kandidaten = [
-            info
-            for info in z.infolist()
-            if info.filename.startswith("word/media/")
-            and Path(info.filename).suffix.lower() in BILDENDUNGEN
-        ]
-        if not kandidaten:
-            return None
-        best = max(kandidaten, key=lambda info: info.file_size)
-        endung = Path(best.filename).suffix.lower().replace(".jpeg", ".jpg")
-        return endung, z.read(best.filename)
+def groesstes_bild(archiv: zipfile.ZipFile) -> tuple[str, bytes] | None:
+    """Endung und Inhalt des größten PNG oder JPEG unter word/media, sonst None.
+
+    Ein beschädigter Eintrag wirft beim Lesen BadZipFile, zlib.error oder OSError.
+    """
+    kandidaten = [
+        info
+        for info in archiv.infolist()
+        if info.filename.startswith("word/media/")
+        and Path(info.filename).suffix.lower() in BILDENDUNGEN
+    ]
+    if not kandidaten:
+        return None
+    best = max(kandidaten, key=lambda info: info.file_size)
+    endung = Path(best.filename).suffix.lower().replace(".jpeg", ".jpg")
+    return endung, archiv.read(best.filename)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -55,15 +57,19 @@ def main(argv: list[str] | None = None) -> int:
 
     if not args.datei.is_file():
         return fertig(None, f"Datei nicht gefunden: {args.datei}")
+    # Scheitert schon das Öffnen, ist die Datei kein ZIP-Archiv und damit keine Word-Datei.
+    # Scheitert erst das Lesen eines Eintrags, ist es eine echte, aber beschädigte Word-Datei.
     try:
-        bild = groesstes_bild(args.datei)
-    except zipfile.BadZipFile as exc:
-        # Eine falsche Prüfsumme kommt aus einer echten, aber beschädigten Word-Datei.
-        if str(exc).startswith("Bad CRC"):
-            return fertig(None, f"{args.datei.name} ist nicht lesbar: {exc}")
+        archiv = zipfile.ZipFile(args.datei)
+    except zipfile.BadZipFile:
         return fertig(None, f"{args.datei.name} ist keine Word-Datei (.docx).")
-    except (zlib.error, OSError) as exc:
+    except OSError as exc:
         return fertig(None, f"{args.datei.name} ist nicht lesbar: {exc}")
+    with archiv:
+        try:
+            bild = groesstes_bild(archiv)
+        except (zipfile.BadZipFile, zlib.error, OSError) as exc:
+            return fertig(None, f"{args.datei.name} ist nicht lesbar: {exc}")
     if bild is None:
         return fertig(None, "Kein Bild im Dokument gefunden.")
     endung, inhalt = bild

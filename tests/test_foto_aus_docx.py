@@ -132,3 +132,22 @@ def test_damaged_word_file_is_not_called_a_non_word_file(plugin_root: Path, work
     assert result["foto"] is None
     assert result["hinweis"].startswith("cv.docx ist nicht lesbar: Bad CRC")
     assert "keine Word-Datei" not in result["hinweis"]
+
+
+def test_broken_member_header_is_unreadable_not_a_non_word_file(plugin_root: Path, workdir: Path):
+    png = workdir / "bild.png"
+    png.write_bytes(PNG_1PX)
+    doc = Document()
+    doc.add_picture(str(png))
+    docx = workdir / "cv.docx"
+    doc.save(str(docx))
+    with zipfile.ZipFile(docx) as z:
+        info = next(i for i in z.infolist() if i.filename.startswith("word/media/"))
+    raw = bytearray(docx.read_bytes())
+    # Kennung des lokalen Kopfs zerstört: das Inhaltsverzeichnis stimmt, der Eintrag nicht.
+    raw[info.header_offset : info.header_offset + 4] = b"XXXX"
+    docx.write_bytes(bytes(raw))
+    code, result = _run(plugin_root, "cv.docx", cwd=workdir)
+    assert code == 1
+    assert result["foto"] is None
+    assert result["hinweis"].startswith("cv.docx ist nicht lesbar: Bad magic number")

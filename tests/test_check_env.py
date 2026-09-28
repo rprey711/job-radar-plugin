@@ -134,16 +134,19 @@ def test_calibri_missing_in_fc_list(monkeypatch: pytest.MonkeyPatch):
     assert check_env.calibri_verfuegbar() is False
 
 
-def test_undecodable_fc_list_output_does_not_break_the_report(monkeypatch: pytest.MonkeyPatch):
-    def kaputt() -> str:
-        raise UnicodeDecodeError("utf-8", b"\xff", 0, 1, "invalid start byte")
+def test_undecodable_fc_list_output_still_finds_carlito(monkeypatch: pytest.MonkeyPatch):
+    echtes_run = subprocess.run
+    # Ein Schriftname mit einem Byte, das kein UTF-8 ist, gleich hinter „Carlito“.
+    fc_list_ersatz = r"import sys;sys.stdout.buffer.write(b'Carlito\xff\n')"
+
+    def run(args: list[str], **kwargs):
+        assert args == ["fc-list", ":", "family"]
+        return echtes_run([sys.executable, "-c", fc_list_ersatz], **kwargs)
 
     monkeypatch.setattr(check_env.platform, "system", lambda: "Linux")
     monkeypatch.setattr(check_env.shutil, "which", lambda name: "/usr/bin/fc-list")
-    monkeypatch.setattr(check_env, "_fc_list", kaputt)
-    report = check_env.report()
-    assert report["schrift_calibri"] is None
-    assert report["schrift_hinweis"] is None
+    monkeypatch.setattr(check_env.subprocess, "run", run)
+    assert check_env.calibri_verfuegbar() is True
 
 
 @pytest.mark.parametrize(

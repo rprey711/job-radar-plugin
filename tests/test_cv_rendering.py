@@ -376,6 +376,23 @@ JPEG_16PX = (
     + _jpeg_segment(0xC0, b"\x08\x00\x10\x00\x10\x03\x01\x22\x00\x02\x11\x01\x03\x11\x01")
     + b"\xff\xd9"
 )
+# Dichte 0 Punkte pro Zoll: python-docx liest die Größe, beim Skalieren teilt es dann durch 0.
+JPEG_DPI_NULL = JPEG_16PX.replace(
+    JFIF_APP0, _jpeg_segment(0xE0, b"JFIF\x00\x01\x01\x01\x00\x00\x00\x00\x00\x00")
+)
+
+
+def test_jpeg_photo_is_placed_at_photo_width(tmp_path: Path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "foto.jpg").write_bytes(JPEG_16PX)
+    out = tmp_path / "cv.docx"
+    data = cv_master.load_data(_data(tmp_path, foto="foto.jpg"))
+    hinweis = cv_master.render_docx(TEMPLATE, data, out)
+    assert hinweis is None
+    assert len(_media(out)) == 1
+    shapes = Document(str(out)).inline_shapes
+    assert len(shapes) == 1
+    assert shapes[0].width == Mm(32)
 
 
 @pytest.mark.parametrize(
@@ -393,6 +410,7 @@ JPEG_16PX = (
         # Breite oder Höhe 0 liest python-docx, beim Skalieren teilt es dann durch 0.
         ("breite_null.png", _png(0, 4)),
         ("hoehe_null.png", _png(4, 0)),
+        ("dpi_null.jpg", JPEG_DPI_NULL),
     ],
     ids=[
         "heic",
@@ -404,6 +422,7 @@ JPEG_16PX = (
         "jpg_ohne_sof",
         "png_breite_0",
         "png_hoehe_0",
+        "jpg_dpi_0",
     ],
 )
 def test_unreadable_photo_renders_without_and_says_so(
