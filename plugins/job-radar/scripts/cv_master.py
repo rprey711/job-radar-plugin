@@ -119,20 +119,6 @@ def format_education_section(education: list[Education]) -> str:
     return "\n\n".join(lines)
 
 
-def format_international_section(international: list[str]) -> str:
-    """Internationaler Hintergrund als Bullet-Liste."""
-    if not international:
-        return ""
-    return "\n".join(f"• {entry}" for entry in international)
-
-
-def format_weiteres_section(weiteres: list[str]) -> str:
-    """Weiteres als Bullet-Liste."""
-    if not weiteres:
-        return ""
-    return "\n".join(f"• {entry}" for entry in weiteres)
-
-
 def render_docx(template_path: Path, data: CVData, output_path: Path) -> None:
     """Rendert das Template mit den Daten, schreibt nach output_path."""
     tpl = DocxTemplate(str(template_path))
@@ -156,8 +142,8 @@ def render_docx(template_path: Path, data: CVData, output_path: Path) -> None:
         "education_section": format_education_section(data.education),
         "skills_section": data.skills_section,
         "sprachen_line": data.sprachen_line,
-        "international_section": format_international_section(data.international),
-        "weiteres_section": format_weiteres_section(data.weiteres),
+        "international": list(data.international),
+        "weiteres": list(data.weiteres),
     }
     # autoescape: a bare "&" or "<" from the data breaks the XML, and docxtpl's recover
     # parser then drops it together with every later "&amp;" in the part.
