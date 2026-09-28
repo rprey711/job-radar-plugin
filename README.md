@@ -19,7 +19,7 @@ Marketplace und Plugin `job-radar` für Cowork und Claude Code. Gehört zu [Job 
 
 ## Installation
 
-**Claude Code** (funktioniert mit dem privaten Repo, wenn `gh auth login` und `gh auth setup-git` eingerichtet sind):
+**Claude Code**:
 
 ```bash
 claude plugin marketplace add rprey711/job-radar-plugin
