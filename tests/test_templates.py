@@ -107,6 +107,17 @@ PLUGIN_TEXTS = sorted(
     + [TEMPLATES.parent / "docs" / "WERKZEUGE.md"]
 )
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
+MODEL_NAME_TEXTS = sorted(
+    set(PLUGIN_TEXTS)
+    | {
+        REPO_ROOT / ".claude-plugin" / "marketplace.json",
+        TEMPLATES.parent / ".claude-plugin" / "plugin.json",
+        REPO_ROOT / "README.md",
+    }
+    | set((TEMPLATES.parent / "scripts").glob("*.py"))
+)
+
 
 @pytest.mark.parametrize(
     "path", PLUGIN_TEXTS, ids=lambda p: p.relative_to(TEMPLATES.parent).as_posix()
@@ -120,7 +131,7 @@ MODEL_NAMES = re.compile(r"\b(Opus|Sonnet|Fable|Haiku)\b")
 
 
 @pytest.mark.parametrize(
-    "path", PLUGIN_TEXTS, ids=lambda p: p.relative_to(TEMPLATES.parent).as_posix()
+    "path", MODEL_NAME_TEXTS, ids=lambda p: p.relative_to(REPO_ROOT).as_posix()
 )
 def test_no_model_names_in_plugin_texts(path: Path):
     """Modellnamen stehen nur im Server (model_tiers.py) und kommen über job_radar_status."""
@@ -128,7 +139,7 @@ def test_no_model_names_in_plugin_texts(path: Path):
     assert not hits, f"Modellname in {path.name}: {sorted(set(hits))}"
 
 
-PACKAGES = re.compile(r"\b(Paket|Komplett|Schnellstart)\b")
+PACKAGES = re.compile(r"\b(Paket|Komplett|Schnellstart)\b", re.IGNORECASE)
 
 
 @pytest.mark.parametrize(
