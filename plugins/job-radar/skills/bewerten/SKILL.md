@@ -1,6 +1,6 @@
 ---
 name: bewerten
-description: Neue Jobs mit Score, Begründung und Kategorie bewerten, seitenweise zu zehn über die Werkzeuge und höchstens etwa 50 pro Durchgang. Jobs ohne Beschreibung werden gesammelt gemeldet statt geraten. Die Ja-Nein-Entscheidung bleibt im Dashboard.
+description: Neue Jobs mit Score, Begründung und Kategorie bewerten, in Seiten zu je zehn Jobs über die Werkzeuge und höchstens etwa 50 pro Durchgang. Jobs ohne Beschreibung werden gesammelt gemeldet statt geraten. Die Ja-Nein-Entscheidung bleibt im Dashboard.
 disable-model-invocation: true
 ---
 
