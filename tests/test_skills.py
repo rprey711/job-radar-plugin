@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -113,3 +114,14 @@ def test_einrichten_takes_the_model_from_the_status():
     intro = body.split("## 1.")[0]
     (line,) = [row for row in intro.splitlines() if row.startswith("Modellhinweis:")]
     assert "`modellhinweis`" in line and "job_radar_status" in line
+
+
+def test_einrichten_reads_no_package_and_ends_with_the_next_step():
+    _, body = _frontmatter("einrichten")
+    assert not re.search(r"\bpaket\b", body, flags=re.IGNORECASE), "Paket in /einrichten"
+    assert "Tour" not in body
+    assert "`phase`" not in body
+    assert "bleibt auf dem Rechner" not in body
+    abschluss = body.split("## 6. Abschluss")[1].split("## Regeln")[0]
+    assert "naechster_schritt.text" in abschluss
+    assert "Modell" in abschluss

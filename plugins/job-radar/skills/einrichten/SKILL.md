@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # /einrichten
 
-Du richtest den Ordner ein, in dem du gerade arbeitest. Das ist der Job-Radar-Ordner. Ohne diesen Schritt läuft kein anderer Ablauf. Der Ordner bleibt auf dem Rechner; zum Server gehen nur die Werkzeugaufrufe des Connectors.
+Du richtest den Ordner ein, in dem du gerade arbeitest. Das ist der Job-Radar-Ordner. Ohne diesen Schritt läuft kein anderer Ablauf. Der Ordner bleibt beim Freund, auf seinem Rechner oder in seinem eigenen Cloud-Speicher. Zum Server gehen nur die Werkzeugaufrufe des Connectors.
 
 Modellhinweis: Das ist ein mechanischer Schritt, die Routinestufe reicht. Welches Modell das ist, steht in `modellhinweis`, sobald `job_radar_status` in Schritt 4 antwortet.
 
@@ -41,7 +41,7 @@ python "${CLAUDE_PLUGIN_ROOT}/scripts/einrichten.py" --name "<Name>" --oberflaec
 Rufe `job_radar_status` auf.
 
 - Das Werkzeug ist nicht da oder die Antwort ist ein Anmeldefehler: In Cowork auf die Plugin-Seite gehen und die Verbindung „Job Radar“ anmelden; in Claude Code `/mcp` eingeben, `jobradar` wählen, „Authenticate“. Es öffnet sich der Browser mit der Anmeldung des Job-Radar-Dashboards; dort mit dem eigenen Konto anmelden und „Verbinden“ bestätigen. Kein Passwort in den Chat. Danach `job_radar_status` erneut aufrufen.
-- Die Antwort enthält `name`, `paket`, `phase`, `naechster_schritt`, `dashboard`. Wenn `paket` leer ist, wurde die Tour im Dashboard noch nicht abgeschlossen; das ist in Ordnung, der nächste Schritt sagt es.
+- Die Antwort enthält unter anderem `name`, `naechster_schritt`, `plan` und `dashboard`. `plan` zeigt, bei welchem Schritt der Freund steht. `naechster_schritt.text` ist ein fertiger Satz mit Befehl, Ort und Modell.
 
 ## 5. Modul melden
 
@@ -49,7 +49,7 @@ Erst wenn Schritt 3 ohne Fehler war: `job_radar_status(modul_erledigt="ordner")`
 
 ## 6. Abschluss
 
-Ein kurzer Bericht in dieser Reihenfolge: was wo liegt (drei Zeilen), ob PDF möglich ist (LibreOffice oder Word gefunden, sonst der Hinweis, DOCX in Word als PDF zu speichern), und der nächste Schritt aus `naechster_schritt` mit Befehl und Satz. Ohne Paket: Link auf `dashboard` mit der Bitte, die Tour abzuschließen und ein Paket zu wählen.
+Ein kurzer Bericht in dieser Reihenfolge: was wo liegt (drei Zeilen), ob PDF möglich ist (LibreOffice oder Word gefunden, sonst der Hinweis, DOCX in Word als PDF zu speichern), und zum Schluss der nächste Schritt. Nimm dafür `naechster_schritt.text` aus der letzten Antwort von `job_radar_status` und gib den Satz unverändert weiter, samt dem Hinweis zum Modell. Den ganzen Plan zeigt die Seite `/einrichtung` im Dashboard (Adresse aus `dashboard`).
 
 ## Regeln
 
