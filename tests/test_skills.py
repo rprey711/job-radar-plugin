@@ -125,3 +125,17 @@ def test_einrichten_reads_no_package_and_ends_with_the_next_step():
     abschluss = body.split("## 6. Abschluss")[1].split("## Regeln")[0]
     assert "naechster_schritt.text" in abschluss
     assert "Modell" in abschluss
+
+
+def test_onboarding_is_the_standortbestimmung_on_top_of_the_short_profile():
+    meta, _ = _frontmatter("onboarding")
+    assert "Standortbestimmung" in meta["description"]
+    assert "Kurzprofil" in meta["description"]
+    assert "Paket" not in meta["description"]
+
+
+def test_descriptions_follow_the_new_flows():
+    kurz, _ = _frontmatter("kurzprofil")
+    assert "30 Minuten" in kurz["description"] and "sechs Fragen" in kurz["description"]
+    bewerten, _ = _frontmatter("bewerten")
+    assert "etwa 50" in bewerten["description"] and "bis 20" not in bewerten["description"]

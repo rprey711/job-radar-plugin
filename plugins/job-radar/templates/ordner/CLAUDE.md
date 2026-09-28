@@ -24,10 +24,10 @@ Dieser Ordner gehört {{NAME}} und wird von Claude über das Plugin Job Radar be
 | Befehl | Wann |
 |---|---|
 | `/einrichten` | einmal, nach der Installation |
-| `/kurzprofil` | Schnellstart: Profil und Suchprofil in 15 Minuten |
-| `/onboarding` | Komplett: zwei Sitzungen, Profil und Bewerbungsmethode, optional Stärkentest |
-| `/lebenslauf` | Master-Lebenslauf nach der 3-Filter-Methode |
-| `/anschreiben-vorlage` | Anschreiben-Vorlage und Anker-Pool |
+| `/kurzprofil` | nach der Einrichtung: Profil, Lebenslaufdaten und Suchprofil in knapp 30 Minuten, am Ende die Wahl der Vertiefung |
+| `/onboarding` | Vertiefung „Standortbestimmung“: zwei Sitzungen, schärft Profil und Bewerbungsmethode, optional Stärkentest |
+| `/lebenslauf` | Vertiefung „Unterlagen“: Master-Lebenslauf nach der 3-Filter-Methode |
+| `/anschreiben-vorlage` | Vertiefung „Unterlagen“: Anschreiben-Vorlage und Anker-Pool |
 | `/suchprofil` | Suchprofil anlegen oder ändern |
 | `/bewerten` | morgens, neue Jobs bewerten |
 | `/triage` | Ja-Jobs prüfen: Go, Vielleicht, Skip |

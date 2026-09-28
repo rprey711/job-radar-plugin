@@ -1,6 +1,6 @@
 ---
 name: kurzprofil
-description: "Schnellstart in 15 Minuten: aus dem Lebenslauf in Bewerbungsmaterialien/ und fünf Fragen entstehen ein kompaktes Profil und das Suchprofil, beides landet auf dem Server."
+description: "Profilschritt des Grundwegs in knapp 30 Minuten. Aus dem Lebenslauf in Bewerbungsmaterialien/ und sechs Fragen entstehen ein kompaktes Profil, die Lebenslaufdaten und das Suchprofil. Profil und Suchprofil landen auf dem Server. Am Ende fällt die Wahl, ob vertieft wird."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 # Kandidatenprofil
 
-Diese Datei füllt `/onboarding` (Komplett) oder `/kurzprofil` (Schnellstart). Danach kannst du jederzeit selbst hineinschreiben. Sie ist die Grundlage für `/bewerten`, `/triage`, `/bewerbung` und `/interview`; eine kompakte Kopie liegt auf dem Server, damit das Bewerten auch aus der Claude-App funktioniert.
+Diese Datei füllt `/kurzprofil`. Wenn du die Standortbestimmung wählst, ergänzt `/onboarding` die Datei danach. Du kannst jederzeit selbst hineinschreiben. Sie ist die Grundlage für `/bewerten`, `/triage`, `/bewerbung` und `/interview`. Eine kompakte Kopie liegt auf dem Server, damit das Bewerten auch aus der Claude-App funktioniert.
 
 ## Hintergrund
 
