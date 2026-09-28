@@ -5,14 +5,18 @@ from __future__ import annotations
 import base64
 import json
 import re
+import struct
 import zipfile
+import zlib
 from datetime import datetime, timezone
 from pathlib import Path
 
 import _common
 import cv_master
+import pytest
 import yaml
 from docx import Document
+from docx.shared import Mm
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "plugins" / "job-radar" / "templates" / "Lebenslauf_template.docx"
@@ -129,12 +133,23 @@ def test_achievements_are_plain_list_items(tmp_path: Path):
         assert run.font.color is None or run.font.color.rgb is None
 
 
-def test_no_empty_paragraphs_from_loop_tags(tmp_path: Path):
-    doc = Document(str(_render(tmp_path)))
-    body = [p.text for p in doc.paragraphs]
+@pytest.mark.parametrize(
+    "changes",
+    [
+        {},
+        {"international": ["A1", "A2"], "weiteres": ["W1"], "geburtsdatum": "01.02.1990"},
+    ],
+    ids=["leer", "gefuellt"],
+)
+def test_no_empty_paragraphs_from_loop_tags(tmp_path: Path, changes: dict):
+    out = _render(tmp_path, **changes)
+    body = [p.text for p in Document(str(out)).paragraphs]
     # After the first heading only content lines, no blanks left by {% %} tags.
     start = body.index("BERUFSERFAHRUNG")
     assert "" not in body[start + 1 :]
+    *text_cells, _photo_cell = _header_cells(out)
+    for cell in text_cells:
+        assert "" not in cell
 
 
 def _header_cells(path: Path) -> list[list[str]]:
@@ -152,6 +167,24 @@ def test_header_has_no_gap_without_birthdate(tmp_path: Path):
 def test_header_shows_the_birthdate_when_given(tmp_path: Path):
     cells = _header_cells(_render(tmp_path, geburtsdatum="01.02.1990"))
     assert "Geboren am 01.02.1990" in cells[0]
+    for cell in cells[:-1]:
+        assert "" not in cell
+
+
+def test_blank_and_null_list_entries_are_dropped(tmp_path: Path):
+    data = cv_master.load_data(
+        _data(tmp_path, weiteres=[None, "Führerschein B", ""], international=["  ", None])
+    )
+    assert data.weiteres == ["Führerschein B"]
+    assert data.international == []
+    out = tmp_path / "cv.docx"
+    cv_master.render_docx(TEMPLATE, data, out)
+    items = _list_items(out)
+    assert items.count("Führerschein B") == 1
+    assert "" not in items
+    texts = _paragraphs(out)
+    assert "WEITERES" in texts
+    assert "INTERNATIONALER HINTERGRUND" not in texts
 
 
 def test_template_uses_calibri_and_has_no_picture_or_personal_metadata():
@@ -173,6 +206,27 @@ def test_template_uses_calibri_and_has_no_picture_or_personal_metadata():
     assert 'w:ascii="Calibri"' in defaults.group(0)
     assert 'w:hAnsi="Calibri"' in defaults.group(0)
     assert "Raul" not in props and "Prey" not in props
+
+
+def test_no_template_part_mentions_aptos():
+    with zipfile.ZipFile(TEMPLATE) as z:
+        parts = {n: z.read(n) for n in z.namelist() if n.endswith((".xml", ".rels"))}
+    assert [n for n, data in parts.items() if b"Aptos" in data] == []
+    fonts = parts["word/fontTable.xml"].decode("utf-8")
+    calibri = re.search(r'<w:font w:name="Calibri">.*?</w:font>', fonts, flags=re.S)
+    assert calibri is not None
+    assert '<w:panose1 w:val="020F0502020204030204"/>' in calibri.group(0)
+
+
+def test_template_default_language_is_german():
+    with zipfile.ZipFile(TEMPLATE) as z:
+        styles = z.read("word/styles.xml").decode("utf-8")
+        settings = z.read("word/settings.xml").decode("utf-8")
+    defaults = re.search(r"<w:rPrDefault>.*?</w:rPrDefault>", styles, flags=re.S)
+    assert defaults is not None
+    assert re.search(r'<w:lang w:val="de-DE"', defaults.group(0))
+    assert '<w:themeFontLang w:val="de-DE"/>' in settings
+    assert "en-DE" not in styles and "en-DE" not in settings
 
 
 def test_template_metadata_carries_no_history():
@@ -224,6 +278,9 @@ def test_photo_from_the_data_is_placed(tmp_path: Path, monkeypatch):
     hinweis = cv_master.render_docx(TEMPLATE, data, out)
     assert hinweis is None
     assert len(_media(out)) == 1
+    shapes = Document(str(out)).inline_shapes
+    assert len(shapes) == 1
+    assert shapes[0].width == Mm(32)
 
 
 def test_no_photo_field_means_no_picture(tmp_path: Path):
@@ -252,3 +309,84 @@ def test_cli_reports_a_missing_photo_in_the_result_line(tmp_path: Path, monkeypa
     result = json.loads(lines[-1][len(_common.RESULT_PREFIX) :])
     assert result["hinweis"] == "Foto nicht gefunden: Bewerbungsmaterialien/fehlt.jpg"
     assert result["docx"] == "out/Lebenslauf_Anna_Test_v1.docx"
+
+
+HEIC_AS_JPG = b"\x00\x00\x00\x18ftypheic\x00\x00\x00\x00mif1heic" + b"\x00" * 200
+
+
+def _png(width: int, height: int) -> bytes:
+    """Graues RGB-PNG ohne Zusatzpaket."""
+    raw = b"".join(b"\x00" + b"\x80\x80\x80" * width for _ in range(height))
+
+    def chunk(tag: bytes, data: bytes) -> bytes:
+        body = tag + data
+        return struct.pack(">I", len(data)) + body + struct.pack(">I", zlib.crc32(body))
+
+    ihdr = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + chunk(b"IHDR", ihdr)
+        + chunk(b"IDAT", zlib.compress(raw))
+        + chunk(b"IEND", b"")
+    )
+
+
+GREY_PNG = _png(60, 80)
+
+
+@pytest.mark.parametrize(
+    "name, content",
+    [
+        ("heic_als.jpg", HEIC_AS_JPG),
+        ("abgeschnitten.png", GREY_PNG[:40]),
+        ("abgeschnitten_mitte.png", GREY_PNG[: len(GREY_PNG) // 2]),
+        ("leer.jpg", b""),
+        ("abgeschnitten.gif", b"GIF89a"),
+    ],
+    ids=["heic", "png_kopf", "png_mitte", "leer", "gif_kopf"],
+)
+def test_unreadable_photo_renders_without_and_says_so(
+    tmp_path: Path, monkeypatch, name: str, content: bytes
+):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "Bewerbungsmaterialien").mkdir()
+    (tmp_path / "Bewerbungsmaterialien" / name).write_bytes(content)
+    out = tmp_path / "cv.docx"
+    data = cv_master.load_data(_data(tmp_path, foto=f"Bewerbungsmaterialien/{name}"))
+    hinweis = cv_master.render_docx(TEMPLATE, data, out)
+    assert out.is_file()
+    assert _media(out) == []
+    assert hinweis is not None and hinweis.startswith("Foto nicht lesbar")
+    assert f"Bewerbungsmaterialien/{name}" in hinweis
+
+
+def test_render_failure_line_names_the_error(tmp_path: Path, monkeypatch, capsys):
+    def kaputt(*_args, **_kwargs):
+        raise ValueError()
+
+    monkeypatch.setattr(cv_master, "render_docx", kaputt)
+    data = _data(tmp_path)
+    code = cv_master.main(
+        ["--data", str(data), "--name", "Anna Test", "--output-dir", str(tmp_path / "out")]
+    )
+    assert code == 1
+    line = next(x for x in capsys.readouterr().out.splitlines() if x.startswith("FEHLER: Rendern"))
+    assert "ValueError" in line
+    assert not line.rstrip().endswith(":")
+
+
+def test_photo_and_pdf_hints_are_joined(tmp_path: Path, monkeypatch, capsys):
+    monkeypatch.chdir(tmp_path)
+
+    def ohne_pdf(docx: Path, outdir: Path | None = None) -> dict:
+        return {"docx": None, "pdf": None, "methode": None, "seiten": None, "hinweis": "kein PDF"}
+
+    monkeypatch.setattr(cv_master.to_pdf, "to_pdf", ohne_pdf)
+    data = _data(tmp_path, foto="Bewerbungsmaterialien/fehlt.jpg")
+    code = cv_master.main(
+        ["--data", str(data), "--name", "Anna Test", "--output-dir", "out", "--pdf"]
+    )
+    assert code == 4
+    last = capsys.readouterr().out.rstrip("\n").splitlines()[-1]
+    result = json.loads(last[len(_common.RESULT_PREFIX) :])
+    assert result["hinweis"] == "Foto nicht gefunden: Bewerbungsmaterialien/fehlt.jpg; kein PDF"

@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import base64
 import json
+import struct
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
 
 import _common
@@ -58,3 +60,52 @@ def test_not_a_docx_is_a_clear_exit_1(plugin_root: Path, workdir: Path):
     assert code == 1
     assert result["foto"] is None
     assert "keine Word-Datei" in result["hinweis"]
+
+
+def test_the_largest_jpeg_wins_over_png_and_emf(plugin_root: Path, workdir: Path):
+    png = workdir / "bild.png"
+    png.write_bytes(PNG_1PX)
+    doc = Document()
+    doc.add_picture(str(png))
+    docx = workdir / "cv.docx"
+    doc.save(str(docx))
+    jpeg = b"\xff\xd8\xff\xe0" + b"J" * 1000 + b"\xff\xd9"
+    with zipfile.ZipFile(docx, "a") as z:
+        z.writestr("word/media/foto.jpeg", jpeg)
+        z.writestr("word/media/logo.emf", b"\x01\x00\x00\x00" + b"E" * 5000)
+    code, result = _run(plugin_root, "cv.docx", cwd=workdir)
+    assert code == 0
+    assert result["foto"] == "Bewerbungsmaterialien/Bewerbungsfoto.jpg"
+    assert (workdir / "Bewerbungsmaterialien" / "Bewerbungsfoto.jpg").read_bytes() == jpeg
+    assert not (workdir / "Bewerbungsmaterialien" / "Bewerbungsfoto.png").exists()
+
+
+def test_missing_file_is_a_clear_exit_1(plugin_root: Path, workdir: Path):
+    code, result = _run(plugin_root, "fehlt.docx", cwd=workdir)
+    assert code == 1
+    assert result["foto"] is None
+    assert result["hinweis"] == "Datei nicht gefunden: fehlt.docx"
+
+
+def test_corrupt_picture_in_the_docx_is_a_clear_exit_1(plugin_root: Path, workdir: Path):
+    png = workdir / "bild.png"
+    png.write_bytes(PNG_1PX)
+    doc = Document()
+    doc.add_picture(str(png))
+    docx = workdir / "cv.docx"
+    doc.save(str(docx))
+    with zipfile.ZipFile(docx) as z:
+        info = next(i for i in z.infolist() if i.filename.startswith("word/media/"))
+    assert info.compress_type == zipfile.ZIP_DEFLATED
+    raw = bytearray(docx.read_bytes())
+    # Local file header: 30 bytes, name and extra field lengths at offset 26.
+    head = info.header_offset
+    name_len, extra_len = struct.unpack("<HH", raw[head + 26 : head + 30])
+    start = head + 30 + name_len + extra_len
+    raw[start : start + info.compress_size] = b"\xff" * info.compress_size
+    docx.write_bytes(bytes(raw))
+    code, result = _run(plugin_root, "cv.docx", cwd=workdir)
+    assert code == 1
+    assert result["foto"] is None
+    assert "nicht lesbar" in result["hinweis"]
+    assert "keine Word-Datei" not in result["hinweis"]

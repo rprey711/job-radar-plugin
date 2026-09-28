@@ -5,7 +5,8 @@ Aufruf:
 
 Schreibt <ziel>/Bewerbungsfoto.<endung> und als letzte Zeile JOBRADAR_RESULT
 {"foto": <Pfad relativ zum Arbeitsordner> oder null, "hinweis": ...}.
-Exit 0 mit Foto, 1 ohne (kein Bild, keine Word-Datei, Datei fehlt). Braucht kein Zusatzpaket.
+Exit 0 mit Foto, 1 ohne (kein Bild, keine Word-Datei, nicht lesbar, Datei fehlt).
+Braucht kein Zusatzpaket.
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ from __future__ import annotations
 import argparse
 import sys
 import zipfile
+import zlib
 from pathlib import Path
 
 import _common
@@ -57,6 +59,8 @@ def main(argv: list[str] | None = None) -> int:
         bild = groesstes_bild(args.datei)
     except zipfile.BadZipFile:
         return fertig(None, f"{args.datei.name} ist keine Word-Datei (.docx).")
+    except (zlib.error, OSError) as exc:
+        return fertig(None, f"{args.datei.name} ist nicht lesbar: {exc}")
     if bild is None:
         return fertig(None, "Kein Bild im Dokument gefunden.")
     endung, inhalt = bild

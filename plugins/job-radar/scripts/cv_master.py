@@ -20,6 +20,7 @@ zwischen Vorlage und Ausgabe; bei Drift bleibt die Markdown-Quelle die Wahrheit.
 from __future__ import annotations
 
 import argparse
+import struct
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -29,6 +30,12 @@ import _common
 import to_pdf
 import yaml
 from docx import Document
+from docx.image.exceptions import (
+    InvalidImageStreamError,
+    UnexpectedEndOfFileError,
+    UnrecognizedImageError,
+)
+from docx.image.image import Image
 from docx.shared import Mm
 from docxtpl import DocxTemplate, InlineImage
 
@@ -74,12 +81,12 @@ class StyleDriftError(Exception):
 
 def _as_list(value: Any) -> list[str]:
     """Listenfeld aus dem YAML als Liste: leer oder fehlend wird [], ein einzelner Text
-    wird ein Eintrag, eine Liste bleibt."""
+    wird ein Eintrag, eine Liste bleibt; leere und null-Einträge fallen weg."""
     if value is None:
         return []
     if isinstance(value, str):
-        return [value]
-    return list(value)
+        value = [value]
+    return [str(entry) for entry in value if entry is not None and str(entry).strip()]
 
 
 def load_data(data_path: Path) -> CVData:
@@ -137,17 +144,31 @@ def format_education_section(education: list[Education]) -> str:
 def render_docx(template_path: Path, data: CVData, output_path: Path) -> str | None:
     """Rendert das Template mit den Daten, schreibt nach output_path.
 
-    Gibt einen Hinweis zurück, wenn das Foto aus den Daten fehlt; gerendert wird trotzdem.
+    Gibt einen Hinweis zurück, wenn das Foto aus den Daten fehlt oder nicht lesbar ist;
+    gerendert wird dann ohne Foto.
     """
     tpl = DocxTemplate(str(template_path))
     hinweis = None
     foto = None
     if data.foto:
         foto_path = Path(data.foto)
-        if foto_path.is_file():
-            foto = InlineImage(tpl, str(foto_path), width=PHOTO_WIDTH)
-        else:
+        if not foto_path.is_file():
             hinweis = f"Foto nicht gefunden: {data.foto}"
+        else:
+            # python-docx liest das Bild erst beim Rendern; ein HEIC mit .jpg-Endung, eine
+            # leere oder abgeschnittene Datei würde dann den ganzen Lebenslauf verhindern.
+            try:
+                Image.from_file(str(foto_path))
+            except (
+                InvalidImageStreamError,
+                UnexpectedEndOfFileError,
+                UnrecognizedImageError,
+                OSError,
+                struct.error,  # ein abgeschnittenes GIF
+            ):
+                hinweis = f"Foto nicht lesbar: {data.foto} (bitte als JPG oder PNG speichern)"
+            else:
+                foto = InlineImage(tpl, str(foto_path), width=PHOTO_WIDTH)
 
     context = {
         "name": data.name,
@@ -361,7 +382,9 @@ def main(argv: list[str] | None = None) -> int:
     try:
         foto_hinweis = render_docx(args.template, data, docx_path)
     except Exception as exc:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
-        print(f"FEHLER: Rendern fehlgeschlagen ({args.template} -> {docx_path}): {exc}")
+        # Manche Ausnahmen haben keinen Text; der Typname sagt dann wenigstens, was es war.
+        grund = f"{type(exc).__name__}: {exc}" if str(exc) else type(exc).__name__
+        print(f"FEHLER: Rendern fehlgeschlagen ({args.template} -> {docx_path}): {grund}")
         return 1
     if foto_hinweis:
         print(f"WARN {foto_hinweis}")
