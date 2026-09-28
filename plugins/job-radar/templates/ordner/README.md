@@ -11,14 +11,16 @@ Dieser Ordner ist dein Arbeitsplatz für die Jobsuche mit Claude. Eingerichtet a
 | `Bewerbungen/<Firma>/` | Pro Bewerbung ein Unterordner mit Lebenslauf, Anschreiben (DOCX und PDF), Recherche und Interview-Briefing. Frühere Fassungen bleiben als `_v1`, `_v2` liegen. |
 | `.jobradar/` | Stand der Einrichtung und Zwischenstände der Abläufe. Nichts, was du anfassen musst. |
 
-Der Ordner bleibt auf deinem Rechner. Zum Server gehen nur Scores, Entscheidungen, das Suchprofil, eine kompakte Profilkopie und die Namen der Dokumente, nie die Dateien selbst.
+Der Ordner liegt bei dir, auf deinem Rechner oder in deinem eigenen Cloud-Speicher. Zum Server gehen nur Scores, Entscheidungen, Notizen zu Jobs, das Suchprofil, eine kompakte Profilkopie und die Namen der Dokumente, nie die Dateien selbst.
+
+Was Claude und der Server mit deinen Daten tun und wer sie sonst noch verarbeitet, steht auf der Seite [Datenschutz]({{DASHBOARD}}/datenschutz).
 
 ## Der Alltag in vier Schritten
 
 1. Morgens liegen neue Jobs im Dashboard unter „Neu“.
 2. In Cowork oder in der Claude-App: `/bewerten` oder „Bewerte die neuen Jobs“.
 3. Im Dashboard Ja oder Nein klicken, gern auf dem Handy.
-4. In Cowork `/triage` für die Ja-Jobs, dann `/bewerbung <Firma>` für die Go-Jobs. Versenden tust du selbst und setzt den Status im Dashboard.
+4. In Cowork `/triage` für die Ja-Jobs, dann `/bewerbung <Firma>` für die Go-Jobs. Versenden tust du selbst, danach klickst du im Dashboard auf „Abgeschickt“.
 
 ## Befehle
 

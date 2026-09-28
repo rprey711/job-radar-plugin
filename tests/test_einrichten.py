@@ -120,3 +120,9 @@ def test_cli_refuses_an_empty_name(plugin_root: Path, workdir: Path):
     )
     assert proc.returncode == 1
     assert not (workdir / "Profil").exists()
+
+
+def test_readme_links_the_live_privacy_page(workdir: Path):
+    einrichten.setup(workdir, name="Anna Test", surface="cowork")
+    readme = (workdir / "README.md").read_text(encoding="utf-8")
+    assert "(https://jobs.162-55-50-225.nip.io/datenschutz)" in readme

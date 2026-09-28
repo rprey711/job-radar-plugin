@@ -138,3 +138,12 @@ def test_no_package_names_in_plugin_texts(path: Path):
     """Ein Grundweg für alle, danach die Wahl der Vertiefung. Pakete gibt es nicht mehr."""
     hits = PACKAGES.findall(path.read_text(encoding="utf-8"))
     assert not hits, f"Paketname in {path.name}: {sorted(set(hits))}"
+
+
+def test_readme_says_where_the_folder_lies_and_links_the_privacy_page():
+    text = _read("ordner/README.md")
+    assert "bleibt auf deinem Rechner" not in text
+    assert "auf deinem Rechner oder in deinem eigenen Cloud-Speicher" in text
+    assert "[Datenschutz]({{DASHBOARD}}/datenschutz)" in text
+    assert "setzt den Status im Dashboard" not in text
+    assert "klickst du im Dashboard auf „Abgeschickt“" in text
