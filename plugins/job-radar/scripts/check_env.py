@@ -8,13 +8,18 @@ LibreOffice und Word entscheiden nur über den PDF-Schritt und werden gemeldet, 
 from __future__ import annotations
 
 import importlib.util
+import os
 import platform
+import shutil
+import subprocess
 import sys
+from pathlib import Path
 
 import _common
 
 MIN_PYTHON = (3, 10)
 PACKAGES = {"python-docx": "docx", "docxtpl": "docxtpl", "pyyaml": "yaml"}
+CALIBRI_NAMEN = ("calibri", "carlito")
 
 
 def _has(module: str) -> bool:
@@ -22,6 +27,27 @@ def _has(module: str) -> bool:
         return importlib.util.find_spec(module) is not None
     except (ImportError, ValueError):
         return False
+
+
+def _fc_list() -> str:
+    """Ausgabe von `fc-list`, alle Familiennamen, eine pro Zeile."""
+    return subprocess.run(
+        ["fc-list", ":", "family"], capture_output=True, text=True, timeout=20, check=False
+    ).stdout
+
+
+def calibri_verfuegbar() -> bool | None:
+    """True, wenn Calibri oder die metrikgleiche Carlito da ist; None, wenn nicht prüfbar."""
+    if platform.system() == "Windows":
+        ordner = [Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"]
+        soffice = _common.find_soffice()
+        if soffice:
+            ordner.append(Path(soffice).parent.parent / "share" / "fonts" / "truetype")
+        namen = [p.name.lower() for d in ordner if d.is_dir() for p in d.iterdir()]
+        return any(n.startswith(CALIBRI_NAMEN) for n in namen)
+    if shutil.which("fc-list") is None:
+        return None
+    return any(name in _fc_list().lower() for name in CALIBRI_NAMEN)
 
 
 def report() -> dict:
@@ -42,6 +68,16 @@ def report() -> dict:
         hinweis = (
             f'Fehlende Pakete installieren: "{sys.executable}" -m pip install -r "{requirements}"'
         )
+    try:
+        schrift = calibri_verfuegbar()
+    except (OSError, subprocess.SubprocessError):
+        schrift = None
+    schrift_hinweis = None
+    if schrift is False:
+        schrift_hinweis = (
+            "Weder Calibri noch Carlito gefunden. Das PDF entsteht dann mit einer Ersatzschrift, "
+            "Umbrüche können sich verschieben."
+        )
     return {
         "ok": ok,
         "python": {"version": version, "pfad": sys.executable, "ok": python_ok},
@@ -53,6 +89,8 @@ def report() -> dict:
         "plugin_version": _common.plugin_version(),
         "plugin_root": str(_common.PLUGIN_ROOT),
         "hinweis": hinweis,
+        "schrift_calibri": schrift,
+        "schrift_hinweis": schrift_hinweis,
     }
 
 
@@ -68,6 +106,11 @@ def _print_summary(data: dict) -> None:
     print(f"Word (docx2pdf): {mark[data['word']]}")
     pdf_status = "ja" if data["pdf_moeglich"] else "nein, DOCX in Word als PDF speichern"
     print(f"PDF möglich: {pdf_status}")
+    schrift = data["schrift_calibri"]
+    schrift_status = "ok" if schrift else ("nicht prüfbar" if schrift is None else "fehlt")
+    print(f"Schrift Calibri oder Carlito: {schrift_status}")
+    if data["schrift_hinweis"]:
+        print(data["schrift_hinweis"])
     print(f"Plugin {data['plugin_version']} unter {data['plugin_root']}")
     if data["hinweis"]:
         print(data["hinweis"])
