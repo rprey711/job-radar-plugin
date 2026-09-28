@@ -57,7 +57,10 @@ def main(argv: list[str] | None = None) -> int:
         return fertig(None, f"Datei nicht gefunden: {args.datei}")
     try:
         bild = groesstes_bild(args.datei)
-    except zipfile.BadZipFile:
+    except zipfile.BadZipFile as exc:
+        # Eine falsche Prüfsumme kommt aus einer echten, aber beschädigten Word-Datei.
+        if str(exc).startswith("Bad CRC"):
+            return fertig(None, f"{args.datei.name} ist nicht lesbar: {exc}")
         return fertig(None, f"{args.datei.name} ist keine Word-Datei (.docx).")
     except (zlib.error, OSError) as exc:
         return fertig(None, f"{args.datei.name} ist nicht lesbar: {exc}")

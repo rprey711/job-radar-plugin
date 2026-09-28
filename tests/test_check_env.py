@@ -86,3 +86,72 @@ def test_font_check_errors_do_not_break_the_report(monkeypatch: pytest.MonkeyPat
     monkeypatch.setattr(check_env, "calibri_verfuegbar", boom)
     report = check_env.report()
     assert report["schrift_calibri"] is None
+
+
+def _windows(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> tuple[Path, Path]:
+    """Windows ohne LibreOffice, mit leeren System- und Benutzer-Schriftordnern unter tmp_path."""
+    windir = tmp_path / "Windows"
+    (windir / "Fonts").mkdir(parents=True)
+    local = tmp_path / "AppData" / "Local"
+    (local / "Microsoft" / "Windows" / "Fonts").mkdir(parents=True)
+    monkeypatch.setattr(check_env.platform, "system", lambda: "Windows")
+    monkeypatch.setenv("WINDIR", str(windir))
+    monkeypatch.setenv("LOCALAPPDATA", str(local))
+    monkeypatch.setattr(check_env._common, "find_soffice", lambda: None)
+    return windir / "Fonts", local / "Microsoft" / "Windows" / "Fonts"
+
+
+def test_calibri_found_in_the_windows_fonts_folder(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
+    system_fonts, _user_fonts = _windows(monkeypatch, tmp_path)
+    (system_fonts / "carlito-regular.ttf").write_bytes(b"")
+    assert check_env.calibri_verfuegbar() is True
+
+
+def test_calibri_missing_in_empty_windows_fonts_folders(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+):
+    system_fonts, _user_fonts = _windows(monkeypatch, tmp_path)
+    (system_fonts / "arial.ttf").write_bytes(b"")
+    assert check_env.calibri_verfuegbar() is False
+
+
+def test_calibri_found_among_the_users_own_fonts(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
+    _system_fonts, user_fonts = _windows(monkeypatch, tmp_path)
+    (user_fonts / "Calibri.ttf").write_bytes(b"")
+    assert check_env.calibri_verfuegbar() is True
+
+
+def test_missing_fc_list_on_linux_is_not_checkable(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(check_env.platform, "system", lambda: "Linux")
+    monkeypatch.setattr(check_env.shutil, "which", lambda name: None)
+    assert check_env.calibri_verfuegbar() is None
+
+
+def test_calibri_missing_in_fc_list(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(check_env.platform, "system", lambda: "Linux")
+    monkeypatch.setattr(check_env.shutil, "which", lambda name: "/usr/bin/fc-list")
+    monkeypatch.setattr(check_env, "_fc_list", lambda: "DejaVu Sans:style=Book\nLiberation Serif\n")
+    assert check_env.calibri_verfuegbar() is False
+
+
+def test_undecodable_fc_list_output_does_not_break_the_report(monkeypatch: pytest.MonkeyPatch):
+    def kaputt() -> str:
+        raise UnicodeDecodeError("utf-8", b"\xff", 0, 1, "invalid start byte")
+
+    monkeypatch.setattr(check_env.platform, "system", lambda: "Linux")
+    monkeypatch.setattr(check_env.shutil, "which", lambda name: "/usr/bin/fc-list")
+    monkeypatch.setattr(check_env, "_fc_list", kaputt)
+    report = check_env.report()
+    assert report["schrift_calibri"] is None
+    assert report["schrift_hinweis"] is None
+
+
+@pytest.mark.parametrize(
+    "schrift, status", [(True, "ok"), (False, "fehlt"), (None, "nicht prüfbar")]
+)
+def test_summary_names_the_font_status(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str], schrift, status: str
+):
+    monkeypatch.setattr(check_env, "calibri_verfuegbar", lambda: schrift)
+    check_env._print_summary(check_env.report())
+    assert f"Schrift Calibri oder Carlito: {status}" in capsys.readouterr().out.splitlines()

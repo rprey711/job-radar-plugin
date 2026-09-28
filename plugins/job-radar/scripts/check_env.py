@@ -32,7 +32,13 @@ def _has(module: str) -> bool:
 def _fc_list() -> str:
     """Ausgabe von `fc-list`, alle Familiennamen, eine pro Zeile."""
     return subprocess.run(
-        ["fc-list", ":", "family"], capture_output=True, text=True, timeout=20, check=False
+        ["fc-list", ":", "family"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",  # Schriftnamen in fremder Kodierung sollen die Prüfung nicht beenden
+        timeout=20,
+        check=False,
     ).stdout
 
 
@@ -40,6 +46,9 @@ def calibri_verfuegbar() -> bool | None:
     """True, wenn Calibri oder die metrikgleiche Carlito da ist; None, wenn nicht prüfbar."""
     if platform.system() == "Windows":
         ordner = [Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"]
+        # Schriften, die jemand ohne Adminrechte nur für sich installiert hat
+        if os.environ.get("LOCALAPPDATA"):
+            ordner.append(Path(os.environ["LOCALAPPDATA"]) / "Microsoft" / "Windows" / "Fonts")
         soffice = _common.find_soffice()
         if soffice:
             ordner.append(Path(soffice).parent.parent / "share" / "fonts" / "truetype")
@@ -70,7 +79,7 @@ def report() -> dict:
         )
     try:
         schrift = calibri_verfuegbar()
-    except (OSError, subprocess.SubprocessError):
+    except Exception:  # noqa: BLE001 - die Schriftprüfung ist nur ein Hinweis, der Bericht zählt
         schrift = None
     schrift_hinweis = None
     if schrift is False:

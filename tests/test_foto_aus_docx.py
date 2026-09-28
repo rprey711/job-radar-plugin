@@ -109,3 +109,26 @@ def test_corrupt_picture_in_the_docx_is_a_clear_exit_1(plugin_root: Path, workdi
     assert result["foto"] is None
     assert "nicht lesbar" in result["hinweis"]
     assert "keine Word-Datei" not in result["hinweis"]
+
+
+def test_damaged_word_file_is_not_called_a_non_word_file(plugin_root: Path, workdir: Path):
+    doc = Document()
+    doc.add_paragraph("Anna Test")
+    docx = workdir / "cv.docx"
+    doc.save(str(docx))
+    jpeg = b"\xff\xd8\xff\xe0" + b"J" * 1000 + b"\xff\xd9"
+    with zipfile.ZipFile(docx, "a") as z:
+        z.writestr("word/media/foto.jpeg", jpeg, compress_type=zipfile.ZIP_STORED)
+    with zipfile.ZipFile(docx) as z:
+        info = z.getinfo("word/media/foto.jpeg")
+    raw = bytearray(docx.read_bytes())
+    # Unkomprimiert: ein geändertes Byte trifft nur die Prüfsumme (Bad CRC-32 beim Lesen).
+    head = info.header_offset
+    name_len, extra_len = struct.unpack("<HH", raw[head + 26 : head + 30])
+    raw[head + 30 + name_len + extra_len + 100] ^= 0xFF
+    docx.write_bytes(bytes(raw))
+    code, result = _run(plugin_root, "cv.docx", cwd=workdir)
+    assert code == 1
+    assert result["foto"] is None
+    assert result["hinweis"].startswith("cv.docx ist nicht lesbar: Bad CRC")
+    assert "keine Word-Datei" not in result["hinweis"]
