@@ -20,7 +20,6 @@ zwischen Vorlage und Ausgabe; bei Drift bleibt die Markdown-Quelle die Wahrheit.
 from __future__ import annotations
 
 import argparse
-import struct
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -30,11 +29,6 @@ import _common
 import to_pdf
 import yaml
 from docx import Document
-from docx.image.exceptions import (
-    InvalidImageStreamError,
-    UnexpectedEndOfFileError,
-    UnrecognizedImageError,
-)
 from docx.image.image import Image
 from docx.shared import Mm
 from docxtpl import DocxTemplate, InlineImage
@@ -158,17 +152,14 @@ def render_docx(template_path: Path, data: CVData, output_path: Path) -> str | N
             # python-docx liest das Bild erst beim Rendern; ein HEIC mit .jpg-Endung, eine
             # leere oder abgeschnittene Datei würde dann den ganzen Lebenslauf verhindern.
             try:
-                Image.from_file(str(foto_path))
-            except (
-                InvalidImageStreamError,
-                UnexpectedEndOfFileError,
-                UnrecognizedImageError,
-                OSError,
-                struct.error,  # ein abgeschnittenes GIF
-            ):
-                hinweis = f"Foto nicht lesbar: {data.foto} (bitte als JPG oder PNG speichern)"
-            else:
+                bild = Image.from_file(str(foto_path))
+                lesbar = bild.px_width > 0 and bild.px_height > 0  # sonst Division durch 0
+            except Exception:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
+                lesbar = False
+            if lesbar:
                 foto = InlineImage(tpl, str(foto_path), width=PHOTO_WIDTH)
+            else:
+                hinweis = f"Foto nicht lesbar: {data.foto} (bitte als JPG oder PNG speichern)"
 
     context = {
         "name": data.name,

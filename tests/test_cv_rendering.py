@@ -241,6 +241,33 @@ def test_template_metadata_carries_no_history():
     assert "<TotalTime>0</TotalTime>" in app
 
 
+SECTION_HEADINGS = {
+    "BERUFSERFAHRUNG",
+    "BILDUNG",
+    "SPRACHEN",
+    "TOOLS & METHODEN",
+    "INTERNATIONALER HINTERGRUND",
+    "WEITERES",
+}
+
+
+def test_headings_and_position_titles_keep_with_the_next_line():
+    paragraphs = Document(str(TEMPLATE)).paragraphs
+    keep = {p.text for p in paragraphs if p.paragraph_format.keep_with_next}
+    # Genau diese: auch die Listenpunkte zusammenzuhalten würde ganze Stationen verschieben.
+    assert keep == SECTION_HEADINGS | {"{{ pos.datum }} | {{ pos.rolle }}", "{{ pos.firma }}"}
+    # Die Bildung ist ein Absatz mit Zeilenumbrüchen; ungeteilt bleibt kein Abschluss allein.
+    together = {p.text for p in paragraphs if p.paragraph_format.keep_together}
+    assert together == {"{{ education_section }}"}
+
+
+def test_rendered_headings_and_position_titles_keep_with_the_next_line(tmp_path: Path):
+    out = _render(tmp_path, international=["Auslandssemester Lyon"], weiteres=["Führerschein B"])
+    keep = {p.text for p in Document(str(out)).paragraphs if p.paragraph_format.keep_with_next}
+    assert SECTION_HEADINGS <= keep
+    assert {"03.2022 – heute | Marketing Manager", "Beispiel GmbH", "Anders GmbH"} <= keep
+
+
 def test_rendered_cv_carries_the_friends_name_as_author(tmp_path: Path):
     props = Document(str(_render(tmp_path))).core_properties
     assert props.author == "Anna Test"
@@ -336,6 +363,21 @@ def _png(width: int, height: int) -> bytes:
 GREY_PNG = _png(60, 80)
 
 
+def _jpeg_segment(marker: int, payload: bytes) -> bytes:
+    return b"\xff" + bytes([marker]) + struct.pack(">H", len(payload) + 2) + payload
+
+
+JFIF_APP0 = _jpeg_segment(0xE0, b"JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00")
+# Kopf eines 16x16-JPEG: SOI, APP0, Quantisierungstabelle, Bildrahmen; reicht python-docx.
+JPEG_16PX = (
+    b"\xff\xd8"
+    + JFIF_APP0
+    + _jpeg_segment(0xDB, b"\x00" + b"\x01" * 64)
+    + _jpeg_segment(0xC0, b"\x08\x00\x10\x00\x10\x03\x01\x22\x00\x02\x11\x01\x03\x11\x01")
+    + b"\xff\xd9"
+)
+
+
 @pytest.mark.parametrize(
     "name, content",
     [
@@ -344,8 +386,25 @@ GREY_PNG = _png(60, 80)
         ("abgeschnitten_mitte.png", GREY_PNG[: len(GREY_PNG) // 2]),
         ("leer.jpg", b""),
         ("abgeschnitten.gif", b"GIF89a"),
+        # Ende mitten in der Quantisierungstabelle: python-docx wirft ein nacktes Exception.
+        ("abgeschnitten.jpg", JPEG_16PX[:40]),
+        # Kein Bildrahmen (SOF): python-docx wirft KeyError.
+        ("ohne_rahmen.jpg", b"\xff\xd8" + JFIF_APP0 + b"\xff\xd9"),
+        # Breite oder Höhe 0 liest python-docx, beim Skalieren teilt es dann durch 0.
+        ("breite_null.png", _png(0, 4)),
+        ("hoehe_null.png", _png(4, 0)),
     ],
-    ids=["heic", "png_kopf", "png_mitte", "leer", "gif_kopf"],
+    ids=[
+        "heic",
+        "png_kopf",
+        "png_mitte",
+        "leer",
+        "gif_kopf",
+        "jpg_mitte",
+        "jpg_ohne_sof",
+        "png_breite_0",
+        "png_hoehe_0",
+    ],
 )
 def test_unreadable_photo_renders_without_and_says_so(
     tmp_path: Path, monkeypatch, name: str, content: bytes
@@ -412,6 +471,7 @@ def test_fixture_cv_fits_on_one_page(soffice, plugin_root: Path, workdir: Path, 
         encoding="utf-8",
         cwd=workdir,
     )
-    last = proc.stdout.rstrip("\n").splitlines()[-1]
-    result = json.loads(last[len(_common.RESULT_PREFIX) :])
-    assert result["pdf"] and result["seiten"] == 1, proc.stdout
+    lines = proc.stdout.rstrip("\n").splitlines()
+    assert lines and lines[-1].startswith(_common.RESULT_PREFIX), proc.stdout + proc.stderr
+    result = json.loads(lines[-1][len(_common.RESULT_PREFIX) :])
+    assert result["pdf"] and result["seiten"] == 1, proc.stdout + proc.stderr
