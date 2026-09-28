@@ -328,3 +328,13 @@ def test_cli_reports_the_pdf_hint_without_a_converter(
     assert "PDF" in log
     assert data["hinweis"]
     assert (workdir / data["docx"]).is_file()
+
+
+def test_rendered_letter_carries_the_name_as_author(cover_template, cover_dummy_data, tmp_path):
+    out = tmp_path / "brief.docx"
+    cover_master.render_docx(
+        cover_template, cover_master.load_data(cover_dummy_data), out, name="Anna Test"
+    )
+    props = Document(str(out)).core_properties
+    assert props.author == "Anna Test" and props.last_modified_by == "Anna Test"
+    assert props.title.startswith("Anschreiben")

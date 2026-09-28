@@ -120,6 +120,16 @@ def count_pdf_pages(pdf: Path) -> int | None:
     return count or None
 
 
+def set_document_owner(document, name: str, title: str) -> None:
+    """Author, last editor and title of a python-docx Document; never the template's owner."""
+    props = document.core_properties
+    props.author = name
+    props.last_modified_by = name
+    props.title = title
+    props.comments = ""
+    props.revision = 1
+
+
 def ensure_utf8_stdout() -> None:
     """Die Ausgabe auf UTF-8 stellen, einmal beim Import dieses Moduls.
 

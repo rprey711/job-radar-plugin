@@ -104,3 +104,12 @@ def test_template_uses_calibri_and_has_no_picture_or_personal_metadata():
     assert 'typeface="Aptos' not in theme
     assert re.search(r'<a:latin typeface="Calibri"', theme)
     assert "Raul" not in props and "Prey" not in props
+
+
+def test_rendered_cv_carries_the_friends_name_as_author(tmp_path: Path):
+    props = Document(str(_render(tmp_path))).core_properties
+    assert props.author == "Anna Test"
+    assert props.last_modified_by == "Anna Test"
+    assert props.title == "Lebenslauf Anna Test"
+    xml = _xml(tmp_path / "cv.docx", "docProps/core.xml")
+    assert "Raul" not in xml

@@ -148,6 +148,7 @@ def render_docx(template_path: Path, data: CVData, output_path: Path) -> None:
     # autoescape: a bare "&" or "<" from the data breaks the XML, and docxtpl's recover
     # parser then drops it together with every later "&amp;" in the part.
     tpl.render(context, autoescape=True)
+    _common.set_document_owner(tpl.docx, data.name, f"Lebenslauf {data.name}")
     tpl.save(str(output_path))
 
 

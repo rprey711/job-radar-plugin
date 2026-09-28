@@ -193,6 +193,7 @@ def render_docx(template_path: Path, data: CoverData, output_path: Path, name: s
 
     expand_body(doc, data.body)
 
+    _common.set_document_owner(doc, name or signatur, f"Anschreiben {data.betreff.strip()}".strip())
     doc.save(str(output_path))
 
 
