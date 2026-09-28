@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import base64
+import json
 import re
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
+import _common
 import cv_master
 import yaml
 from docx import Document
@@ -200,3 +203,52 @@ def test_rendered_cv_is_dated_at_render_time(tmp_path: Path):
     assert before <= props.modified <= after
     xml = _xml(out, "docProps/core.xml")
     assert "2013" not in xml and "2026-02-12" not in xml
+
+
+PNG_1PX = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+)
+
+
+def _media(path: Path) -> list[str]:
+    with zipfile.ZipFile(path) as z:
+        return [n for n in z.namelist() if n.startswith("word/media/")]
+
+
+def test_photo_from_the_data_is_placed(tmp_path: Path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "Bewerbungsmaterialien").mkdir()
+    (tmp_path / "Bewerbungsmaterialien" / "Bewerbungsfoto.png").write_bytes(PNG_1PX)
+    out = tmp_path / "cv.docx"
+    data = cv_master.load_data(_data(tmp_path, foto="Bewerbungsmaterialien/Bewerbungsfoto.png"))
+    hinweis = cv_master.render_docx(TEMPLATE, data, out)
+    assert hinweis is None
+    assert len(_media(out)) == 1
+
+
+def test_no_photo_field_means_no_picture(tmp_path: Path):
+    out = tmp_path / "cv.docx"
+    hinweis = cv_master.render_docx(TEMPLATE, cv_master.load_data(_data(tmp_path)), out)
+    assert hinweis is None
+    assert _media(out) == []
+
+
+def test_missing_photo_file_renders_without_and_says_so(tmp_path: Path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    out = tmp_path / "cv.docx"
+    data = cv_master.load_data(_data(tmp_path, foto="Bewerbungsmaterialien/fehlt.jpg"))
+    hinweis = cv_master.render_docx(TEMPLATE, data, out)
+    assert _media(out) == []
+    assert hinweis == "Foto nicht gefunden: Bewerbungsmaterialien/fehlt.jpg"
+
+
+def test_cli_reports_a_missing_photo_in_the_result_line(tmp_path: Path, monkeypatch, capsys):
+    monkeypatch.chdir(tmp_path)
+    data = _data(tmp_path, foto="Bewerbungsmaterialien/fehlt.jpg")
+    code = cv_master.main(["--data", str(data), "--name", "Anna Test", "--output-dir", "out"])
+    assert code == 0
+    lines = capsys.readouterr().out.rstrip("\n").splitlines()
+    assert "WARN Foto nicht gefunden: Bewerbungsmaterialien/fehlt.jpg" in lines
+    result = json.loads(lines[-1][len(_common.RESULT_PREFIX) :])
+    assert result["hinweis"] == "Foto nicht gefunden: Bewerbungsmaterialien/fehlt.jpg"
+    assert result["docx"] == "out/Lebenslauf_Anna_Test_v1.docx"

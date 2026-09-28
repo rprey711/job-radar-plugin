@@ -29,7 +29,10 @@ import _common
 import to_pdf
 import yaml
 from docx import Document
-from docxtpl import DocxTemplate
+from docx.shared import Mm
+from docxtpl import DocxTemplate, InlineImage
+
+PHOTO_WIDTH = Mm(32)
 
 
 @dataclass
@@ -62,6 +65,7 @@ class CVData:
     international: list[str] = field(default_factory=list)
     weiteres: list[str] = field(default_factory=list)
     geburtsdatum: str = ""
+    foto: str = ""
 
 
 class StyleDriftError(Exception):
@@ -113,6 +117,7 @@ def load_data(data_path: Path) -> CVData:
         international=_as_list(raw.get("international")),
         weiteres=_as_list(raw.get("weiteres")),
         geburtsdatum=raw.get("geburtsdatum", ""),
+        foto=raw.get("foto", "") or "",
     )
 
 
@@ -129,9 +134,20 @@ def format_education_section(education: list[Education]) -> str:
     return "\n\n".join(lines)
 
 
-def render_docx(template_path: Path, data: CVData, output_path: Path) -> None:
-    """Rendert das Template mit den Daten, schreibt nach output_path."""
+def render_docx(template_path: Path, data: CVData, output_path: Path) -> str | None:
+    """Rendert das Template mit den Daten, schreibt nach output_path.
+
+    Gibt einen Hinweis zurück, wenn das Foto aus den Daten fehlt; gerendert wird trotzdem.
+    """
     tpl = DocxTemplate(str(template_path))
+    hinweis = None
+    foto = None
+    if data.foto:
+        foto_path = Path(data.foto)
+        if foto_path.is_file():
+            foto = InlineImage(tpl, str(foto_path), width=PHOTO_WIDTH)
+        else:
+            hinweis = f"Foto nicht gefunden: {data.foto}"
 
     context = {
         "name": data.name,
@@ -154,12 +170,14 @@ def render_docx(template_path: Path, data: CVData, output_path: Path) -> None:
         "sprachen_line": data.sprachen_line,
         "international": list(data.international),
         "weiteres": list(data.weiteres),
+        "foto": foto,
     }
     # autoescape: a bare "&" or "<" from the data breaks the XML, and docxtpl's recover
     # parser then drops it together with every later "&amp;" in the part.
     tpl.render(context, autoescape=True)
     _common.set_document_owner(tpl.docx, data.name, f"Lebenslauf {data.name}")
     tpl.save(str(output_path))
+    return hinweis
 
 
 def write_markdown_source(data: CVData, md_path: Path) -> None:
@@ -341,10 +359,12 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f"-> Rendere {docx_path.name} ...")
     try:
-        render_docx(args.template, data, docx_path)
+        foto_hinweis = render_docx(args.template, data, docx_path)
     except Exception as exc:  # noqa: BLE001 - python-docx meldet Unlesbares auf viele Arten
         print(f"FEHLER: Rendern fehlgeschlagen ({args.template} -> {docx_path}): {exc}")
         return 1
+    if foto_hinweis:
+        print(f"WARN {foto_hinweis}")
     write_markdown_source(data, md_path)
 
     drift = False
@@ -368,7 +388,10 @@ def main(argv: list[str] | None = None) -> int:
             "pdf": pdf_result["pdf"] if pdf_result else None,
             "pdf_methode": pdf_result["methode"] if pdf_result else None,
             "seiten": pdf_result["seiten"] if pdf_result else None,
-            "hinweis": pdf_result["hinweis"] if pdf_result else None,
+            "hinweis": "; ".join(
+                h for h in (foto_hinweis, pdf_result["hinweis"] if pdf_result else None) if h
+            )
+            or None,
             "dateiname": docx_path.name,
             "version": version,
             "vorlage": args.template.resolve().as_posix(),
