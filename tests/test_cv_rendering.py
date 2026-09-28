@@ -6,6 +6,8 @@ import base64
 import json
 import re
 import struct
+import subprocess
+import sys
 import zipfile
 import zlib
 from datetime import datetime, timezone
@@ -390,3 +392,26 @@ def test_photo_and_pdf_hints_are_joined(tmp_path: Path, monkeypatch, capsys):
     last = capsys.readouterr().out.rstrip("\n").splitlines()[-1]
     result = json.loads(last[len(_common.RESULT_PREFIX) :])
     assert result["hinweis"] == "Foto nicht gefunden: Bewerbungsmaterialien/fehlt.jpg; kein PDF"
+
+
+def test_fixture_cv_fits_on_one_page(soffice, plugin_root: Path, workdir: Path, dummy_data: Path):
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(plugin_root / "scripts" / "cv_master.py"),
+            "--data",
+            str(dummy_data),
+            "--name",
+            "Anna Test",
+            "--output-dir",
+            "out",
+            "--pdf",
+        ],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        cwd=workdir,
+    )
+    last = proc.stdout.rstrip("\n").splitlines()[-1]
+    result = json.loads(last[len(_common.RESULT_PREFIX) :])
+    assert result["pdf"] and result["seiten"] == 1, proc.stdout
