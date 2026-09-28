@@ -68,6 +68,16 @@ class StyleDriftError(Exception):
     """Wird geworfen wenn Output-CV in Schriftart/Größe vom Template abweicht."""
 
 
+def _as_list(value: Any) -> list[str]:
+    """Listenfeld aus dem YAML als Liste: leer oder fehlend wird [], ein einzelner Text
+    wird ein Eintrag, eine Liste bleibt."""
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value]
+    return list(value)
+
+
 def load_data(data_path: Path) -> CVData:
     """Liest YAML, validiert Schema, gibt CVData zurück."""
     raw = yaml.safe_load(data_path.read_text(encoding="utf-8"))
@@ -77,8 +87,8 @@ def load_data(data_path: Path) -> CVData:
             datum=p["datum"],
             rolle=p["rolle"],
             firma=p["firma"],
-            bullets=p.get("bullets", []),
-            subsections=p.get("subsections", []),
+            bullets=_as_list(p.get("bullets")),
+            subsections=p.get("subsections") or [],
         )
         for p in raw.get("positions", [])
     ]
@@ -100,8 +110,8 @@ def load_data(data_path: Path) -> CVData:
         education=education,
         skills_section=raw.get("skills_section", ""),
         sprachen_line=raw.get("sprachen_line", ""),
-        international=raw.get("international", []),
-        weiteres=raw.get("weiteres", []),
+        international=_as_list(raw.get("international")),
+        weiteres=_as_list(raw.get("weiteres")),
         geburtsdatum=raw.get("geburtsdatum", ""),
     )
 

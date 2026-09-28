@@ -12,7 +12,9 @@ import os
 import re
 import shutil
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 PLUGIN_ROOT = Path(__file__).resolve().parent.parent
 RESULT_PREFIX = "JOBRADAR_RESULT "
@@ -120,14 +122,21 @@ def count_pdf_pages(pdf: Path) -> int | None:
     return count or None
 
 
-def set_document_owner(document, name: str, title: str) -> None:
-    """Author, last editor and title of a python-docx Document; never the template's owner."""
+def set_document_owner(document: Any, name: str, title: str) -> None:
+    """Metadaten eines python-docx-Dokuments auf den Freund setzen, nie auf den Vorlagenbesitzer.
+
+    Autor, zuletzt bearbeitet von und Titel werden gesetzt, Kommentar und Revisionszähler
+    zurückgesetzt, Erstell- und Änderungsdatum auf den Zeitpunkt des Renderns (UTC).
+    """
+    now = datetime.now(timezone.utc).replace(microsecond=0)
     props = document.core_properties
     props.author = name
     props.last_modified_by = name
     props.title = title
     props.comments = ""
     props.revision = 1
+    props.created = now
+    props.modified = now
 
 
 def ensure_utf8_stdout() -> None:

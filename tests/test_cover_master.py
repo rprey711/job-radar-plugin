@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
-from datetime import date
+import zipfile
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import _common
@@ -330,11 +331,38 @@ def test_cli_reports_the_pdf_hint_without_a_converter(
     assert (workdir / data["docx"]).is_file()
 
 
-def test_rendered_letter_carries_the_name_as_author(cover_template, cover_dummy_data, tmp_path):
+SHIPPED_COVER_TEMPLATE = _common.PLUGIN_ROOT / "templates" / "Anschreiben_template.docx"
+
+
+@pytest.mark.parametrize("shipped", [False, True], ids=["marker_template", "shipped_template"])
+def test_rendered_letter_carries_the_name_as_author(
+    shipped: bool, cover_template: Path, cover_dummy_data: Path, tmp_path: Path
+):
+    template = SHIPPED_COVER_TEMPLATE if shipped else cover_template
     out = tmp_path / "brief.docx"
     cover_master.render_docx(
-        cover_template, cover_master.load_data(cover_dummy_data), out, name="Anna Test"
+        template, cover_master.load_data(cover_dummy_data), out, name="Anna Test"
     )
     props = Document(str(out)).core_properties
     assert props.author == "Anna Test" and props.last_modified_by == "Anna Test"
     assert props.title.startswith("Anschreiben")
+    assert props.comments == ""
+
+
+@pytest.mark.parametrize("shipped", [False, True], ids=["marker_template", "shipped_template"])
+def test_rendered_letter_is_dated_at_render_time(
+    shipped: bool, cover_template: Path, cover_dummy_data: Path, tmp_path: Path
+):
+    template = SHIPPED_COVER_TEMPLATE if shipped else cover_template
+    out = tmp_path / "brief.docx"
+    before = datetime.now(timezone.utc).replace(microsecond=0)
+    cover_master.render_docx(
+        template, cover_master.load_data(cover_dummy_data), out, name="Anna Test"
+    )
+    after = datetime.now(timezone.utc)
+    props = Document(str(out)).core_properties
+    assert before <= props.created <= after
+    assert before <= props.modified <= after
+    with zipfile.ZipFile(out) as z:
+        core = z.read("docProps/core.xml").decode("utf-8")
+    assert "2013" not in core and "2026-02-12" not in core

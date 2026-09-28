@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 import cv_master
@@ -72,6 +73,46 @@ def test_filled_sections_are_list_items_without_literal_bullets(tmp_path: Path):
     for p in items:
         assert p._p.pPr is not None and p._p.pPr.numPr is not None
     assert not any(t.startswith("•") for t in _paragraphs(out))
+    texts = _paragraphs(out)
+    assert "INTERNATIONALER HINTERGRUND" in texts
+    assert "WEITERES" in texts
+
+
+def _list_items(path: Path) -> list[str]:
+    return [
+        p.text
+        for p in Document(str(path)).paragraphs
+        if p._p.pPr is not None and p._p.pPr.numPr is not None
+    ]
+
+
+def test_null_and_single_string_lists_render(tmp_path: Path):
+    data = _data(tmp_path, weiteres=None, international="Auslandssemester Lyon")
+    code = cv_master.main(
+        ["--data", str(data), "--name", "Anna Test", "--output-dir", str(tmp_path / "out")]
+    )
+    assert code == 0
+    out = tmp_path / "out" / "Lebenslauf_Anna_Test_v1.docx"
+    items = _list_items(out)
+    assert items.count("Auslandssemester Lyon") == 1
+    assert "A" not in items
+    texts = _paragraphs(out)
+    assert "INTERNATIONALER HINTERGRUND" in texts
+    assert "WEITERES" not in texts
+
+
+def test_position_with_null_bullets_renders(tmp_path: Path):
+    raw = yaml.safe_load((FIXTURES / "dummy_data.yml").read_text(encoding="utf-8"))
+    positions = raw["positions"]
+    positions[0]["bullets"] = None
+    del positions[1]["bullets"]
+    data = cv_master.load_data(_data(tmp_path, positions=positions))
+    assert data.positions[0].bullets == [] and data.positions[1].bullets == []
+    out = tmp_path / "cv.docx"
+    cv_master.render_docx(TEMPLATE, data, out)
+    texts = _paragraphs(out)
+    assert any("Marketing Manager" in t for t in texts)
+    assert not any(t.startswith("Konzeption") for t in texts)
 
 
 def test_achievements_are_plain_list_items(tmp_path: Path):
@@ -88,9 +129,26 @@ def test_achievements_are_plain_list_items(tmp_path: Path):
 def test_no_empty_paragraphs_from_loop_tags(tmp_path: Path):
     doc = Document(str(_render(tmp_path)))
     body = [p.text for p in doc.paragraphs]
-    # Between the first heading and BILDUNG only content lines, no blanks left by {% %} tags.
-    start, end = body.index("BERUFSERFAHRUNG"), body.index("BILDUNG")
-    assert "" not in body[start + 1 : end]
+    # After the first heading only content lines, no blanks left by {% %} tags.
+    start = body.index("BERUFSERFAHRUNG")
+    assert "" not in body[start + 1 :]
+
+
+def _header_cells(path: Path) -> list[list[str]]:
+    row = Document(str(path)).tables[0].rows[0]
+    return [[p.text for p in cell.paragraphs] for cell in row.cells]
+
+
+def test_header_has_no_gap_without_birthdate(tmp_path: Path):
+    *text_cells, _photo_cell = _header_cells(_render(tmp_path, geburtsdatum=""))
+    for cell in text_cells:
+        assert "" not in cell
+    assert not any("Geboren" in t for cell in text_cells for t in cell)
+
+
+def test_header_shows_the_birthdate_when_given(tmp_path: Path):
+    cells = _header_cells(_render(tmp_path, geburtsdatum="01.02.1990"))
+    assert "Geboren am 01.02.1990" in cells[0]
 
 
 def test_template_uses_calibri_and_has_no_picture_or_personal_metadata():
@@ -100,10 +158,28 @@ def test_template_uses_calibri_and_has_no_picture_or_personal_metadata():
         props = z.read("docProps/core.xml").decode("utf-8") + z.read("docProps/app.xml").decode(
             "utf-8"
         )
+        styles = z.read("word/styles.xml").decode("utf-8")
     assert not [n for n in names if n.startswith("word/media/")]
     assert 'typeface="Aptos' not in theme
     assert re.search(r'<a:latin typeface="Calibri"', theme)
+    # Aptos's panose number next to the Calibri name would let Word substitute by panose.
+    assert "02110004020202020204" not in theme
+    assert re.search(r'<a:latin typeface="Calibri" panose="020F0502020204030204"', theme)
+    defaults = re.search(r"<w:rPrDefault>.*?</w:rPrDefault>", styles, flags=re.S)
+    assert defaults is not None
+    assert 'w:ascii="Calibri"' in defaults.group(0)
+    assert 'w:hAnsi="Calibri"' in defaults.group(0)
     assert "Raul" not in props and "Prey" not in props
+
+
+def test_template_metadata_carries_no_history():
+    with zipfile.ZipFile(TEMPLATE) as z:
+        core = z.read("docProps/core.xml").decode("utf-8")
+        app = z.read("docProps/app.xml").decode("utf-8")
+    assert "<cp:revision>1</cp:revision>" in core
+    assert core.count("2026-01-01T00:00:00Z") == 2
+    assert "2026-02-12" not in core and "2026-04-14" not in core
+    assert "<TotalTime>0</TotalTime>" in app
 
 
 def test_rendered_cv_carries_the_friends_name_as_author(tmp_path: Path):
@@ -113,3 +189,14 @@ def test_rendered_cv_carries_the_friends_name_as_author(tmp_path: Path):
     assert props.title == "Lebenslauf Anna Test"
     xml = _xml(tmp_path / "cv.docx", "docProps/core.xml")
     assert "Raul" not in xml
+
+
+def test_rendered_cv_is_dated_at_render_time(tmp_path: Path):
+    before = datetime.now(timezone.utc).replace(microsecond=0)
+    out = _render(tmp_path)
+    after = datetime.now(timezone.utc)
+    props = Document(str(out)).core_properties
+    assert before <= props.created <= after
+    assert before <= props.modified <= after
+    xml = _xml(out, "docProps/core.xml")
+    assert "2013" not in xml and "2026-02-12" not in xml
