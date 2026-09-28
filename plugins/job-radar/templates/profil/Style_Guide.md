@@ -42,7 +42,7 @@ Jeder fertige Brief muss durch drei Prüfsteine laufen. Ein Brief, der an einem 
 
 **Ziel:** Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite. Jeder Beleg: Situation → Handlung → quantifizierbarer oder greifbarer Effekt → was das über dich verallgemeinerbar zeigt.
 
-**Umgekehrte Linse als Grundbewegung.** Die Fähigkeit ist das Thema, die Station ist der Beleg. Nicht *„Bei <UNTERNEHMEN> habe ich Bestellungen bearbeitet“*, sondern *„Lieferengpässe früh zu erkennen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*. Der Fokus des Absatzes ist die Fähigkeit, die der Leser in der Rolle braucht, nicht die Chronik der Station.
+**Umgekehrte Linse als Grundbewegung.** Die Fähigkeit ist das Thema. Die Station ist der Beleg. Nicht *„Bei <UNTERNEHMEN> habe ich Bestellungen bearbeitet“*, sondern *„Lieferengpässe früh zu erkennen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*. Der Fokus des Absatzes ist die Fähigkeit, die der Leser in der Rolle braucht, nicht die Chronik der Station.
 
 **Fragment-Auswahl statt Chronik.** Jeder Anker hat mehrere Facetten (siehe Anker-Pool unten). Pro Brief kommt nur die rollenrelevante Facette im Vordergrund vor, nicht das ganze Projekt. Haupt-Beleg ca. 6–8 Zeilen, Neben-Beleg 2–3 Zeilen. Wenn eine Facette nicht passt, weglassen, nicht künstlich biegen.
 
@@ -197,9 +197,9 @@ Jeder Brief braucht mindestens eine persönliche Szene, die so nur aus deiner Er
 
 **Der Brief ist eine Arbeitsprobe, kein Anhang.** Consultants schreiben täglich Memos. Das Anschreiben muss analytisches Denken und klare Kommunikation demonstrieren.
 
-**200–250 Wörter, nicht 350–450.** Deutsche Consulting-Briefe sind in der Praxis kürzer als Standard-Anschreiben. MBB DACH (McKinsey, BCG, Bain) akzeptieren das Anschreiben als optional, wenn dabei, dann kurz und scharf.
+**200–250 Wörter, nicht 300–400.** Deutsche Consulting-Briefe sind in der Praxis kürzer als Standard-Anschreiben. Große Strategieberatungen wie McKinsey, BCG und Bain behandeln das Anschreiben als optional. Wer eines beilegt, hält es kurz und scharf.
 
-**Die drei Warum.** Ein starker Consulting-Brief beantwortet: (1) Why Consulting (verstehst du, was Beratung bedeutet?), (2) Why This Firm (kennst du diese Firma wirklich, oder ist das Austauschware?), (3) Why This Office/Practice (BCG München ist nicht BCG Düsseldorf; in Deutschland sind Office- und Practice-Spezifika wichtiger als im US-Template).
+**Die drei Warum.** Ein starker Consulting-Brief beantwortet: (1) Why Consulting (verstehst du, was Beratung bedeutet?), (2) Why This Firm (kennst du diese Firma wirklich, oder ist das Austauschware?), (3) Why This Office/Practice (BCG München ist nicht BCG Düsseldorf, und in Deutschland sind Office- und Practice-Spezifika wichtiger als im US-Template).
 
 **Keine Demut.** Im Consulting besonders heikel, weil das Geschäftsmodell auf Selbstbewusstsein aufgebaut ist. *„Ich komme nicht aus ...“*-Sätze streichen und in einen Gap-Pivot umbauen (siehe Sektion Gap ohne Demut).
 
@@ -237,7 +237,7 @@ Ehrliche Wiederaufnahme (zweite Bewerbung beim selben Unternehmen):
 Echte Verbindung zum Unternehmen:
 > *„[Unternehmen] begleitet mich schon länger, bevor ich die Stellenausschreibung gesehen habe. [Persönlicher konkreter Bezug].“*
 
-Ein spezifisches Projekt-Detail, nicht der Standard-Block:
+Konkrete Szene aus der eigenen Arbeit:
 > *„Erst vor kurzem habe ich bei <UNTERNEHMEN> [konkrete Aufgabe] übernommen. Seitdem [messbares Ergebnis].“*
 
 Argumentatives Bindeglied:
@@ -271,9 +271,9 @@ Anti-Frage:
 Sachlich ohne „aber“:
 > *„SAP-Erfahrung bringe ich nicht mit. Abläufe aus Sicht der Anwender zu beschreiben, dafür schon, und genau das braucht diese Rolle.“*
 
-### Konkrete Projektszene im Mittelteil
+### Konkrete Szene im Mittelteil
 
-> *„Früh- und Spätschicht haben Retouren verschieden gebucht. Wir haben einen gemeinsamen Ablauf festgelegt, danach stimmte der Bestand wieder.“*
+> *„Früh- und Spätschicht haben Retouren verschieden gebucht. Wir haben einen gemeinsamen Ablauf festgelegt. Seitdem stimmt der Bestand wieder.“*
 
 ### Starke Abschlüsse
 

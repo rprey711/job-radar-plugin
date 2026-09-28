@@ -100,7 +100,7 @@ Vor dem Schreiben:
 Aus dem Archetypen-Repertoire in `Profil/Style_Guide.md` wählen, was zur Stelle passt. Keine A/B-Binary. Default-Reihenfolge der Überlegung:
 
 1. Gibt es eine echte Verbindung zum Unternehmen (Nutzer, Gespräch, persönlicher Bezug, Empfehlung)? → Verbindungs-Opener.
-2. Gibt es ein spezifisches Projekt-Detail aus dem Anker-Pool, das direkt zur Stelle passt? → Szenen-Opener.
+2. Gibt es eine konkrete Szene aus dem Anker-Pool, die direkt zur Stelle passt? → Szenen-Opener.
 3. Gibt es einen offensichtlichen Fit-Bruch, den man drehen kann (z.B. jemand aus der Pflege bewirbt sich im Qualitätsmanagement)? → Anti-Frage.
 4. Sucht die Stelle einen bestimmten Arbeitsmodus, den du hast? → Arbeitsmodus-Opener.
 5. Fallback: Konkrete Szene aus der eigenen Arbeit.
@@ -109,7 +109,7 @@ Aus dem Archetypen-Repertoire in `Profil/Style_Guide.md` wählen, was zur Stelle
 
 Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite.
 
-**Umgekehrte Linse als Grundbewegung** (siehe `Profil/Style_Guide.md`): Die Fähigkeit ist das Thema, die Station ist der Beleg. Nicht *„In meinem Projekt habe ich ...“*, sondern *„Skill X, das ich im Projekt <UNTERNEHMEN> gelernt habe, als ...“*.
+**Umgekehrte Linse als Grundbewegung** (siehe `Profil/Style_Guide.md`): Die Fähigkeit ist das Thema. Die Station ist der Beleg. Nicht *„Bei <UNTERNEHMEN> habe ich ...“*, sondern *„[Fähigkeit] habe ich bei <UNTERNEHMEN> gelernt, als ...“*.
 
 Pro Beleg:
 - Welche Fähigkeit will ich zeigen, die für diese Rolle konkret gebraucht wird?
