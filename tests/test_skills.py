@@ -95,3 +95,21 @@ def test_werkzeuge_doc_names_every_script_and_the_result_line():
         "sonstiges",
     ):
         assert kind in text
+
+
+MODEL_POINTER = ("`job_radar_status`", "`naechster_schritt`", "`plan`", "`modellhinweis`")
+
+
+@pytest.mark.parametrize("skill", sorted(THIN))
+def test_thin_skill_takes_the_model_from_the_status(skill: str):
+    _, body = _frontmatter(skill)
+    (line,) = [row for row in body.splitlines() if row.startswith("- Modellhinweis:")]
+    for needle in MODEL_POINTER:
+        assert needle in line, f"{needle} fehlt im Modellhinweis von /{skill}"
+
+
+def test_einrichten_takes_the_model_from_the_status():
+    _, body = _frontmatter("einrichten")
+    intro = body.split("## 1.")[0]
+    (line,) = [row for row in intro.splitlines() if row.startswith("Modellhinweis:")]
+    assert "`modellhinweis`" in line and "job_radar_status" in line

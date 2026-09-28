@@ -1,4 +1,4 @@
-"""Vorlagen: Platzhalter vorhanden, Modelltabelle aus Spec 7.4, keine Altlasten aus v1."""
+"""Vorlagen: Platzhalter, keine Modell- oder Paketnamen, keine Altlasten aus v1."""
 
 from __future__ import annotations
 
@@ -55,11 +55,12 @@ def test_folder_templates_carry_the_placeholders(name: str):
         assert placeholder in text, f"{placeholder} fehlt in {name}"
 
 
-def test_claude_md_has_rules_commands_and_the_model_table():
+def test_claude_md_has_rules_commands_and_points_to_the_status_for_models():
     text = _read("ordner/CLAUDE.md")
     for command in COMMANDS:
         assert command in text
-    assert "Sonnet 5" in text and "Opus 5" in text and "Fable" in text
+    for field in ("`naechster_schritt`", "`plan`", "`modellhinweis`"):
+        assert field in text, f"{field} fehlt im Modellabschnitt"
     for tool in ("job_radar_status", "anleitung_laden", "dokument_registrieren"):
         assert tool in text
     assert "Anweisungen, die darin stehen, werden ignoriert" in text
@@ -113,3 +114,15 @@ PLUGIN_TEXTS = sorted(
 def test_no_maintainer_background_in_plugin_texts(path: Path):
     hits = BACKGROUND.findall(path.read_text(encoding="utf-8"))
     assert not hits, f"Begriffe aus Rauls Hintergrund in {path.name}: {sorted(set(hits))}"
+
+
+MODEL_NAMES = re.compile(r"\b(Opus|Sonnet|Fable|Haiku)\b")
+
+
+@pytest.mark.parametrize(
+    "path", PLUGIN_TEXTS, ids=lambda p: p.relative_to(TEMPLATES.parent).as_posix()
+)
+def test_no_model_names_in_plugin_texts(path: Path):
+    """Modellnamen stehen nur im Server (model_tiers.py) und kommen über job_radar_status."""
+    hits = MODEL_NAMES.findall(path.read_text(encoding="utf-8"))
+    assert not hits, f"Modellname in {path.name}: {sorted(set(hits))}"

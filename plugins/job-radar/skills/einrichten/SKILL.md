@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Du richtest den Ordner ein, in dem du gerade arbeitest. Das ist der Job-Radar-Ordner. Ohne diesen Schritt läuft kein anderer Ablauf. Der Ordner bleibt auf dem Rechner; zum Server gehen nur die Werkzeugaufrufe des Connectors.
 
-Modellhinweis: Sonnet 5 mit niedrigem Effort reicht, das ist ein mechanischer Schritt.
+Modellhinweis: Das ist ein mechanischer Schritt, die Routinestufe reicht. Welches Modell das ist, steht in `modellhinweis`, sobald `job_radar_status` in Schritt 4 antwortet.
 
 ## 1. Umgebung prüfen
 
