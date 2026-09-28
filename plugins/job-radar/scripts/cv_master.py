@@ -159,7 +159,9 @@ def render_docx(template_path: Path, data: CVData, output_path: Path) -> None:
         "international_section": format_international_section(data.international),
         "weiteres_section": format_weiteres_section(data.weiteres),
     }
-    tpl.render(context)
+    # autoescape: a bare "&" or "<" from the data breaks the XML, and docxtpl's recover
+    # parser then drops it together with every later "&amp;" in the part.
+    tpl.render(context, autoescape=True)
     tpl.save(str(output_path))
 
 
