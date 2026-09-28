@@ -17,7 +17,7 @@ Beim „Was suchst du“-Satz NICHT den exakten Jobtitel aus der Stellenausschre
 
 ### Keyword-Spiegelung (vor dem Anpassen)
 
-Exakte Begriffe aus der Stellenausschreibung identifizieren und im CV spiegeln, nicht nur Synonyme, sondern wörtliche Übernahme. Bei Fachbegriffen sowohl Abkürzung als auch ausgeschriebene Form verwenden: *„Corporate Sustainability Reporting Directive (CSRD)“*. Das ist entscheidend für ATS-Filterung.
+Exakte Begriffe aus der Stellenausschreibung identifizieren und im CV spiegeln, nicht nur Synonyme, sondern wörtliche Übernahme. Bei Fachbegriffen sowohl Abkürzung als auch ausgeschriebene Form verwenden: *„Enterprise Resource Planning (ERP)“*. Das ist entscheidend für ATS-Filterung.
 
 ### 3-Filter-Methode
 
@@ -42,22 +42,19 @@ Drei Filter nacheinander anwenden:
 - Muss für einen Werkstudenten in der ersten Woche verständlich sein
 - Personaler entscheiden in Sekunden
 
-### Übersetzungswörterbuch Akademisch → Wirtschaft
+### Übersetzungswörterbuch: eigene Bezeichnung → Sprache der Anzeige
 
-Beim Anpassen der Bullets diese Übersetzungen anwenden:
+Beim Anpassen der Bullets diese Übersetzungen anwenden. Trag hier deine eigenen Begriffe ein, die Zeilen sind Beispiele.
 
-| Akademisch | Wirtschaft |
+| Eigene Bezeichnung | Sprache der Anzeige |
 |---|---|
-| Dissertation | Unabhängiges Forschungsprojekt / Strategische Analyse |
-| Literaturreview | Markt-/Wettbewerbsanalyse / Benchmarking |
-| Methodenentwicklung | Prozessdesign / Framework-Entwicklung |
-| Peer Review | Qualitätssicherung / Expert Evaluation |
-| Drittmittelakquise | Business Development / Revenue Generation |
-| Lehre | Training & Development / Workshop-Durchführung |
-| Konferenzvorträge | Thought Leadership / Stakeholder-Kommunikation |
-| Betreuung von Abschlussarbeiten | Mentoring / Talent Development |
+| Schichtleitung | Teamführung mit Personalverantwortung |
+| Stationsleitung | Führung eines Teams, Dienst- und Einsatzplanung |
+| Abschlussarbeit | Eigenständiges Analyseprojekt mit Ergebnisbericht |
+| Promotion | Mehrjähriges Projekt mit eigener Planung, Budget und Veröffentlichung |
+| Vereinsvorstand | Budgetverantwortung und Verhandlungen mit Partnern |
 
-Kernregel: Nicht beschreiben, was man erforscht hat, sondern beschreiben, was man geliefert hat.
+Kernregel: Nicht beschreiben, womit man beschäftigt war, sondern beschreiben, was man geliefert hat.
 
 ### ATS-Regeln
 
@@ -104,7 +101,7 @@ Aus dem Archetypen-Repertoire in `Profil/Style_Guide.md` wählen, was zur Stelle
 
 1. Gibt es eine echte Verbindung zum Unternehmen (Nutzer, Gespräch, persönlicher Bezug, Empfehlung)? → Verbindungs-Opener.
 2. Gibt es ein spezifisches Projekt-Detail aus dem Anker-Pool, das direkt zur Stelle passt? → Szenen-Opener.
-3. Gibt es einen offensichtlichen Fit-Bruch, den man drehen kann (z.B. Akademiker bewirbt sich auf Operations etc.)? → Anti-Frage.
+3. Gibt es einen offensichtlichen Fit-Bruch, den man drehen kann (z.B. jemand aus der Pflege bewirbt sich im Qualitätsmanagement)? → Anti-Frage.
 4. Sucht die Stelle einen bestimmten Arbeitsmodus, den du hast? → Arbeitsmodus-Opener.
 5. Fallback: Konkrete Szene aus dem eigenen Werk.
 
@@ -150,7 +147,7 @@ Gleiche Schritte 0–6, aber:
 - **200–250 Wörter**, nicht 300–400. Deutsche Consulting-Briefe sind straffer.
 - **Drei-Warum-Struktur explizit** (Why Consulting / Why Firm / Why Office).
 - **Office-/Practice-spezifische Referenz** (Partner-Name, öffentlich diskutierter Report, Standort-Profil).
-- **Akademischen Hintergrund selbstbewusst positionieren** (McKinsey DE: „Advanced Industry Hire“). Nicht wegerklären, als Stärke framen.
+- **Den eigenen Hintergrund selbstbewusst zeigen**, statt ihn wegzuerklären.
 - **Null Demut-Gesten.** Im Consulting besonders streng.
 - **Der Swap-the-firm-name-Test ist hier besonders hart.** Consulting-Recruiter lesen Hunderte pro Saison; jede Austauschware wird sofort erkannt.
 

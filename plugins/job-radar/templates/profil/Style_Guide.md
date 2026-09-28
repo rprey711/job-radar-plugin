@@ -73,28 +73,26 @@ Anker sind wiederkehrende Story-Quellen, aus denen für jeden Brief die passende
 
 ### Primär (breit einsetzbar, decken die meisten Rollen ab)
 
-**`<PRIMÄRANKER 1, z.B. langjähriges Beratungs- oder Forschungsprojekt>`.** Fragmente:
+**`<PRIMÄRANKER 1, z.B. die längste Station oder das wichtigste Projekt>`.** Fragmente:
 - Problem-Framing und Konzeption
 - Analytische Phase (Tools, Datenbasis, Methode)
 - Stakeholder-Navigation (Workshops, Präsentationen, Berichte)
 - Methodische Tiefe
 - Outcome (konkrete Handlungsempfehlungen oder Ergebnisse)
 
-**`<PRIMÄRANKER 2, z.B. akademische Abschlussarbeit oder langjähriger Themenschwerpunkt>`.** Fragmente:
-- Forschungsdesign und eigenständige Konzeption
-- Fachliche Tiefe im Themenbereich
-- Kommunikation nach außen (Vorträge, Publikationen, Workshops)
-- Theorie-Praxis-Brücke
+**`<PRIMÄRANKER 2, z.B. Ausbildung, zweite Station oder Ehrenamt>`.** Fragmente:
+- Eigenständige Planung
+- Ergebnisse vermitteln (Präsentation, Schulung)
 
 ### Situativ (nur wo sie wirklich tragen)
 
 <!-- Ergänze hier situative Anker aus deiner Biografie. Beispiele: -->
-<!-- - Automatisierungsprojekt / technisches Nebenprojekt: für KI-/Automatisierungs-/Tech-Stellen -->
+<!-- - Ehrenamt oder Verein: für Koordinations- und Organisationsrollen -->
 <!-- - Besonderes Analyse-Projekt: für Operations-, Customer-Journey-nahe Rollen -->
-<!-- - Lehrveranstaltung oder Curriculum-Arbeit: für strategisch geprägte Rollen, Consulting -->
-<!-- - Betreuung von Projekten / Abschlussarbeiten: für Trainee-, Koordinationsrollen -->
+<!-- - Nebenjob mit Kundenkontakt: für Vertrieb, Einzelhandel, Kundenservice -->
+<!-- - Weiterbildung mit Abschluss: für Stellen, die genau diese Qualifikation nennen -->
+<!-- - Einarbeitung neuer Kolleginnen und Kollegen: für Trainee-, Team- und Schulungsrollen -->
 <!-- - Auslandserfahrung: für international ausgerichtete Rollen -->
-<!-- - Drittmittelarbeit: für Business-Development, Fördermittel-nahe Rollen -->
 
 ### Pflege des Pools
 
@@ -208,19 +206,17 @@ Jeder Brief braucht mindestens eine persönliche Szene, die so nur aus deiner Er
 
 **Der Swap-the-firm-name-Test ist hier besonders streng.** Generische Consulting-Briefe, die auf jede Beratung passen, werden von Consulting-Recruitern sofort erkannt (sie lesen Hunderte pro Saison). Ein firmaspezifisches Detail: Name einer Partnerin, ein öffentlich diskutierter Report, ein Standort-Profil.
 
-## Bei PhD-zu-Wirtschaft-Bewerbungen zusätzlich beachten
+## Beim Wechsel des Berufsfelds zusätzlich beachten
 
-**Forschungserfahrung in Business-Sprache übersetzen.** Nicht *„Ich habe eine Längsschnitterhebung durchgeführt“*, sondern *„Ich habe über drei Jahre ein Projekt geleitet, in dem wir Daten erhoben und daraus Handlungsempfehlungen abgeleitet haben.“*
+**Das Fachwort des alten Berufs durch Umfang und Handlung ersetzen.** Nicht *„Ich habe die Tourenplanung übernommen.“*, sondern *„Ich habe für zwölf Fahrer die Einsätze geplant und Engpässe früh gemeldet.“*
 
-**Transferable Skills betonen.** Projektmanagement, Datenanalyse, Stakeholder-Kommunikation, Teamkoordination. Das sind die Fähigkeiten, die Arbeitgeber interessieren, nicht die Dissertations-These.
+**Transferable Skills betonen.** Planung, Teamkoordination, Kundenkontakt, Umgang mit Zahlen und Budgets. Das sind die Fähigkeiten, die Arbeitgeber interessieren, nicht die Fachdetails des bisherigen Berufs.
 
-**Dem Vorurteil „praxisfern“ proaktiv begegnen, aber nicht defensiv.** Durch konkrete Praxisbeispiele aus dem Anker-Pool, nicht durch eine Entschuldigung für die Forschung.
+**Dem Vorurteil „fachfremd“ proaktiv begegnen, aber nicht defensiv.** Durch konkrete Beispiele aus dem Anker-Pool, nicht durch eine Entschuldigung für den bisherigen Weg.
 
-**Dissertationsthema als USP nutzen, nicht die Dissertation erklären.** Ein Satz zum Thema reicht. Der Fokus liegt auf den übertragbaren Fähigkeiten und Ergebnissen.
+**Den eigenen Hintergrund selbstbewusst zeigen, statt ihn wegzuerklären.** Wer aus der Pflege ins Qualitätsmanagement einer Klinik wechselt, kennt die Abläufe, die dort geprüft werden, aus eigener Arbeit. Ein Satz dazu reicht. Der Fokus liegt auf den übertragbaren Fähigkeiten und Ergebnissen.
 
-**PhD im deutschen Consulting ist Karriereturbo, nicht Ballast.** McKinsey DE hat explizite PhD-Pfade („Advanced Industry Hire“). Das PhD-Signal im Brief nicht wegerklären, sondern selbstbewusst positionieren.
-
-**Wissenschaftlichen Stil ablegen.** Keine Schachtelsätze, kein Nominalstil, keine Fachterminologie ohne Einordnung. Das Anschreiben wie ein Abstract behandeln: schnell auf den Punkt, Wert klar.
+**Den Stil des alten Berufs ablegen.** Keine Schachtelsätze, kein Nominalstil, keine Fachbegriffe ohne Einordnung. Das gilt für Behördendeutsch und Pflegedokumentation genauso wie für wissenschaftliches Schreiben.
 
 ## Fragment-Galerie
 
@@ -229,10 +225,10 @@ Kurze, zitierte Passagen sortiert nach Prinzip. Das ist Lernmaterial, keine Kopi
 ### Starke Öffnungssätze (Musterbeispiele nach Archetyp)
 
 Persönlicher Arbeitsmodus:
-> *„wenn ich einen wiederkehrenden Prozess sehe, frage ich mich fast automatisch, ob sich das besser lösen lässt.“*
+> *„wenn in einer Übergabe etwas verloren geht, will ich zuerst wissen, an welcher Stelle.“*
 
 Einfach und ehrlich, ohne großen Projektblock:
-> *„ich beschäftige mich seit mehreren Jahren mit [Thema] und suche jetzt den Einstieg in die Praxis.“*
+> *„ich beschäftige mich seit mehreren Jahren mit [Thema] und will jetzt in [Richtung] arbeiten.“*
 
 Ehrliche Wiederaufnahme (zweite Bewerbung beim selben Unternehmen):
 > *„Ich habe mich vor einigen Wochen bereits auf [Stelle] bei [Unternehmen] beworben. Das Unternehmen hat mich seitdem nicht losgelassen.“*
@@ -244,10 +240,10 @@ Ein spezifisches Projekt-Detail, nicht der Standard-Block:
 > *„Erst vor kurzem habe ich für <UNTERNEHMEN> [konkrete Aufgabe] analysiert und einen Report über [Ergebnis] erstellt.“*
 
 Argumentatives Bindeglied:
-> *„Das ist für mich im Grunde die gleiche Aufgabe, vor der auch [Kontext der Stelle] steht: aus einem Rahmen Prozesse zu machen.“*
+> *„[Fähigkeit] ist der Kern meiner bisherigen Arbeit und genau die Aufgabe, vor der auch [Kontext der Stelle] steht.“*
 
 Positionierung mit Haltung:
-> *„[Ort/Thema] ist mir wichtig, und ich will an [Thema] mitarbeiten, nicht nur darüber forschen.“*
+> *„[Ort/Thema] ist mir wichtig, und ich will an [Thema] mitarbeiten, nicht nur darüber lesen.“*
 
 ### Umgekehrte Linse: Primäranker (Formulierungsmuster)
 
@@ -255,28 +251,28 @@ Jeder dieser Sätze macht das Skill zum Thema, das Projekt zum Beleg. Anpassen a
 
 > *„Komplexe Projekte in verhandelbare Teilprobleme zu zerlegen, habe ich in einem mehrjährigen Projekt bei <UNTERNEHMEN> gelernt, als ...“*
 
-> *„Mein Gefühl für Stakeholder-Dynamiken kommt aus einer konkreten Szene bei <UNTERNEHMEN>: ein Bereich weigerte sich, Befragungsergebnisse zu akzeptieren, die dem internen Selbstbild widersprachen. Die Argumentation haben wir danach anders aufgebaut.“*
+> *„Dass man sich erst auf die Frage einigen muss und dann auf die Zahl, habe ich bei <UNTERNEHMEN> gelernt, als zwei Abteilungen dieselbe Kennzahl verschieden berechnen wollten.“*
 
 > *„Dass Datenanalyse erst dann wirkt, wenn sie für die Adressaten aufbereitet ist, habe ich bei <UNTERNEHMEN> gelernt: die gleichen Ergebnisse tragen im Executive-Board anders als im Arbeitsgruppen-Workshop.“*
 
-> *„Aus einem Rechtsrahmen Prozesse zu machen, ist der Kern meines Forschungsprojekts und praktisch identisch mit der Aufgabe, die hier ansteht.“*
+> *„[Fähigkeit] ist der Kern meiner Arbeit bei <UNTERNEHMEN> und genau die Aufgabe, die hier ansteht.“*
 
-> *„Dass große Themen nur tragen, wenn sie mit Praktikern rückgekoppelt werden, habe ich in meiner [Forschungsarbeit/Projekterfahrung] gelernt: die Konferenzvorträge und Workshops mit Unternehmen waren für mich der Lackmus-Test, ob die Argumentation draußen hält.“*
+> *„Dass große Vorhaben nur tragen, wenn sie mit den Leuten rückgekoppelt werden, die sie umsetzen, habe ich in [Station oder Projekt] gelernt. Die Rückmeldung aus dem Team war der Test, ob der Plan im Alltag hält.“*
 
 ### Gap ohne Demut (Formulierungsmuster)
 
 Positive Pivot:
-> *„Mein Hintergrund ist analytisch-beratend, nicht IT-klassisch. Was ich mitbringe, ist die Disziplin, aus einem fremden Fachkontext in kurzer Zeit belastbare Fragen und Empfehlungen abzuleiten. Genau das ist in diesem Projekt die Aufgabe.“*
+> *„Mein Hintergrund ist [Bereich A], nicht [Bereich B]. Was ich mitbringe, ist [Fähigkeit]. Genau das ist in dieser Rolle die Aufgabe.“*
 
 Anti-Frage:
 > *„Sie fragen sich vielleicht, was jemand aus [Hintergrund] in einer [Stelle] sucht. Die Antwort ist: dieselben Fähigkeiten, die ich in [Projekt] genutzt habe, sind hier operativ noch direkter gefragt.“*
 
 Sachlich ohne „aber“:
-> *„ERP-Erfahrung bringe ich nicht mit. Die Fähigkeit, regulatorische Rahmen in operative Kommunikation zu übersetzen, dafür schon, und die ist in dieser Rolle zurück.“*
+> *„SAP-Erfahrung bringe ich nicht mit. Abläufe aus Sicht der Anwender zu beschreiben, dafür schon, und genau das braucht diese Rolle.“*
 
 ### Konkrete Projektszene im Mittelteil
 
-> *„Unsere Analyseergebnisse deckten sich an einem Punkt nicht mit dem internen Selbstbild des Kunden. Im Workshop ging es dann darum, diesen Befund verständlich zu machen.“*
+> *„Zwei Abteilungen wollten dieselbe Kennzahl verschieden berechnen. Wir haben uns erst auf die Frage geeinigt, dann auf die Zahl.“*
 
 ### Starke Abschlüsse
 
@@ -287,7 +283,7 @@ Mit organischer Rückfrage:
 > *„Ich freue mich auf ein Gespräch, gerne auch um zu erfahren, wie Sie [konkrete Sache] planen.“*
 
 Mit Starttermin-Kontext (nicht in jeden Brief, Schablonen-Risiko):
-> *„Aktuell bin ich in [Abschlussphase] und flexibel beim Starttermin. Ich freue mich auf ein Gespräch.“*
+> *„Aktuell bin ich [Status] und flexibel beim Starttermin. Ich freue mich auf ein Gespräch.“*
 
 ## Anrede
 

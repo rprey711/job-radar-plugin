@@ -16,9 +16,9 @@ Diese Datei füllt `/onboarding` (Komplett) oder `/kurzprofil` (Schnellstart). D
 
 ## Was ich suche
 
-- **Rollen**: <!-- z.B. Junior Consultant, Datenanalystin im Mittelstand, Trainee in einer Strategieberatung -->
-- **Standorte**: <!-- mit Reihenfolge: „Leipzig zuerst, dann Remote, dann andere Städte in Deutschland“ -->
-- **Branchen**: <!-- breit oder eng: „Beratung, ESG-nahe Industrie, Tech“ -->
+- **Rollen**: <!-- z.B. Projektkoordinatorin, Einkäufer im Mittelstand, Junior Consultant -->
+- **Standorte**: <!-- mit Reihenfolge: „Beispielstadt zuerst, dann Remote, dann andere Städte“ -->
+- **Branchen**: <!-- breit oder eng: „Handel, Gesundheitswesen, öffentlicher Dienst“ -->
 
 ## Persönlichkeit und Umfeld
 

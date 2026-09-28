@@ -92,3 +92,23 @@ def test_profile_templates_name_the_v2_commands():
     assert "/bewerten" in _read("profil/Kandidatenprofil.md")
     assert "/lebenslauf" in _read("profil/Bewerbungsmethode.md")
     assert "/anschreiben-vorlage" in _read("profil/Style_Guide.md")
+
+
+BACKGROUND = re.compile(
+    r"\b(Leipzig|Dresden|Erfurt|Halle|Dissertation|Doktorand\w*|Drittmittel\w*|ESG|CSRD|"
+    r"Kreislaufwirtschaft|Längsschnitt\w*|Befragungsergebnisse|Raul Prey|"
+    r"Lehrveranstaltung\w*|Konferenzvortr\w*)\b"
+)
+PLUGIN_TEXTS = sorted(
+    [p for p in TEMPLATES.rglob("*.md")]
+    + list((TEMPLATES.parent / "skills").glob("*/SKILL.md"))
+    + [TEMPLATES.parent / "docs" / "WERKZEUGE.md"]
+)
+
+
+@pytest.mark.parametrize(
+    "path", PLUGIN_TEXTS, ids=lambda p: p.relative_to(TEMPLATES.parent).as_posix()
+)
+def test_no_maintainer_background_in_plugin_texts(path: Path):
+    hits = BACKGROUND.findall(path.read_text(encoding="utf-8"))
+    assert not hits, f"Begriffe aus Rauls Hintergrund in {path.name}: {sorted(set(hits))}"
