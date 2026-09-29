@@ -21,7 +21,7 @@ Freunde arbeiten in Cowork und in der Claude-App auf dem Handy. Claude Code ist 
 
 ## Installation
 
-**Cowork**, der Weg der Freunde: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Danach in Cowork eine Aufgabe im Ordner „Job Radar“ öffnen und `/weiter` tippen. Am Ende der Einrichtung bittet Claude, aus dem Ordner das Projekt „Job Radar“ anzulegen, in dem die weiteren Chats laufen (Einrichtung, „Job Radar Tagesrunde“, ein Chat je Bewerbung, „Job Radar Pflege“). Das Repo ist seit dem 2026-09-09 öffentlich, weil Cowork private GitHub-Repos nicht lädt (Issues #28125 und #61271 in anthropics/claude-code).
+**Cowork**, der Weg der Freunde: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Danach in Cowork aus dem Ordner „Job Radar“ das Projekt „Job Radar“ anlegen, die Zeile aus der Anleitung in seine Anweisungen kopieren und in einem neuen Chat des Projekts `/weiter` tippen. In diesem Projekt laufen alle Chats (Einrichtung, „Job Radar Tagesrunde“, ein Chat je Bewerbung, „Job Radar Pflege“). Das Repo ist seit dem 2026-09-09 öffentlich, weil Cowork private GitHub-Repos nicht lädt (Issues #28125 und #61271 in anthropics/claude-code).
 
 Beim Freund braucht es ein Konto im Job-Radar-Dashboard (Einladung von Raul) und Claude Pro mit der Claude-Desktop-App. PDF entsteht über LibreOffice, sonst über Word, sonst per Hand.
 
@@ -40,7 +40,7 @@ Danach in einem Ordner „Job Radar“ Claude Code starten und `/weiter` eingebe
 
 ## Vertrag mit dem Server
 
-Die Skills laden über `anleitung_laden` die Themen `weiter`, `bewerten` und `bewerbung` und melden beim Einrichten das Modul `ordner`. Alle Themen stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Schritte des Plans in `repo/plan.STEPS`. Ändert sich dort etwas, ändern sich hier die Skills. Modellnamen stehen nur in `model_tiers.py` auf dem Server und kommen über `job_radar_status` und `anleitung_laden`. Skills und Vorlagen nennen keinen, das prüft `test_no_model_names_in_plugin_texts`.
+Die Skills laden über `anleitung_laden` die Themen `weiter`, `bewerten` und `bewerbung` und melden beim Einrichten das Modul `ordner`. Alle Themen stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Schritte des Plans in `repo/plan.STEPS`. Ändert sich dort etwas, ändern sich hier die Skills. Modellnamen stehen nur in `model_tiers.py` auf dem Server und kommen über `job_radar_status` und `anleitung_laden`. Skills und Vorlagen nennen keinen, das prüft `test_no_model_names_in_plugin_texts`. Der Skill `bewerten` gibt in der Morgenbewertung `job_radar_status`, `anleitung_laden`, `profil_lesen`, `jobs_laden` und `jobs_aktualisieren` den Parameter `geplant=true` mit.
 
 Jeder Skill nennt Claude den Plugin-Pfad (`${CLAUDE_PLUGIN_ROOT}`), weil die Variable nur in Skill-Dateien ersetzt wird. Die Texte vom Server und `docs/WERKZEUGE.md` sprechen deshalb vom „Plugin-Pfad, den der Skill genannt hat“. Die Adresse in `.mcp.json` ist die des Servers. Bei einem Domainwechsel Version anheben.
 
