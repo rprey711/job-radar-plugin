@@ -342,7 +342,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--master",
         action="store_true",
-        help="Master-Lebenslauf aus /lebenslauf; meldet art=master_lebenslauf",
+        help="Master-Lebenslauf aus dem Ablauf Lebenslauf, meldet art=master_lebenslauf",
     )
     args = parser.parse_args(argv)
 

@@ -1,6 +1,6 @@
 # Stilregeln für Anschreiben
 
-Diese Datei füllt `/anschreiben-vorlage`. Danach lesen `/bewerbung` und `/review` sie bei jedem Brief; Passagen mit Platzhaltern (`<...>`) kannst du jederzeit selbst schärfen.
+Claude füllt diese Datei beim Anlegen der Anschreiben-Vorlage. Danach liest Claude sie für jeden Brief, bei der Bewerbung und beim Review nach dem Versand. Passagen mit Platzhaltern (`<...>`) kannst du jederzeit selbst schärfen.
 
 ## Grundhaltung
 

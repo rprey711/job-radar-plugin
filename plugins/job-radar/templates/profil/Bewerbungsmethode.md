@@ -1,6 +1,6 @@
 # Bewerbungsmethodik
 
-Diese Datei füllt `/onboarding`. Danach arbeiten `/lebenslauf`, `/anschreiben-vorlage`, `/bewerbung`, `/review` und `/interview` damit; Passagen mit Platzhaltern (`<...>`) kannst du jederzeit selbst schärfen.
+Claude füllt diese Datei in der Standortbestimmung. Danach arbeitet Claude damit beim Master-Lebenslauf, bei der Anschreiben-Vorlage, bei jeder Bewerbung, beim Review nach dem Versand und bei der Vorbereitung auf Interviews. Passagen mit Platzhaltern (`<...>`) kannst du jederzeit selbst schärfen.
 
 ## 1. Lebenslauf
 

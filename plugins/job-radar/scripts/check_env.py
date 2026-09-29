@@ -60,7 +60,7 @@ def calibri_verfuegbar() -> bool | None:
 
 
 def report() -> dict:
-    """Alles, was `/einrichten` wissen will, als ein Dict."""
+    """Alles, was das Einrichten in `/weiter` wissen will, als ein Dict."""
     version = ".".join(str(part) for part in sys.version_info[:3])
     python_ok = sys.version_info[:2] >= MIN_PYTHON
     packages = {name: _has(module) for name, module in PACKAGES.items()}

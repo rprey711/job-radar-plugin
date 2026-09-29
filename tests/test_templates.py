@@ -105,11 +105,20 @@ def test_profile_templates_use_german_quotes(name: str):
     assert '"' not in ohne_code, f"gerades Anfuehrungszeichen in profil/{name}"
 
 
-def test_profile_templates_name_the_v2_commands():
-    assert "/onboarding" in _read("profil/Kandidatenprofil.md")
-    assert "/bewerten" in _read("profil/Kandidatenprofil.md")
-    assert "/lebenslauf" in _read("profil/Bewerbungsmethode.md")
-    assert "/anschreiben-vorlage" in _read("profil/Style_Guide.md")
+# The flows each profile template names in words, since their commands are gone.
+PROFILE_FLOWS = {
+    "Kandidatenprofil.md": ("Kurzprofil", "Standortbestimmung", "`/weiter`"),
+    "Bewerbungsmethode.md": ("Standortbestimmung", "Anschreiben-Vorlage"),
+    "Style_Guide.md": ("Anschreiben-Vorlage",),
+    "Lernnotizen.md": ("Kalibrierung",),
+}
+
+
+@pytest.mark.parametrize("name", sorted(PROFILE_FLOWS))
+def test_profile_templates_name_the_flows_in_words(name: str):
+    text = _read(f"profil/{name}")
+    for needle in PROFILE_FLOWS[name]:
+        assert needle in text, f"{needle} fehlt in profil/{name}"
 
 
 BACKGROUND = re.compile(
@@ -187,3 +196,36 @@ def test_friend_texts_speak_of_cowork_not_claude_code(path: Path):
     """Freunde nutzen Cowork und die Claude-App. Claude Code steht nur in /weiter, in einem
     eigenen Abschnitt für Raul und die Proben."""
     assert "Claude Code" not in path.read_text(encoding="utf-8")
+
+
+# The eleven commands that went with 0.3.0, plus /einrichten, which /weiter replaced. The
+# lookbehind leaves URL paths such as /lernen/lebenslauf alone.
+GONE_COMMANDS = re.compile(
+    r"(?<!\w)/(einrichten|kurzprofil|onboarding|lebenslauf|anschreiben-vorlage|suchprofil|"
+    r"triage|review|interview|scout|kalibrierung|hilfe)\b"
+)
+COMMAND_TEXTS = sorted(set(PLUGIN_TEXTS) | set((TEMPLATES.parent / "scripts").glob("*.py")))
+
+
+@pytest.mark.parametrize("path", COMMAND_TEXTS, ids=lambda p: p.relative_to(REPO_ROOT).as_posix())
+def test_no_removed_commands_in_plugin_texts(path: Path):
+    """Drei Befehle seit 0.3.0. Die übrigen Abläufe starten über /weiter oder einen Wunsch."""
+    hits = GONE_COMMANDS.findall(path.read_text(encoding="utf-8"))
+    assert not hits, f"entfallener Befehl in {path.name}: {sorted(set(hits))}"
+
+
+NON_SKILL_TEXTS = [p for p in PLUGIN_TEXTS if p.name != "SKILL.md"]
+
+
+@pytest.mark.parametrize(
+    "path", NON_SKILL_TEXTS, ids=lambda p: p.relative_to(TEMPLATES.parent).as_posix()
+)
+def test_plugin_root_variable_only_in_skill_files(path: Path):
+    """${CLAUDE_PLUGIN_ROOT} wird nur in Skill-Dateien ersetzt, alle anderen sagen Plugin-Pfad."""
+    assert "CLAUDE_PLUGIN_ROOT" not in path.read_text(encoding="utf-8")
+
+
+def test_werkzeuge_calls_every_script_under_the_plugin_path():
+    text = (TEMPLATES.parent / "docs" / "WERKZEUGE.md").read_text(encoding="utf-8")
+    assert "Den Plugin-Pfad nennt der Skill, der den Ablauf gestartet hat" in text
+    assert text.count('python "<Plugin-Pfad>/scripts/') == 7

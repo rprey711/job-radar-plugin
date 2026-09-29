@@ -1,6 +1,6 @@
 # Lernnotizen
 
-Hier sammeln die Abläufe, was aus gesendeten Fassungen und deinen Rückmeldungen zu lernen ist. Nach jedem gerenderten Anschreiben oder Lebenslauf fragt Claude, ob du die gesendete Fassung ablegst oder zwei Fragen beantwortest, und leitet daraus Einträge ab. `/bewerbung`, `/review` und `/interview` lesen diese Datei, bevor sie schreiben. `/kalibrierung` ergänzt nach einigen Wochen den Abschnitt zur Bewertung.
+Hier sammeln die Abläufe, was aus gesendeten Fassungen und deinen Rückmeldungen zu lernen ist. Nach jedem gerenderten Anschreiben oder Lebenslauf fragt Claude, ob du die gesendete Fassung ablegst oder zwei Fragen beantwortest, und leitet daraus Einträge ab. Bei jeder Bewerbung, beim Review und vor einem Interview liest Claude diese Datei, bevor es schreibt. Die Kalibrierung ergänzt nach einigen Wochen den Abschnitt zur Bewertung.
 
 ## Anker, die bleiben
 
@@ -20,7 +20,7 @@ Hier sammeln die Abläufe, was aus gesendeten Fassungen und deinen Rückmeldunge
 
 ## Bewertung
 
-<!-- Von /kalibrierung: welche Kriterien zu hoch oder zu niedrig gewichtet waren, bestätigte Anpassungen -->
+<!-- Aus der Kalibrierung: welche Kriterien zu hoch oder zu niedrig gewichtet waren, bestätigte Anpassungen -->
 
 - ...
 

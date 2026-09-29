@@ -1,6 +1,6 @@
 # Kandidatenprofil
 
-Diese Datei füllt `/kurzprofil`. Wenn du die Standortbestimmung wählst, ergänzt `/onboarding` die Datei danach. Du kannst jederzeit selbst hineinschreiben. Sie ist die Grundlage für `/bewerten`, `/triage`, `/bewerbung` und `/interview`. Eine kompakte Kopie liegt auf dem Server, damit das Bewerten auch aus der Claude-App funktioniert.
+Claude füllt diese Datei im Kurzprofil, dem Schritt nach der Einrichtung. Wählst du danach die Standortbestimmung, ergänzt Claude sie dort. Du kannst jederzeit selbst hineinschreiben. Die Datei ist die Grundlage fürs Bewerten, für die Triage, für jede Bewerbung und für die Vorbereitung auf Interviews. Eine kompakte Kopie liegt auf dem Server, damit das Bewerten auch aus der Claude-App funktioniert. Was als Nächstes dran ist, sagt dir `/weiter` in Cowork.
 
 ## Hintergrund
 
@@ -36,7 +36,7 @@ Diese Datei füllt `/kurzprofil`. Wenn du die Standortbestimmung wählst, ergän
 
 ## Stärken (aus Tests und Reflexion)
 
-<!-- Füllt /onboarding aus dem optionalen Stärkentest (Wingfinder, HIGH5 oder CliftonStrengths) und dem Gespräch. Welcher Test genutzt wurde, steht hier. -->
+<!-- Füllt Claude in der Standortbestimmung aus dem optionalen Stärkentest (Wingfinder, HIGH5 oder CliftonStrengths) und dem Gespräch. Welcher Test genutzt wurde, steht hier. -->
 
 **Test:** <!-- Wingfinder / HIGH5 / CliftonStrengths / keiner -->
 
