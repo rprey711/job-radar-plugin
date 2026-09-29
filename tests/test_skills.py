@@ -186,7 +186,13 @@ def test_bewerten_runs_as_the_morning_task_without_questions():
     assert "keine Fragen" in scheduled
     # The unattended run must not count as the friend's visit (server parameter `geplant`).
     assert "`geplant=true`" in scheduled
-    for tool in ("job_radar_status", "anleitung_laden", "jobs_laden", "jobs_aktualisieren"):
+    for tool in (
+        "job_radar_status",
+        "anleitung_laden",
+        "profil_lesen",
+        "jobs_laden",
+        "jobs_aktualisieren",
+    ):
         assert f"`{tool}`" in scheduled, f"{tool} fehlt in „Als geplante Aufgabe“"
 
 

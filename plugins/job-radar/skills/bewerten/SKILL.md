@@ -20,7 +20,7 @@ Plugin-Pfad: `${CLAUDE_PLUGIN_ROOT}`. Dort liegen die Skripte unter `scripts/` u
 
 Die Morgenbewertung, die `/weiter` anbietet, startet diesen Skill jeden Morgen mit dem Satz „Morgenbewertung: Bewerte meine neuen Jobs“. Sie läuft außerhalb des Projekts „Job Radar“, ohne Ordner und ohne jemanden, der antwortet. Dann entfallen die Schritte 2 und 4, du stellst keine Fragen und endest mit einem Satz, wie viele Jobs bewertet sind und wie viele offen bleiben.
 
-Beginnt der Auftrag mit „Morgenbewertung:“, gib bei jedem Aufruf von `job_radar_status`, `anleitung_laden`, `jobs_laden` und `jobs_aktualisieren` `geplant=true` mit. Dann zählt der Lauf nicht als Besuch des Freundes und hält den Sammler nicht wach.
+Beginnt der Auftrag mit „Morgenbewertung:“, gib bei jedem Aufruf der Job-Radar-Werkzeuge `geplant=true` mit, also bei `job_radar_status`, `anleitung_laden`, `profil_lesen`, `jobs_laden` und `jobs_aktualisieren`. Dann zählt der Lauf nicht als Besuch des Freundes und hält den Sammler nicht wach.
 
 ## Verbindung fehlt
 
