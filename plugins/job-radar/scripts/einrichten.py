@@ -27,11 +27,23 @@ SURFACES = ("cowork", "claude_code", "unbekannt")
 STAND = ".jobradar/stand.json"
 
 
-def _fill(template: Path, name: str) -> str:
+def _setup_date(folder: Path) -> date:
+    """`eingerichtet_am` aus einem vorhandenen stand.json, sonst heute.
+
+    So behält die CLAUDE.md beim Neuschreiben das Datum der ersten Einrichtung.
+    """
+    try:
+        stand = json.loads((folder / STAND).read_text(encoding="utf-8"))
+        return date.fromisoformat(stand["eingerichtet_am"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return date.today()
+
+
+def _fill(template: Path, name: str, setup_date: date | None = None) -> str:
     text = template.read_text(encoding="utf-8")
     replacements = {
         "{{NAME}}": name,
-        "{{DATUM}}": date.today().strftime("%d.%m.%Y"),
+        "{{DATUM}}": (setup_date or date.today()).strftime("%d.%m.%Y"),
         "{{PLUGIN_VERSION}}": _common.plugin_version(),
         "{{DASHBOARD}}": _common.dashboard_url(),
     }
@@ -96,12 +108,15 @@ def setup(folder: Path, name: str, surface: str | None = None, rewrite: bool = F
             created.append(sub + "/")
 
     templates = _common.PLUGIN_ROOT / "templates"
+    setup_date = _setup_date(folder)
     for filename in ("README.md", "CLAUDE.md"):
         target = folder / filename
         if target.is_file() and not rewrite:
             existing.append(filename)
             continue
-        target.write_text(_fill(templates / "ordner" / filename, name), encoding="utf-8")
+        target.write_text(
+            _fill(templates / "ordner" / filename, name, setup_date), encoding="utf-8"
+        )
         created.append(filename)
     for filename in PROFILE_FILES:
         target = folder / "Profil" / filename

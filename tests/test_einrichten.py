@@ -88,6 +88,20 @@ def test_rewrite_flag_refreshes_readme_and_claude_md(workdir: Path):
     assert "Anna Test" in (workdir / "CLAUDE.md").read_text(encoding="utf-8")
 
 
+def test_rewrite_keeps_the_setup_date(workdir: Path):
+    """Beim Auffrischen nach einem Plugin-Update bleibt das Datum der Einrichtung stehen."""
+    einrichten.setup(workdir, name="Anna Test")
+    stand_path = workdir / ".jobradar" / "stand.json"
+    stand = json.loads(stand_path.read_text(encoding="utf-8"))
+    stand["eingerichtet_am"] = "2026-09-01"
+    stand_path.write_text(json.dumps(stand), encoding="utf-8")
+    einrichten.setup(workdir, name="Anna Test", rewrite=True)
+    for filename in ("CLAUDE.md", "README.md"):
+        assert "01.09.2026" in (workdir / filename).read_text(encoding="utf-8")
+    stand = json.loads(stand_path.read_text(encoding="utf-8"))
+    assert stand["eingerichtet_am"] == "2026-09-01"
+
+
 def test_cli(plugin_root: Path, workdir: Path):
     proc = subprocess.run(
         [
