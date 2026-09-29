@@ -29,7 +29,7 @@ Eine Ausnahme gibt es. Steht `ordner` schon in `module_erledigt`, fehlt hier abe
    python "${CLAUDE_PLUGIN_ROOT}/scripts/einrichten.py" --name "<Name>" --neu-schreiben
    ```
 
-   Sag danach in einem Satz, dass README und CLAUDE.md jetzt die aktuellen Befehle nennen. Scheitert das Skript, sag auch das in einem Satz und mach trotzdem weiter.
+   Sag danach in einem Satz, dass README und CLAUDE.md jetzt die aktuellen Befehle nennen. Nennt die Ergebniszeile Dateien unter `verschoben`, sag in einem Satz, welche nach `Bewerbungsmaterialien/` gewandert sind. Scheitert das Skript, sag auch das in einem Satz und mach trotzdem weiter.
 2. `anleitung_laden(thema="weiter")` aufrufen und der Weiche Schritt für Schritt folgen. Sie liest die Antwort von `job_radar_status`, bei offenem Plan den Schritt aus `naechster_schritt.thema`, danach den Block `heute`, und lädt den Ablauf, der dran ist. Einen Wunsch ordnet sie einem Thema zu.
 3. Bevor ein Ablauf beginnt, `.jobradar/ablauf_<thema>.md` lesen, falls vorhanden. Dort steht, wo der letzte Durchlauf stand. Geht ein Ablauf über mehrere Sitzungen, den Zwischenstand dorthin schreiben und am Ende aufräumen.
 4. Lässt ein Ablauf Dateien rendern, vorher `${CLAUDE_PLUGIN_ROOT}/docs/WERKZEUGE.md` lesen und die Skripte genau so aufrufen. Jedes Dokument mit dem Pfad aus der Ergebniszeile über `dokument_registrieren` melden.

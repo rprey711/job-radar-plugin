@@ -130,6 +130,8 @@ def test_weiter_loads_the_switch_once_set_up():
     assert 'anleitung_laden(thema="weiter")' in done
     assert "naechster_schritt.thema" in done and "`heute`" in done
     assert "`plugin_version`" in done and "--neu-schreiben" in done
+    # --neu-schreiben also sorts loose files, so the refresh names what moved.
+    assert "`verschoben`" in done and "nach `Bewerbungsmaterialien/` gewandert" in done
     assert "${CLAUDE_PLUGIN_ROOT}/docs/WERKZEUGE.md" in done
     assert "dokument_registrieren" in done
 
