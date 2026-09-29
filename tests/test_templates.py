@@ -140,6 +140,7 @@ MODEL_NAME_TEXTS = sorted(
         REPO_ROOT / ".claude-plugin" / "marketplace.json",
         TEMPLATES.parent / ".claude-plugin" / "plugin.json",
         REPO_ROOT / "README.md",
+        REPO_ROOT / "CHANGELOG.md",
     }
     | set((TEMPLATES.parent / "scripts").glob("*.py"))
 )
@@ -204,7 +205,9 @@ GONE_COMMANDS = re.compile(
     r"(?<!\w)/(einrichten|kurzprofil|onboarding|lebenslauf|anschreiben-vorlage|suchprofil|"
     r"triage|review|interview|scout|kalibrierung|hilfe)\b"
 )
-COMMAND_TEXTS = sorted(set(PLUGIN_TEXTS) | set((TEMPLATES.parent / "scripts").glob("*.py")))
+COMMAND_TEXTS = sorted(
+    set(PLUGIN_TEXTS) | {REPO_ROOT / "README.md"} | set((TEMPLATES.parent / "scripts").glob("*.py"))
+)
 
 
 @pytest.mark.parametrize("path", COMMAND_TEXTS, ids=lambda p: p.relative_to(REPO_ROOT).as_posix())

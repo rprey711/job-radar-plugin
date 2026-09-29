@@ -1,7 +1,7 @@
 {
   "name": "job-radar",
-  "version": "0.2.5",
-  "description": "Job Radar: Ordner einrichten, Jobs bewerten, Bewerbungen schreiben. Die Ablaeufe kommen ueber den Connector vom Job-Radar-Server, hier liegen Befehle, Skripte und Vorlagen.",
+  "version": "0.3.0",
+  "description": "Job Radar: Ordner einrichten, Jobs bewerten, Bewerbungen schreiben. Die Abläufe kommen über den Connector vom Job-Radar-Server, hier liegen drei Befehle, Skripte und Vorlagen.",
   "author": {
     "name": "Raul Prey",
     "url": "https://github.com/rprey711"

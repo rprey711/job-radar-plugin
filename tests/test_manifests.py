@@ -81,3 +81,24 @@ def test_requirements_pinned_to_lockfile():
         assert version == locked_versions[name], (
             f"{name}=={version} in requirements.txt weicht von uv.lock ({locked_versions[name]}) ab"
         )
+
+
+def test_marketplace_speaks_of_cowork_only():
+    """Freunde nutzen Cowork, Claude Code ist Rauls Weg und steht nur im README."""
+    text = (ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8")
+    assert "Cowork" in text
+    assert "Claude Code" not in text
+
+
+CHANGELOG_HEADING = re.compile(r"^## (\d+\.\d+\.\d+) \((\d{4}-\d{2}-\d{2})\)$", re.MULTILINE)
+
+
+def test_changelog_starts_with_the_current_version():
+    """Jedes Release bekommt einen Abschnitt in CHANGELOG.md (E12 C), der oberste gehört zur
+    Version in den Manifesten."""
+    version = _load(PLUGIN / ".claude-plugin" / "plugin.json")["version"]
+    headings = CHANGELOG_HEADING.findall((ROOT / "CHANGELOG.md").read_text(encoding="utf-8"))
+    assert headings, "CHANGELOG.md hat keinen Abschnitt der Form ## <Version> (<Datum>)"
+    assert headings[0][0] == version
+    versions = [v for v, _ in headings]
+    assert len(set(versions)) == len(versions), "eine Version steht zweimal in CHANGELOG.md"
