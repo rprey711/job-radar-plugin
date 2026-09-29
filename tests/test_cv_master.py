@@ -243,7 +243,7 @@ def test_cli_template_that_is_no_docx_is_a_hard_error(
 def test_cli_master_flag_switches_the_reported_art(
     plugin_root: Path, dummy_data: Path, workdir: Path
 ):
-    """`/lebenslauf` rendert den Master mit `--master`; `/bewerbung` ohne die Fahne."""
+    """Der Ablauf Lebenslauf rendert den Master mit `--master`, die Bewerbung ohne die Fahne."""
     code, master, log = _run(
         plugin_root,
         "--data",

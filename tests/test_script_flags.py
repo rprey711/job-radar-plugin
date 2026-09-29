@@ -4,6 +4,7 @@ dazu, ein altes geht nie."""
 
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -59,4 +60,6 @@ def test_script_keeps_its_flags(plugin_root: Path, script: str):
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
     for flag in FLAGS[script]:
-        assert flag in proc.stdout, f"{script}: {flag} fehlt, Flags kommen nur hinzu"
+        # Whole token only, so --neu does not count as present inside --neu-schreiben.
+        pattern = rf"(?<![\w-]){re.escape(flag)}(?![\w-])"
+        assert re.search(pattern, proc.stdout), f"{script}: {flag} fehlt, Flags kommen nur hinzu"
