@@ -561,3 +561,12 @@ def test_profile_templates_keep_the_names_the_server_flows_read(name: str):
     lines = _read(f"profil/{name}").splitlines()
     for start in SERVER_LIEST[name]:
         assert any(line.startswith(start) for line in lines), f"{start} fehlt in profil/{name}"
+
+
+def test_no_template_and_no_skill_names_the_coaching_method():
+    """Raul, 2026-09-30: no text for the friend names Tageinz. The server page is „Stärken
+    zuerst“ now; the plugin's folder templates and skills stay without the name as well."""
+    plugin = TEMPLATES.parent
+    texts = [*TEMPLATES.rglob("*.md"), *(plugin / "skills").rglob("*.md")]
+    hits = [str(p.relative_to(plugin)) for p in texts if "tageinz" in p.read_text("utf-8").lower()]
+    assert hits == []
