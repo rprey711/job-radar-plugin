@@ -2,7 +2,7 @@
 
 Jedes Release des Plugins bekommt hier einen Abschnitt und einen Git-Tag `v<Version>`, die neueste Version steht oben. Versionen bis 0.2.5 haben keinen Abschnitt, ihre Änderungen stehen in der Git-Historie.
 
-## 0.4.0 (2026-10-01)
+## 0.4.0 (2026-09-30)
 
 Die Texte, die Freunde vom Plugin lesen, tragen die Namen aus Phase 4. Das Plugin geht diesmal vor dem Server live, weil die Servertexte von Phase 4 auf diese Namen verweisen (E12 C). Vom Server braucht es nichts Neues.
 
