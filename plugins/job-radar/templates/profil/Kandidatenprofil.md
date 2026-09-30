@@ -1,16 +1,16 @@
-# Kandidatenprofil
+# Profil
 
-Claude füllt diese Datei im Kurzprofil, dem Schritt nach der Einrichtung. Wählst du danach die Standortbestimmung, ergänzt Claude sie dort. Du kannst jederzeit selbst hineinschreiben. Die Datei ist die Grundlage fürs Bewerten, für die Triage, für jede Bewerbung und für die Vorbereitung auf Interviews. Eine kompakte Kopie liegt auf dem Server, damit das Bewerten auch aus der Claude-App funktioniert. Was als Nächstes dran ist, sagt dir `/weiter` in Cowork.
+Claude füllt diese Datei im Profilgespräch, dem Schritt nach der Einrichtung. Wählst du danach die Standortbestimmung, ergänzt Claude sie dort. Du kannst jederzeit selbst hineinschreiben. Die Datei ist die Grundlage fürs Bewerten, für die Feinauswahl, für jede Bewerbung und für die Vorbereitung auf Interviews. Eine Kopie deines Profils speichert Job Radar, damit das Bewerten auch in der Claude-App auf dem Handy klappt. Was als Nächstes dran ist, sagt dir `/weiter` in Cowork.
 
 ## Hintergrund
 
-<!-- Ausbildung (höchster Abschluss, Schwerpunkt), aktueller Status, Berufserfahrung kompakt: Stationen mit ein paar Worten -->
+<!-- Ausbildung (höchster Abschluss, Schwerpunkt), aktueller Status und die Stationen der Berufserfahrung mit ein paar Worten -->
 
 - ...
 
 ## Kernkompetenzen
 
-<!-- Skills, Tools, Methoden, konkret. Lieber „SAP MM, Excel (Pivot-Tabellen, SVERWEIS), Lieferantenverhandlungen“ als „Einkaufserfahrung“ -->
+<!-- Fähigkeiten, Werkzeuge, Methoden, konkret. Lieber „SAP MM, Excel (Pivot-Tabellen, SVERWEIS), Lieferantenverhandlungen“ als „Einkaufserfahrung“ -->
 
 - ...
 
@@ -28,7 +28,7 @@ Claude füllt diese Datei im Kurzprofil, dem Schritt nach der Einrichtung. Wähl
 
 ## Ausschlusskriterien
 
-<!-- Was sicher nicht passt: Branchen, Tätigkeiten, Arbeitszeiten, Reiseanteil -->
+<!-- Was sicher nicht passt, etwa Branchen, Tätigkeiten, Arbeitszeiten oder Reiseanteil -->
 
 - ...
 

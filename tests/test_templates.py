@@ -116,10 +116,10 @@ def test_profile_templates_use_german_quotes(name: str):
 
 # The flows each profile template names in words, since their commands are gone.
 PROFILE_FLOWS = {
-    "Kandidatenprofil.md": ("Kurzprofil", "Standortbestimmung", "`/weiter`"),
+    "Kandidatenprofil.md": ("Profilgespräch", "Standortbestimmung", "`/weiter`"),
     "Bewerbungsmethode.md": ("Standortbestimmung", "Anschreiben-Vorlage"),
     "Style_Guide.md": ("Anschreiben-Vorlage",),
-    "Lernnotizen.md": ("Kalibrierung",),
+    "Lernnotizen.md": ("Rückschau",),
 }
 
 
@@ -453,7 +453,7 @@ def _texte_fuer_den_freund() -> dict[str, str]:
 
 
 FREUND = _texte_fuer_den_freund()
-FREUND_NAMEN = [name for name in sorted(FREUND) if name.startswith("ordner/")]
+FREUND_NAMEN = [name for name in sorted(FREUND) if not name.startswith("skills/")]
 
 
 @pytest.mark.parametrize("name", FREUND_NAMEN)
@@ -478,3 +478,86 @@ def _lesetext(markdown: str) -> str:
 def test_folder_readme_stays_within_200_words():
     """Inventar Tabelle 9, README im Ordner höchstens 200 Wörter."""
     assert woerter(_lesetext(_read("ordner/README.md"))) <= 200
+
+
+# Denglisch that phase 4 replaced with German words in the profile templates (Inventar Tabelle 3).
+DENGLISCH = (
+    "Positive Pivot",
+    "Micro-Story",
+    "Swap-the-firm-name",
+    "Quick-Reference",
+    "Talking Points",
+    "Bullet",
+    "Keyword",
+    "Gap",
+    "Opener",
+    "Default",
+    "Fallback",
+    "Blacklist",
+    "Framing",
+    "Deep-Dive",
+    "Transferable Skills",
+    "Web Search",
+)
+
+
+@pytest.mark.parametrize("name", ["profil/Bewerbungsmethode.md", "profil/Style_Guide.md"])
+def test_profile_templates_speak_german(name: str):
+    prosa = CODE_SPAN.sub("", FREUND[name])
+    hits = [w for w in DENGLISCH if re.search(rf"(?<![\w-]){re.escape(w)}", prosa)]
+    assert not hits, f"Denglisch in {name}: {hits}"
+
+
+# Headings and markers the server's flows look for in the profile templates
+# (content/flows/kurzprofil.md, onboarding.md, anschreiben_vorlage.md, bewerbung.md,
+# interview.md, review.md, kalibrierung.md). Renaming one needs the flow changed in the same
+# phase.
+SERVER_LIEST = {
+    "Kandidatenprofil.md": (
+        "## Hintergrund",
+        "## Kernkompetenzen",
+        "## Was ich suche",
+        "## Persönlichkeit und Umfeld",
+        "## Ausschlusskriterien",
+        "## Stärken (aus Tests und Reflexion)",
+        "**Hauptstärken nach Abgleich:**",
+        "## Werte",
+        "## Idealer Tag",
+        "## Was sicher nicht mehr",
+    ),
+    "Bewerbungsmethode.md": (
+        "## 1. Lebenslauf",
+        "### Profilsatz",
+        "### Übersetzungswörterbuch",
+        "## 2. Anschreiben",
+        *(f"### Schritt {n}:" for n in range(7)),
+        "## 3. Interview-Vorbereitung",
+        *(f"**{n}. " for n in range(1, 18)),
+    ),
+    "Style_Guide.md": (
+        "## Grundhaltung",
+        "## Die drei Prüfsteine",
+        "### Einstieg",
+        "### Mittelteil",
+        "### Abschluss",
+        "## Anker",
+        "**`<PRIMÄRANKER 1",
+        "## KI-Signale vermeiden",
+        "## Anrede",
+        "## Formatierung",
+    ),
+    "Lernnotizen.md": (
+        "## Anker, die bleiben",
+        "## Formulierungen, die funktionieren",
+        "## Was stört",
+        "## Bewertung",
+        "## Verlauf",
+    ),
+}
+
+
+@pytest.mark.parametrize("name", sorted(SERVER_LIEST))
+def test_profile_templates_keep_the_names_the_server_flows_read(name: str):
+    lines = _read(f"profil/{name}").splitlines()
+    for start in SERVER_LIEST[name]:
+        assert any(line.startswith(start) for line in lines), f"{start} fehlt in profil/{name}"

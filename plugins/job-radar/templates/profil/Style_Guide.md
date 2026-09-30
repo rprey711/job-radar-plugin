@@ -1,23 +1,23 @@
 # Stilregeln für Anschreiben
 
-Claude füllt diese Datei beim Anlegen der Anschreiben-Vorlage. Danach liest Claude sie für jeden Brief, bei der Bewerbung und beim Review nach dem Versand. Passagen mit Platzhaltern (`<...>`) kannst du jederzeit selbst schärfen.
+Nach diesen Regeln schreibt und prüft Claude jedes Anschreiben. Die Anker füllt Claude mit dir beim Anlegen der Anschreiben-Vorlage, und jede Regel darfst du selbst ändern.
 
 ## Grundhaltung
 
-Der Brief ist ein Argument, kein Resümee. Der Lebenslauf zeigt was du getan hast. Das Anschreiben erklärt, was der Lebenslauf nicht zeigt: Arbeitsweise, Denkmuster, die Verbindungslogik zwischen dir und dieser Stelle. Wenn ein Absatz nur das belegt, was ohnehin im CV steht, ist er redundant und kann weg.
+Der Brief ist ein Argument, kein Resümee. Der Lebenslauf zeigt, was du getan hast. Das Anschreiben erklärt, was der Lebenslauf nicht zeigt, also Arbeitsweise, Denkmuster und die Verbindung zwischen dir und dieser Stelle. Belegt ein Absatz nur, was ohnehin im Lebenslauf steht, ist er überflüssig und kann weg.
 
-Die Prüffrage bei jedem Satz ist weiterhin:
+Die Prüffrage bei jedem Satz lautet:
 **„Würdest du das so laut aussprechen? Wenn nein, umformulieren.“**
 
 ## Die drei Prüfsteine (Pflicht vor Abgabe)
 
 Jeder fertige Brief muss durch drei Prüfsteine laufen. Ein Brief, der an einem scheitert, geht zurück in die Überarbeitung.
 
-**1. Swap-the-firm-name-Test.** Ersetze den Firmennamen durch einen direkten Wettbewerber. Wenn der Brief immer noch in sich stimmig ist, fehlt ihm Spezifität. Mindestens ein Satz muss mit dem Wettbewerbernamen falsch werden. Das ist der Unternehmens-Bezug mit Substanz.
+**1. Der Firmennamen-Tausch.** Ersetze den Firmennamen durch einen direkten Wettbewerber. Stimmt der Brief dann immer noch, fehlt ihm Spezifität. Mindestens ein Satz muss mit dem Namen des Wettbewerbers falsch werden. Das ist der Bezug zum Unternehmen mit Substanz.
 
-**2. Der Satz, den nur ich sagen kann.** Mindestens ein Satz pro Brief muss so formuliert sein, dass ein anderer Bewerber mit ähnlichem Profil ihn nicht schreiben würde. Kein Allgemeinplatz, kein austauschbarer Motivationssatz. Eine konkrete Szene, eine persönliche Beobachtung, ein Detail, das nur aus deiner Biografie stammt.
+**2. Der Satz, den nur du sagen kannst.** Mindestens ein Satz pro Brief ist so formuliert, dass ein anderer Bewerber mit ähnlichem Profil ihn nicht schreiben würde. Kein Allgemeinplatz und kein austauschbarer Motivationssatz, sondern eine konkrete Szene, eine persönliche Beobachtung oder ein Detail, das nur aus deiner Biografie stammt.
 
-**3. Kein CV-Echo im Mittelteil.** Jeder Absatz im Mittelteil muss mindestens einen Gedanken enthalten, der so nicht im Lebenslauf steht. Wenn ein Absatz nur Bullet-Punkte aus dem CV in Sätze umformuliert, wird er gekürzt oder fliegt raus.
+**3. Kein Lebenslauf-Echo im Mittelteil.** Jeder Absatz im Mittelteil enthält mindestens einen Gedanken, der so nicht im Lebenslauf steht. Formuliert ein Absatz nur Stichpunkte aus dem Lebenslauf in Sätze um, wird er gekürzt oder fliegt raus.
 
 ## Aufbau eines Briefes
 
@@ -25,30 +25,30 @@ Jeder fertige Brief muss durch drei Prüfsteine laufen. Ein Brief, der an einem 
 
 **Ziel:** Dich greifbar machen oder eine spezifische Verbindung zur Stelle setzen. Der Einstieg liefert einen Grund weiterzulesen, keine Zusammenfassung.
 
-**Archetypen-Repertoire** (keine Pflichtwahl, keine Binary). Wähle, was zur Stelle und zum Anlass wirklich passt:
-- **Persönlicher Arbeitsmodus:** Ein Satz, der zeigt, wie du denkst oder arbeitest, gefolgt von einer konkreten Szene, die diesen Modus belegt, dann Brücke zur Stelle.
-- **Konkrete Szene aus der eigenen Arbeit:** Eine spezifische Situation (nicht die ganze Station), die zum Thema der Stelle passt. Kurzes Framing, dann Brücke.
-- **Ehrliche Verbindung zum Unternehmen:** Wie bist du auf die Stelle/das Unternehmen gestoßen, was hat dich hängen lassen. Nur wenn diese Verbindung real ist, nie konstruieren.
+**Einstiege zur Wahl** (keine Pflicht und kein Entweder-oder). Wähle, was zur Stelle und zum Anlass wirklich passt.
+- **Persönlicher Arbeitsmodus:** Ein Satz, der zeigt, wie du denkst oder arbeitest, dann eine konkrete Szene, die diesen Modus belegt, dann die Brücke zur Stelle.
+- **Konkrete Szene aus der eigenen Arbeit:** Eine bestimmte Situation (nicht die ganze Station), die zum Thema der Stelle passt. Kurz einordnen, dann die Brücke.
+- **Ehrliche Verbindung zum Unternehmen:** Wie bist du auf die Stelle oder das Unternehmen gestoßen, und was hat dich nicht mehr losgelassen? Nur wenn diese Verbindung echt ist, nie konstruieren.
 - **Argumentatives Bindeglied:** Eine These, die zwei Welten verbindet, wenn dein Hintergrund und die Stelle auf den ersten Blick nicht zusammenpassen.
-- **Anti-Frage:** *„Sie fragen sich vielleicht, was ein [Profil-A-Person] bei einer [Rolle-B] sucht ...“* Funktioniert nur, wenn ein offensichtlicher Fit-Bruch existiert, den man dreht statt entschuldigt.
+- **Anti-Frage:** *„Sie fragen sich vielleicht, was ein [Profil-A-Person] bei einer [Rolle-B] sucht ...“* Das funktioniert nur bei einem offensichtlichen Bruch zwischen Profil und Stelle, den man dreht, statt sich zu entschuldigen.
 
 **Nicht verwenden:**
 - *„Hiermit bewerbe ich mich“*, *„Mit großem Interesse habe ich Ihre Stellenanzeige gelesen“*, *„Bezugnehmend auf Ihre Anzeige“*
 - Huldigungen ans Unternehmen (*„Ihr Unternehmen verbindet, was selten zusammenkommt“*)
-- Einstieg mit einer gepitchten Fachkompetenz (*„In den letzten Jahren habe ich mich intensiv mit KI beschäftigt“*)
-- Denselben Einstiegsbaustein in jeder Bewerbung. Er ist ein Baustein, nicht die Regel.
+- Einstieg mit einer angepriesenen Fachkompetenz (*„In den letzten Jahren habe ich mich intensiv mit KI beschäftigt“*)
+- Denselben Einstieg in jeder Bewerbung. Er ist ein Baustein, nicht die Regel.
 
 ### Mittelteil
 
-**Ziel:** Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite. Jeder Beleg: Situation → Handlung → quantifizierbarer oder greifbarer Effekt → was das über dich verallgemeinerbar zeigt.
+**Ziel:** Zwei substanzielle Belege, nicht drei oberflächliche. Tiefe schlägt Breite. Jeder Beleg nennt die Situation, deine Handlung und einen messbaren oder greifbaren Effekt und sagt, was das allgemein über dich zeigt.
 
-**Umgekehrte Linse als Grundbewegung.** Die Fähigkeit ist das Thema. Die Station ist der Beleg. Nicht *„Bei <UNTERNEHMEN> habe ich Bestellungen bearbeitet“*, sondern *„Lieferengpässe früh zu erkennen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*. Der Fokus des Absatzes ist die Fähigkeit, die der Leser in der Rolle braucht, nicht die Chronik der Station.
+**Umgekehrte Linse als Grundbewegung.** Die Fähigkeit ist das Thema. Die Station ist der Beleg. Nicht *„Bei <UNTERNEHMEN> habe ich Bestellungen bearbeitet“*, sondern *„Lieferengpässe früh zu erkennen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*. Im Mittelpunkt des Absatzes steht die Fähigkeit, die der Leser in der Rolle braucht, nicht die Chronik der Station.
 
-**Fragment-Auswahl statt Chronik.** Jeder Anker hat mehrere Facetten (siehe Anker-Pool unten). Pro Brief kommt nur die rollenrelevante Facette im Vordergrund vor, nicht das ganze Projekt. Haupt-Beleg ca. 6–8 Zeilen, Neben-Beleg 2–3 Zeilen. Wenn eine Facette nicht passt, weglassen, nicht künstlich biegen.
+**Fragment-Auswahl statt Chronik.** Jeder Anker hat mehrere Facetten (siehe „Anker“ unten). Pro Brief steht nur die Facette im Vordergrund, die für die Rolle zählt, nicht das ganze Projekt. Haupt-Beleg ca. 6–8 Zeilen, Neben-Beleg 2–3 Zeilen. Passt eine Facette nicht, weglassen und nicht künstlich biegen.
 
-**Keine Bold-Dreiteilung.** Die Stärkenprofil-Struktur mit drei fetten Überschriften hat sich als Checklisten-Ersatz erwiesen. Fließtext mit klaren Absatzübergängen ist die Default-Form.
+**Keine Dreiteilung mit fetten Überschriften.** Ein Stärkenprofil mit drei fetten Überschriften wird zur Checkliste. Fließtext mit klaren Übergängen zwischen den Absätzen ist der Standard.
 
-**Übergänge organisch.** Nicht *„Eine weitere Stärke von mir ...“*, nicht *„Dabei habe ich gemerkt, dass ...“* in jedem Brief. Wenn eine Wendung zu häufig wiederkehrt, ist sie zur Schablone geworden, auch wenn sie isoliert gut klingt.
+**Übergänge organisch.** Nicht *„Eine weitere Stärke von mir ...“*, nicht *„Dabei habe ich gemerkt, dass ...“* in jedem Brief. Kehrt eine Wendung zu oft wieder, ist sie zur Schablone geworden, auch wenn sie für sich gut klingt.
 
 ### Abschluss
 
@@ -63,13 +63,13 @@ Jeder fertige Brief muss durch drei Prüfsteine laufen. Ein Brief, der an einem 
 
 **Kein Komma nach „Mit freundlichen Grüßen“** (typischer KI-Fehler im Deutschen).
 
-**Nicht dieselbe Abschlussformel in jedem Brief.** Wenn sie in jeder Bewerbung steht, wird sie zur Schablone.
+**Nicht dieselbe Abschlussformel in jedem Brief.** Steht sie in jeder Bewerbung, wird sie zur Schablone.
 
-## Anker-Pool
+## Anker
 
-Anker sind wiederkehrende Story-Quellen, aus denen für jeden Brief die passende Facette gezogen wird. Primäre Anker sind breit einsetzbar und decken die meisten Rollen ab. Situative Anker kommen nur zum Einsatz, wo sie wirklich tragen.
+Anker sind wiederkehrende Belege aus deiner Biografie, aus denen jeder Brief die passende Facette zieht. Primäre Anker sind breit einsetzbar und decken die meisten Rollen ab. Situative Anker kommen nur zum Einsatz, wo sie wirklich tragen.
 
-`<HIER PERSÖNLICHE WERTE-/HINTERGRUND-AUSSAGEN EINFÜGEN, siehe Methodik im Onboarding>`
+`<HIER PERSÖNLICHE WERTE-/HINTERGRUND-AUSSAGEN EINFÜGEN, siehe Standortbestimmung>`
 
 ### Primär (breit einsetzbar, decken die meisten Rollen ab)
 
@@ -87,25 +87,25 @@ Anker sind wiederkehrende Story-Quellen, aus denen für jeden Brief die passende
 ### Situativ (nur wo sie wirklich tragen)
 
 <!-- Ergänze hier situative Anker aus deiner Biografie. Beispiele: -->
-<!-- - Ehrenamt oder Verein: für Koordinations- und Organisationsrollen -->
-<!-- - Verbesserung im eigenen Ablauf (z.B. neue Lagerordnung, geänderte Übergabe): für Operations- und Prozessrollen -->
-<!-- - Nebenjob mit Kundenkontakt: für Vertrieb, Einzelhandel, Kundenservice -->
-<!-- - Social-Media-Auftritt für Verein oder Laden: für Marketing- und Kommunikationsrollen -->
-<!-- - Weiterbildung mit Abschluss: für Stellen, die genau diese Qualifikation nennen -->
-<!-- - Einarbeitung neuer Kolleginnen und Kollegen: für Trainee-, Team- und Schulungsrollen -->
-<!-- - Auslandserfahrung: für international ausgerichtete Rollen -->
+<!-- - Ehrenamt oder Verein, für Koordinations- und Organisationsrollen -->
+<!-- - Verbesserung im eigenen Ablauf (z.B. neue Lagerordnung, geänderte Übergabe), für Operations- und Prozessrollen -->
+<!-- - Nebenjob mit Kundenkontakt, für Vertrieb, Einzelhandel, Kundenservice -->
+<!-- - Social-Media-Auftritt für Verein oder Laden, für Marketing- und Kommunikationsrollen -->
+<!-- - Weiterbildung mit Abschluss, für Stellen, die genau diese Qualifikation nennen -->
+<!-- - Einarbeitung neuer Kolleginnen und Kollegen, für Trainee-, Team- und Schulungsrollen -->
+<!-- - Auslandserfahrung, für international ausgerichtete Rollen -->
 
-### Pflege des Pools
+### Anker pflegen
 
-- Nach jeder Bewerbung: Wenn ein neuer Anker sich beim Schreiben herauskristallisiert und getragen hat, hier ergänzen.
+- Nach jeder Bewerbung: Wenn sich beim Schreiben ein neuer Anker herausgebildet und getragen hat, hier ergänzen.
 - Wenn ein Anker in mehr als der Hälfte der Briefe eines Monats verwendet wurde, prüfen, ob er übernutzt wird.
 - Primäre Anker dürfen in fast jedem Brief vorkommen, aber **in unterschiedlichen Fragmenten und Formulierungen**. Dieselbe Formulierung zweimal hintereinander ist ein Zeichen für Schablone.
 
-## Gap ohne Demut
+## Lücke ohne Demut
 
-Wenn dir eine Qualifikation fehlt, die die Stelle verlangt, wird der Gap angesprochen, aber nach klaren Regeln.
+Fehlt dir eine Qualifikation, die die Stelle verlangt, spricht der Brief die Lücke an, nach klaren Regeln.
 
-**Die Regel:** Die *Tatsache* adressieren, das *Label* meiden. Max. zwei Sätze. Keine Entschuldigung, kein Konjunktiv, kein *„aber ich arbeite mich schnell ein“* als Floskel.
+**Die Regel:** Die *Tatsache* ansprechen, das *Etikett* meiden. Höchstens zwei Sätze. Keine Entschuldigung, kein Konjunktiv, kein *„aber ich arbeite mich schnell ein“* als Floskel.
 
 **Nicht verwenden:**
 - *„Ich komme ehrlich gesagt nicht aus ...“*
@@ -115,17 +115,17 @@ Wenn dir eine Qualifikation fehlt, die die Stelle verlangt, wird der Gap angespr
 - *„aber ich arbeite mich schnell ein“* als Abschluss-Floskel
 
 **Formulierungsmuster:**
-- **Positive Pivot:** *„Mein Hintergrund ist [Bereich A], nicht [Bereich B]. Was ich in die Rolle bringe, ist [konkretes Werkzeug], und genau das ist hier gefragt.“*
+- **Umlenken:** *„Mein Hintergrund ist [Bereich A], nicht [Bereich B]. Was ich in die Rolle bringe, ist [konkretes Werkzeug], und genau das ist hier gefragt.“*
 - **Anti-Frage:** *„Sie fragen sich vielleicht, was jemand aus [Hintergrund] auf einer [Rolle] sucht. Die Antwort ist ...“*
 - **Sachlich:** *„[Qualifikation X] bringe ich nicht mit. Die Fähigkeit, [relevante Kompetenz], dafür schon, und die kommt in dieser Rolle zurück.“*
 
-Der Grundmove: Gap kurz benennen, sofort pivotieren auf einen konkreten Wert, den du stattdessen lieferst, mit einem Beispiel. Nicht auf Entschuldigung pivotieren, auf Evidenz.
+Die Grundbewegung ist, die Lücke kurz zu benennen und sofort auf einen konkreten Wert umzulenken, den du stattdessen lieferst, mit einem Beispiel. Die Wendung führt zu einem Beleg, nicht zu einer Entschuldigung.
 
 ## KI-Signale vermeiden
 
-Recruiter in Deutschland lesen KI-Anschreiben heute als negatives Signal (Haufe-Umfrage: 68 % der Recruiter empfinden KI-optimierte Bewerbungen als weniger authentisch; Slaghuis, Wehrle, Stock, Baumgarten einhellig). Das heißt nicht, dass kein KI im Prozess sein darf. Es heißt, dass der Brief am Ende nicht nach KI klingen darf.
+Recruiter in Deutschland lesen KI-Anschreiben heute als negatives Signal. In einer Haufe-Umfrage empfinden 68 % der Recruiter KI-optimierte Bewerbungen als weniger authentisch, und Slaghuis, Wehrle, Stock und Baumgarten sehen das einhellig so. Das heißt nicht, dass keine KI im Prozess sein darf. Es heißt, dass der Brief am Ende nicht nach KI klingen darf.
 
-### Harte Blacklist (Deutsch, nie verwenden)
+### Sperrliste Deutsch (nie verwenden)
 
 | Phrase |
 |---|
@@ -143,7 +143,7 @@ Recruiter in Deutschland lesen KI-Anschreiben heute als negatives Signal (Haufe-
 | *„ist für mich eine Selbstverständlichkeit“* |
 | *„Ich freue mich darauf, gemeinsam mit Ihrem Team ...“* |
 
-### Harte Blacklist (Englisch, bei englischen Briefen)
+### Sperrliste Englisch (bei englischen Briefen)
 
 *„proven track record“*, *„detail-oriented professional“*, *„dynamic professional“*, *„leverage my skills“*, *„unique blend of“*, *„cross-functional collaboration“*, *„passionate about“*, *„results-driven“*, *„robust“*, *„seamless“*, *„navigate complex challenges“*, *„actionable insights“*, *„solid foundation“*, *„drive efficiency“*.
 
@@ -160,70 +160,73 @@ Diese Wendungen sind zum Marker für KI-Text geworden, auch wenn sie sprachlich 
 - *„Letztendlich geht es darum, dass ...“*
 - *„Ein Blick in die Geschichte zeigt, dass ...“*
 
-### Struktur-Tells
+### Strukturmuster
 
-Diese strukturellen Muster werden von Recruitern als KI-Signal gelesen:
+Diese Muster lesen Recruiter als KI-Signal:
 - Alle Sätze zwischen 15 und 25 Wörtern, gleichförmiger Rhythmus
 - Keine Satzfragmente
 - Keine Konjunktionen am Satzanfang (*„Und ...“*, *„Aber ...“*, *„Dabei ...“*)
 - Symmetrische Absatzlängen
 - Triaden *„X, Y und Z“* in mehreren Sätzen hintereinander
 - Parallelkonstruktionen *„nicht nur X, sondern Y“*, *„Kombination aus X und Y“*, *„statt X“*
-- Doppelpunkt-Schlagwort-Konstruktionen: *„Was mich anspricht: X statt Y“*, *„Mein Ansatz: ...“*, *„Das Ergebnis: ...“*
+- Doppelpunkt-Schlagworte wie *„Was mich anspricht: X statt Y“*, *„Mein Ansatz: ...“*, *„Das Ergebnis: ...“*
 
 ### Menschliche Signale
 
-- Nicht-runde Zahlen, wo sie passen (*„43 %“* statt *„etwa die Hälfte“* wenn der Wert real ist)
-- Eigennamen: einer Person, eines Tools, eines Reports
-- Ein Satz, der sonst niemand so formulieren würde
-- Rhythmische Varianz: ein kurzer Satz nach zwei langen
+- Nicht-runde Zahlen, wo sie passen (*„43 %“* statt *„etwa die Hälfte“*, wenn der Wert echt ist)
+- Eigennamen: einer Person, eines Tools, eines Berichts
+- Ein Satz, den sonst niemand so formulieren würde
+- Rhythmische Abwechslung, ein kurzer Satz nach zwei langen
 - Gelegentliche Satzfragmente zur Betonung
-- Ein minimales Eingeständnis, das nicht werblich ist
+- Ein kleines Eingeständnis, das nicht werblich ist
 
 **Konjunktiv-Tabu.** *„würde“*, *„könnte“*, *„hätte“* signalisieren im Deutschen Unsicherheit und Bittsteller-Haltung. Keine Ausnahme. Das ist deutsche Eigenart, im Englischen gilt das nicht im selben Maß.
 
-**Keine Gedankenstriche.** Stattdessen Kommas, Punkte oder Doppelpunkte.
+**Keine Gedankenstriche.** Stattdessen Kommas, Klammern oder zwei Sätze. Auch Doppelpunkt und Semikolon verbinden keine zwei Sätze.
 
-## Micro-Story
+## Eigene Szene
 
-Jeder Brief braucht mindestens eine persönliche Szene, die so nur aus deiner Erfahrung stammt. Kein generisches Beispiel. Ein konkretes Erlebnis, das der Leser nicht im CV findet.
+Jeder Brief braucht mindestens eine persönliche Szene, die so nur aus deiner Erfahrung stammt. Kein allgemeines Beispiel, sondern ein konkretes Erlebnis, das der Leser nicht im Lebenslauf findet.
 
-- Die Szene kann im Einstieg, im Mittelteil oder als Abschluss-Element stehen.
-- Dieselbe Story nicht in zwei Briefen identisch formulieren. Das Erlebnis ist dasselbe, das Framing pro Brief ein anderes.
-- Die Micro-Story ist der Ort, an dem der Satz-den-nur-ich-sagen-kann-Prüfstein typischerweise erfüllt wird.
-- Wenn keine passende Szene aus dem Anker-Pool zur Stelle trägt, fragen: *„Gibt es ein konkretes Erlebnis zu [Thema], das hier passt?“*
+- Die Szene kann im Einstieg, im Mittelteil oder im Abschluss stehen.
+- Dieselbe Szene nicht in zwei Briefen gleich formulieren. Das Erlebnis ist dasselbe, die Einbettung pro Brief eine andere.
+- In der eigenen Szene erfüllt der Brief meist den Prüfstein „Der Satz, den nur du sagen kannst“.
+- Trägt keine Szene aus den Ankern zur Stelle, fragen: *„Gibt es ein konkretes Erlebnis zu [Thema], das hier passt?“*
 
-## Bei Consulting-Bewerbungen zusätzlich beachten
+## Bei Bewerbungen in der Beratung zusätzlich beachten
 
-**Der Brief ist eine Arbeitsprobe, kein Anhang.** Consultants schreiben täglich Memos. Das Anschreiben muss analytisches Denken und klare Kommunikation demonstrieren.
+**Der Brief ist eine Arbeitsprobe, kein Anhang.** Berater schreiben jeden Tag Memos. Das Anschreiben zeigt analytisches Denken und klare Sprache.
 
-**200–250 Wörter, nicht 300–400.** Deutsche Consulting-Briefe sind in der Praxis kürzer als Standard-Anschreiben. Große Strategieberatungen wie McKinsey, BCG und Bain behandeln das Anschreiben als optional. Wer eines beilegt, hält es kurz und scharf.
+**200–250 Wörter, nicht 300–400.** Deutsche Briefe an Beratungen sind in der Praxis kürzer als andere Anschreiben. Große Strategieberatungen wie McKinsey, BCG und Bain behandeln das Anschreiben als optional. Wer eines beilegt, hält es kurz und scharf.
 
-**Die drei Warum.** Ein starker Consulting-Brief beantwortet: (1) Why Consulting (verstehst du, was Beratung bedeutet?), (2) Why This Firm (kennst du diese Firma wirklich, oder ist das Austauschware?), (3) Why This Office/Practice (BCG München ist nicht BCG Düsseldorf, und in Deutschland sind Office- und Practice-Spezifika wichtiger als im US-Template).
+**Die drei Warum.** Ein starker Brief an eine Beratung beantwortet drei Fragen.
+1. Warum Beratung? Verstehst du, was Beratung bedeutet?
+2. Warum diese Firma? Kennst du sie wirklich, oder ist das Austauschware?
+3. Warum dieser Standort und dieser Fachbereich? BCG München ist nicht BCG Düsseldorf, und in Deutschland zählen Standort und Fachbereich mehr als im amerikanischen Muster.
 
-**Keine Demut.** Im Consulting besonders heikel, weil das Geschäftsmodell auf Selbstbewusstsein aufgebaut ist. *„Ich komme nicht aus ...“*-Sätze streichen und in einen Gap-Pivot umbauen (siehe Sektion Gap ohne Demut).
+**Keine Demut.** In der Beratung besonders heikel, weil das Geschäftsmodell auf Selbstbewusstsein beruht. Sätze wie *„Ich komme nicht aus ...“* streichen und auf einen Wert umlenken (siehe „Lücke ohne Demut“).
 
 **Quantifizierung ist Pflicht, nicht Bonus.** Mindestens eine konkrete Zahl im Mittelteil.
 
-**Der Swap-the-firm-name-Test ist hier besonders streng.** Generische Consulting-Briefe, die auf jede Beratung passen, werden von Consulting-Recruitern sofort erkannt (sie lesen Hunderte pro Saison). Ein firmaspezifisches Detail: Name einer Partnerin, ein öffentlich diskutierter Report, ein Standort-Profil.
+**Der Firmennamen-Tausch ist hier besonders streng.** Recruiter in Beratungen lesen Hunderte Briefe pro Saison und erkennen allgemeine Briefe, die auf jede Beratung passen, sofort. Es hilft ein Detail, das nur zu dieser Firma passt, etwa der Name einer Partnerin, ein öffentlich diskutierter Bericht oder das Profil des Standorts.
 
 ## Beim Wechsel des Berufsfelds zusätzlich beachten
 
 **Das Fachwort des alten Berufs durch Umfang und Handlung ersetzen.** Nicht *„Ich habe die Tourenplanung übernommen“*, sondern *„Ich habe für zwölf Fahrer die Einsätze geplant und Engpässe früh gemeldet.“*
 
-**Transferable Skills betonen.** Planung, Teamkoordination, Kundenkontakt, Umgang mit Zahlen und Budgets. Das sind die Fähigkeiten, die Arbeitgeber interessieren, nicht die Fachdetails des bisherigen Berufs.
+**Übertragbare Fähigkeiten betonen.** Planung, Teamkoordination, Kundenkontakt, Umgang mit Zahlen und Budgets. Das sind die Fähigkeiten, die Arbeitgeber interessieren, nicht die Fachdetails des bisherigen Berufs.
 
-**Dem Vorurteil „fachfremd“ proaktiv begegnen, aber nicht defensiv.** Durch konkrete Beispiele aus dem Anker-Pool, nicht durch eine Entschuldigung für den bisherigen Weg.
+**Dem Vorurteil „fachfremd“ von dir aus begegnen, aber nicht defensiv.** Mit konkreten Beispielen aus den Ankern, nicht mit einer Entschuldigung für den bisherigen Weg.
 
-**Den eigenen Hintergrund selbstbewusst zeigen, statt ihn wegzuerklären.** Wer aus der Pflege ins Qualitätsmanagement einer Klinik wechselt, kennt die Abläufe, die dort geprüft werden, aus eigener Arbeit. Ein Satz dazu reicht. Der Fokus liegt auf den übertragbaren Fähigkeiten und Ergebnissen.
+**Den eigenen Hintergrund selbstbewusst zeigen, statt ihn wegzuerklären.** Wer aus der Pflege ins Qualitätsmanagement einer Klinik wechselt, kennt die Abläufe, die dort geprüft werden, aus eigener Arbeit. Ein Satz dazu reicht. Im Mittelpunkt stehen die übertragbaren Fähigkeiten und Ergebnisse.
 
 **Den Stil des alten Berufs ablegen.** Keine Schachtelsätze, kein Nominalstil, keine Fachbegriffe ohne Einordnung. Das gilt für Behördendeutsch und Pflegedokumentation genauso wie für wissenschaftliches Schreiben.
 
 ## Fragment-Galerie
 
-Kurze, zitierte Passagen sortiert nach Prinzip. Das ist Lernmaterial, keine Kopiervorlage. Bausteine bewusst kombinieren, nicht einen Brief als Ganzes nachbauen.
+Kurze, zitierte Passagen, sortiert nach Prinzip. Das ist Lernmaterial, keine Kopiervorlage. Bausteine bewusst kombinieren, nicht einen Brief als Ganzes nachbauen.
 
-### Starke Öffnungssätze (Musterbeispiele nach Archetyp)
+### Starke Öffnungssätze (Beispiele je Einstieg)
 
 Persönlicher Arbeitsmodus:
 > *„wenn in einer Übergabe etwas verloren geht, will ich zuerst wissen, an welcher Stelle.“*
@@ -248,7 +251,7 @@ Positionierung mit Haltung:
 
 ### Umgekehrte Linse: Primäranker (Formulierungsmuster)
 
-Jeder dieser Sätze macht die Fähigkeit zum Thema, die Station zum Beleg. Anpassen auf die eigenen Anker:
+Jeder dieser Sätze macht die Fähigkeit zum Thema und die Station zum Beleg. Anpassen auf die eigenen Anker:
 
 > *„Einen Dienstplan so zu bauen, dass auch zwei Ausfälle hineinpassen, habe ich bei <UNTERNEHMEN> gelernt, als ...“*
 
@@ -260,13 +263,13 @@ Jeder dieser Sätze macht die Fähigkeit zum Thema, die Station zum Beleg. Anpas
 
 > *„Dass große Vorhaben nur tragen, wenn sie mit den Leuten rückgekoppelt werden, die sie umsetzen, habe ich in [Station oder Projekt] gelernt. Die Rückmeldung aus dem Team war der Test, ob der Plan im Alltag hält.“*
 
-### Gap ohne Demut (Formulierungsmuster)
+### Lücke ohne Demut (Formulierungsmuster)
 
-Positive Pivot:
+Umlenken:
 > *„Mein Hintergrund ist [Bereich A], nicht [Bereich B]. Was ich mitbringe, ist [Fähigkeit]. Genau das ist in dieser Rolle die Aufgabe.“*
 
 Anti-Frage:
-> *„Sie fragen sich vielleicht, was jemand aus [Hintergrund] in einer [Stelle] sucht. Die Antwort ist: dieselben Fähigkeiten, die ich in [Projekt] genutzt habe, sind hier operativ noch direkter gefragt.“*
+> *„Sie fragen sich vielleicht, was jemand aus [Hintergrund] in einer [Stelle] sucht. Es sind dieselben Fähigkeiten, die ich in [Projekt] genutzt habe. Hier sind sie noch direkter gefragt.“*
 
 Sachlich ohne „aber“:
 > *„SAP-Erfahrung bringe ich nicht mit. Abläufe aus Sicht der Anwender zu beschreiben, dafür schon, und genau das braucht diese Rolle.“*
@@ -283,32 +286,32 @@ Minimal:
 Mit organischer Rückfrage:
 > *„Ich freue mich auf ein Gespräch, gerne auch um zu erfahren, wie Sie [konkrete Sache] planen.“*
 
-Mit Starttermin-Kontext (nicht in jeden Brief, Schablonen-Risiko):
+Mit Starttermin (nicht in jeden Brief, sonst wird es zur Schablone):
 > *„Aktuell bin ich [Status] und flexibel beim Starttermin. Ich freue mich auf ein Gespräch.“*
 
 ## Anrede
 
-**Standard:** *„Sehr geehrte Frau [Name]“* / *„Sehr geehrter Herr [Name]“* wenn Ansprechpartner bekannt, sonst *„Sehr geehrte Damen und Herren“* (in deutscher Konvention: mit Namensrecherche vor *„Damen und Herren“* immer zu bevorzugen).
+**Standard:** *„Sehr geehrte Frau [Name]“* oder *„Sehr geehrter Herr [Name]“*, wenn der Ansprechpartner bekannt ist, sonst *„Sehr geehrte Damen und Herren“*. Den Namen zu recherchieren geht der allgemeinen Anrede vor.
 
-*„Liebes [Team]“* oder Du-Ansprache nur, wenn die Firma in der Ausschreibung oder auf der Karriereseite explizit so auftritt.
+*„Liebes [Team]“* oder Du-Ansprache nur, wenn die Firma in der Ausschreibung oder auf der Karriereseite ausdrücklich so auftritt.
 
-## Kalibrierung
+## Länge und Form
 
-- **Länge Standard-Bewerbungen:** 300–400 Wörter, ca. eine Seite, 4–6 Absätze
-- **Länge Consulting-Bewerbungen:** 200–250 Wörter, straff
-- **Bold im Fließtext:** nein. Nur Betreff.
-- **Zahlen:** sparsam und nur wenn sie natürlich im Satz sitzen. Keine Zahlenparade.
+- **Länge bei Standard-Bewerbungen:** 300–400 Wörter, ca. eine Seite, 4–6 Absätze
+- **Länge bei Bewerbungen in der Beratung:** 200–250 Wörter, straff
+- **Fett im Fließtext:** nein, nur im Betreff
+- **Zahlen:** sparsam und nur, wenn sie natürlich im Satz sitzen. Keine Zahlenparade.
 
-## Formatierung Anschreiben (.docx)
+## Formatierung des Anschreibens (.docx)
 
-- **Schrift:** Calibri 11pt, Zeilenabstand 1.15
-- **Seitenränder:** 2,5 cm oben/links/rechts, 2 cm unten
-- **Datum:** In der Kopfzeile (rechts- oder linksbündig), NICHT im Body
-- **Header-Block:** Name (bold, 14pt), dann Kontaktzeile, dann Empfänger (Firma + ggf. Stadt), dann Leerzeile + Betreff (bold)
-- **Betreff:** Kurz halten, z. B. *„Bewerbung als Projektmanager:in“* ohne (m/w/d/x)
-- **Absatzabstände Body:** 12pt space_after zwischen Absätzen
-- **Abschluss:** *„Mit freundlichen Grüßen“* (ohne Komma) mit 24pt space_after, dann Name
+- **Schrift:** Calibri 11 pt, Zeilenabstand 1,15
+- **Seitenränder:** 2,5 cm oben, links und rechts, 2 cm unten
+- **Datum:** in der Kopfzeile (rechts- oder linksbündig), nicht im Brieftext
+- **Briefkopf:** Name (fett, 14 pt), dann Kontaktzeile, dann Empfänger (Firma, gegebenenfalls Stadt), dann eine Leerzeile und der Betreff (fett)
+- **Betreff:** kurz, etwa *„Bewerbung als Projektmanager:in“* ohne (m/w/d/x)
+- **Absatzabstand im Brieftext:** 12 pt nach jedem Absatz
+- **Abschluss:** *„Mit freundlichen Grüßen“* (ohne Komma) mit 24 pt Abstand danach, dann der Name
 
-## Feedback-Log
+## Rückmeldungen
 
-Rückmeldungen sammelt `Profil/Lernnotizen.md`. Anker, Formulierungen und Streichungen aus gesendeten Briefen stehen dort; hier wird nur nachgezogen, was zur festen Regel geworden ist.
+Rückmeldungen sammelt `Profil/Lernnotizen.md`. Anker, Formulierungen und Streichungen aus abgeschickten Briefen stehen dort. Hier wird nur nachgezogen, was zur festen Regel geworden ist.
