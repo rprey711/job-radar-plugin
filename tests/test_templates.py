@@ -1,5 +1,6 @@
 """Vorlagen und Texte des Plugins: Platzhalter, drei Befehle, keine Modell- oder Paketnamen, keine
-entfallenen Befehle, Cowork statt Claude Code, keine Altlasten aus v1."""
+entfallenen Befehle, Cowork statt Claude Code, keine Altlasten aus v1, die Namen des Glossars,
+Rauls Schreibregeln und die Wortbudgets."""
 
 from __future__ import annotations
 
@@ -232,3 +233,199 @@ def test_werkzeuge_calls_every_script_under_the_plugin_path():
     text = (TEMPLATES.parent / "docs" / "WERKZEUGE.md").read_text(encoding="utf-8")
     assert "Den Plugin-Pfad nennt der Skill, der den Ablauf gestartet hat" in text
     assert text.count('python "<Plugin-Pfad>/scripts/') == 7
+
+
+# --- Texte für den Freund: Glossar, Schreibregeln, Wortbudgets (spec phase 4 „Plugin“) ---
+
+# Copy of the forbidden variants in the server's glossary (server/src/jobradar/glossar.py,
+# GLOSSAR, from Inventar Tabelle 5), keyed by the row number there, limited to the rows that can
+# occur in the plugin's texts for the friend. There is no shared file because server and plugin
+# go live separately and neither release may wait on the other repo (E12 C). A row that changes
+# there changes here in the same phase. Left out are the variants that are ordinary words in
+# the letter rules and examples of the profile templates („Ablauf“, „Aufgabe“, „Auswahl“,
+# „Aktiv“, „Baustein“, „Dateien“, „Lauf“, „Master“, „Modul“, „Prüfen“, „Stelle“,
+# „Stellenanzeige“, „Stufe“, „Version“, „Wissen“, „Zugriff“). „Go“ and „Ja-Nein“ also catch
+# their compounds („Go-Job“, „Ja-Nein-Runde“, „Ja-Nein-Entscheidung“). „Unterlagen“ stays out as
+# on the server (the name of a Vertiefung). „Anleitung“ stays in: the server allows it only in
+# the fold of its plan step (spec „Namen“), and the plugin has no such fold.
+GLOSSAR_VERBOTEN: dict[int, tuple[str, ...]] = {
+    1: ("dein Job Radar", "Server"),
+    2: ("Job-Radar-Dashboard",),
+    3: ("Desktop-App", "Claude Desktop"),
+    5: ("Session",),
+    6: ("Repo", "Repository", "Marketplace"),
+    7: ("Connector", "Custom Connector", "Claude-Zugänge"),
+    8: ("Skill",),
+    9: ("Planschritt", "Einrichtungsschritt"),
+    10: ("Grundweg",),
+    11: ("Kurzprofil",),
+    12: ("Onboarding", "Sitzung 1", "Sitzung 2", "Profilgespräch in zwei Sitzungen"),
+    13: ("Profilkopie", "kompakte Fassung", "kompaktes Profil", "Kandidatenprofil"),
+    14: ("Positioning Statement",),
+    15: ("Suchprofil",),
+    16: ("Sammler", "Sammellauf", "Sammler-Lauf", "Testlauf", "Jetzt testen"),
+    18: ("TOP", "Top-Treffer", "Rubrik"),
+    19: ("Ja-Jobs", "Ja-Nein", "Überspringen, später entscheiden"),
+    20: ("Nähere Auswahl",),
+    21: ("Triage", "Go", "Skip", "No-Go"),
+    22: ("Doch nicht, ins Archiv", "Zurück nach Neu"),
+    23: ("Aktive Bewerbungen",),
+    25: ("Archiv", "ins Archiv", "automatisch archiviert"),
+    26: (
+        "Researching",
+        "Preparing",
+        "Ready to Apply",
+        "Applied",
+        "Phone Screen",
+        "Assessment Center",
+        "Waiting",
+        "Offer",
+        "Rejected",
+        "Withdrawn",
+        "Skipped",
+    ),
+    27: ("Status von Hand ändern",),
+    31: ("Absenden", "Versand", "Versanddatum", "verschickt", "gesendet", "ist raus"),
+    32: ("Metadaten",),
+    33: ("Minimal-Lebenslauf", "3-Filter-Lebenslauf"),
+    34: ("Anker-Pool", "Style Guide", "Tonalität", "Archetypen"),
+    35: ("Nachbereitung",),
+    36: ("Kalibrierung", "Kalibrieren"),
+    37: ("Scheduled Task",),
+    38: ("Wo du stehst", "Stand: noch offen"),
+    39: ("Schreibstufe", "Routinestufe", "tokenbasiertes rollierendes Fenster"),
+    40: ("Lernseite", "Lernseiten", "Anleitung"),
+    44: ("Fehler melden", "Klappt nicht?"),
+}
+# ordner/CLAUDE.md is Claude's standing instruction and names the skill it calls there.
+GLOSSAR_ERLAUBT: dict[str, frozenset[str]] = {"ordner/CLAUDE.md": frozenset({"Skill"})}
+
+
+def _verbotene_varianten(text: str, erlaubt: frozenset[str] = frozenset()) -> list[str]:
+    """Forbidden variants in the text outside code spans, as whole words, case-sensitive.
+    A hyphen before a variant makes it part of a longer name („Claude-Desktop-App“), a hyphen
+    after it still counts („Go-Job“)."""
+    prosa = CODE_SPAN.sub("", text)
+    return [
+        variante
+        for varianten in GLOSSAR_VERBOTEN.values()
+        for variante in varianten
+        if variante not in erlaubt and re.search(rf"(?<![\w-]){re.escape(variante)}(?!\w)", prosa)
+    ]
+
+
+WORT = re.compile(r"[^\W_]+")
+# {{NAME}} and friends, and placeholders such as <UNTERNEHMEN> or <Firma oder Link>.
+PLATZHALTER = re.compile(r"\{\{[A-Z_]+\}\}|<[A-ZÄÖÜ][^<>\n]*>")
+EMOJI = re.compile("[☀-➿⬀-⯿\U0001f300-\U0001faff]")
+PFEIL = re.compile(r"[←-⇿]|->|=>")
+# Em dash anywhere, en dash outside a number range, a spaced hyphen inside a line.
+GEDANKENSTRICH = re.compile(r"—|(?<!\d)–|–(?!\d)|(?<=\S) - (?=\S)")
+VERSALIEN = re.compile(r"(?<![\w-])[A-ZÄÖÜ]{3,}(?![\w-])")
+ABKUERZUNGEN = frozenset(
+    {"ATS", "BCG", "CEO", "CFO", "DOCX", "ERP", "PDF", "SAP", "SVERWEIS", "XING", "XYZ"}
+)
+# Umlaut words written with ae, oe or ue (spec phase 4 „Wortbudgets“), the same word list as
+# the server's tests/texte.py. Only whole words without `_`, `/`, `=` or `.`.
+UMLAUTERSATZ = re.compile(
+    r"(?:[Ff]uer|[Uu]eber\w*|[Kk]oenn\w*|[Mm]oeglich\w*|[Ww]aehl\w*|[Aa]ender\w*|[Pp]ruef\w*|"
+    r"[Zz]urueck\w*|[Ss]paeter|[Nn]aechst\w*|[Ff]rueh\w*|[Ll]oesch\w*|[Ss]chluessel\w*|"
+    r"[Mm]uess\w*|[Ww]uerd\w*|[Hh]oer\w*|[Gg]ehoer\w*|[Bb]estaetig\w*|[Ff]aellig\w*|"
+    r"[Oo]effn\w*|[Gg]eoeffnet|[Gg]ruen\w*|[Gg]roess\w*|[Ll]aeuft|[Hh]aelt|[Ff]aengt|"
+    r"[Ww]aere|[Hh]aette|[Tt]aeglich|[Zz]aehl\w*|[Ee]rklaer\w*|[Ss]taerk\w*|[Ff]uehr\w*|"
+    r"[Rr]ueck\w*|[Gg]espraech\w*|[Ee]infueg\w*|[Vv]orschlaeg\w*|[Ll]oesung\w*|[Aa]nschlaeg\w*)"
+)
+TOKEN = re.compile(r"[\w/=.-]+")
+VOR_DOPPELPUNKT = re.compile(r"[.!?](?:\s|$)|[„“(|:]")
+NACH_DOPPELPUNKT = re.compile(r"[.!?](?:\s|$)|[„“)|:]")
+
+
+def woerter(text: str) -> int:
+    """Words as the text inventory counts them, a word is a run of letters or digits."""
+    return len(WORT.findall(text))
+
+
+def _prosa(text: str) -> str:
+    text = PLATZHALTER.sub("X", CODE_SPAN.sub("", text))
+    return text.replace("<!--", " ").replace("-->", " ")
+
+
+def _doppelpunkte_zwischen_saetzen(prosa: str) -> list[str]:
+    """A colon joins two sentences when at least four words stand before it and at least four
+    follow it, both counted within the sentence and up to a quote, bracket or table cell. A short
+    label before a colon passes („**Ziel:** …“, „Windows: `py`“), and so does a quotation after
+    it."""
+    hits = []
+    for line in prosa.splitlines():
+        for match in re.finditer(r":\s", line):
+            before = VOR_DOPPELPUNKT.split(line[: match.start()])[-1]
+            after = NACH_DOPPELPUNKT.split(line[match.end() :])[0]
+            if woerter(before) >= 4 and woerter(after) >= 4:
+                hits.append(line.strip())
+    return hits
+
+
+def _stimmfehler(text: str) -> list[str]:
+    """Breaches of Raul's writing rules that a pattern can find (spec phase 4
+    „Wortbudgets“, the voice test extended to the plugin)."""
+    prosa = _prosa(text)
+    found = [
+        f"{art}: {match.group()!r}"
+        for art, pattern in (
+            ("Gedankenstrich", GEDANKENSTRICH),
+            ("Pfeil", PFEIL),
+            ("Emoji", EMOJI),
+            ("Semikolon", re.compile(";")),
+            ("gerades Anführungszeichen", re.compile('"')),
+        )
+        for match in pattern.finditer(prosa)
+    ]
+    found += [f"Versalien: {w}" for w in VERSALIEN.findall(prosa) if w not in ABKUERZUNGEN]
+    found += [f"Doppelpunkt: {line}" for line in _doppelpunkte_zwischen_saetzen(prosa)]
+    found += [
+        f"ae/oe/ue statt Umlaut: {token}"
+        for token in TOKEN.findall(prosa)
+        if not any(c in token for c in "_/=.") and UMLAUTERSATZ.fullmatch(token)
+    ]
+    return found
+
+
+@pytest.mark.parametrize(
+    "text,erwartet",
+    [
+        ("Für jeden Go-Job beginnt ein Chat.", ["Go"]),
+        ("Installier die Claude-Desktop-App.", []),
+        ("Die Datei `Profil/Kandidatenprofil.md` liegt im Ordner.", []),
+        ("Die Ja-Nein-Entscheidung bleibt im Dashboard.", ["Ja-Nein"]),
+    ],
+)
+def test_glossary_check_matches_whole_words(text: str, erwartet: list[str]):
+    assert _verbotene_varianten(text) == erwartet
+
+
+@pytest.mark.parametrize(
+    "text,art",
+    [
+        ("Das Detailniveau ist Pflicht: Du sollst dich allein vorbereiten können.", "Doppelpunkt"),
+        ("Der Suchlauf kommt jede Nacht; unter Suche siehst du ihn.", "Semikolon"),
+        ("Situation → Handlung → Effekt", "Pfeil"),
+        ("Kurz — und ehrlich.", "Gedankenstrich"),
+        ("Ein Satz – dann noch einer.", "Gedankenstrich"),
+        ("Das gilt IMMER.", "Versalien"),
+        ("✅ Direkte Passung", "Emoji"),
+        ('Er sagt "ja".', "gerades Anführungszeichen"),
+        ("Das kommt spaeter dran.", "ae/oe/ue statt Umlaut"),
+        ("**Ziel:** Kurz und im Indikativ.", None),
+        ("Windows: `py` oder `python`, macOS und Linux: `python3`.", None),
+        ("Haupt-Beleg ca. 6–8 Zeilen, als PDF und DOCX.", None),
+        ("Mit organischer Rückfrage, wenn sie passt: *„Ich freue mich auf ein Gespräch.“*", None),
+        ("<!-- - Ehrenamt oder Verein, für Koordinationsrollen -->", None),
+        ("Bei <UNTERNEHMEN> habe ich {{NAME}} getroffen.", None),
+    ],
+)
+def test_voice_check_flags_each_rule(text: str, art: str | None):
+    found = _stimmfehler(text)
+    if art is None:
+        assert found == []
+    else:
+        assert found and all(f.startswith(art) for f in found), found
