@@ -2,6 +2,18 @@
 
 Jedes Release des Plugins bekommt hier einen Abschnitt und einen Git-Tag `v<Version>`, die neueste Version steht oben. Versionen bis 0.2.5 haben keinen Abschnitt, ihre Änderungen stehen in der Git-Historie.
 
+## 0.4.0 (2026-10-01)
+
+Die Texte, die Freunde vom Plugin lesen, tragen die Namen aus Phase 4. Das Plugin geht diesmal vor dem Server live, weil die Servertexte von Phase 4 auf diese Namen verweisen (E12 C). Vom Server braucht es nichts Neues.
+
+- Die Beschreibungen von `/weiter`, `/bewerten` und `/bewerbung` beginnen mit einem Satz von höchstens zwölf Wörtern für das Befehlsmenü. Danach folgen die Sätze, auf die Claude den Befehl startet, mit „Pass meine Suche an“ statt „Ändere mein Suchprofil“ und „Etwas klappt nicht“ als neuem Satz für `/weiter`.
+- Hakt etwas, bietet `/weiter` an, das Problem zu melden. Claude fasst die Meldung zusammen, zeigt sie und schickt sie mit `problem_melden` erst nach einem „ja“. Hat der Server das Werkzeug noch nicht, bittet Claude wie bisher, Raul Bescheid zu geben. Dieselbe Regel steht in der `CLAUDE.md` im Ordner.
+- Die `README.md` im Ordner hat höchstens 200 statt 467 Wörter. Sie nennt die drei Befehle mit ihren Sätzen, die vier Chats nur mit Titel („Job Radar Einrichtung“, „Job Radar Tagesrunde“, ein Chat je Bewerbung, „Job Radar Pflege“) und verlinkt die Hilfe im Dashboard statt der Anleitung für Cowork.
+- Ordner-`CLAUDE.md`, Profilvorlagen und Skill-Beschreibungen sprechen von Profil, Profilgespräch, Suche, Feinauswahl, Rückschau, Anker und Stilregeln statt von Kandidatenprofil, Kurzprofil, Suchprofil, Triage, Kalibrierung, Anker-Pool und Style Guide. Der erste Chat heißt „Job Radar Einrichtung“, und `/weiter` verweist am Ende der Einrichtung auf die Seite „Einrichtung“ statt auf die Anleitung für Cowork.
+- `Bewerbungsmethode.md` und `Style_Guide.md` folgen Rauls Schreibregeln. Pfeilketten, Semikolons und Doppelpunkte zwischen Sätzen, Versalien und die drei Emoji sind weg, ebenso die Regel, die Doppelpunkte statt Gedankenstrichen empfahl, und der Abschnitt „Was wir nicht mehr verwenden“. Deutsche Wörter ersetzen Positive Pivot (Umlenken), Micro-Story (Eigene Szene), Swap-the-firm-name-Test (Firmennamen-Tausch) und Quick-Reference mit Talking Points (Schnellübersicht). Oben stehen je zwei Sätze für den Freund.
+- Ordner, die mit 0.3.x eingerichtet sind, bekommen `README.md` und `CLAUDE.md` beim nächsten `/weiter` neu, weil die Plugin-Version abweicht. Die Profilvorlagen bleiben dort, wie sie sind, weil Claude sie schon gefüllt hat.
+- Die Tests prüfen Skill-Beschreibungen und Ordnervorlagen auf die verbotenen Varianten des Glossars (eine Kopie der Liste aus `glossar.py` des Servers), auf Rauls Schreibregeln und auf die Wortbudgets. Sie halten auch die Überschriften fest, die die Abläufe des Servers in den Profilvorlagen suchen.
+
 ## 0.3.0 (2026-09-29)
 
 Drei Befehle statt vierzehn. Freunde arbeiten nur noch in Cowork und in der Claude-App, Claude Code bleibt Rauls Weg und der der Proben. Braucht den Server-Stand von Phase 2 mit dem Thema `weiter`, deshalb ging der Server zuerst live.

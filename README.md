@@ -1,6 +1,6 @@
 # Job Radar Plugin
 
-Marketplace und Plugin `job-radar` für Cowork. Gehört zu [Job Radar v2](https://github.com/rprey711/job-radar), dem Server mit Dashboard, Sammler und Connector. Das Plugin ist bewusst dünn. Die Abläufe, die Lernseiten und die Hilfe liegen im Server-Repo unter `content/` und kommen über den Connector (`anleitung_laden`), hier liegen nur die Dinge, die lokal sein müssen.
+Marketplace und Plugin `job-radar` für Cowork. Gehört zu [Job Radar v2](https://github.com/rprey711/job-radar), dem Server mit Dashboard, Sammler und Connector. Das Plugin ist bewusst dünn. Die Abläufe, die Hintergrundseiten und die Hilfe liegen im Server-Repo unter `content/` und kommen über den Connector (`anleitung_laden`), hier liegen nur die Dinge, die lokal sein müssen.
 
 > Das Repo ist öffentlich, damit Cowork das Plugin laden kann. Nutzen lässt es sich nur mit einem Konto im Job-Radar-Dashboard, das Raul per Einladung anlegt. Lizenz: alle Rechte vorbehalten, siehe `LICENSE`.
 
@@ -21,7 +21,7 @@ Freunde arbeiten in Cowork und in der Claude-App auf dem Handy. Claude Code ist 
 
 ## Installation
 
-**Cowork**, der Weg der Freunde: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Danach in Cowork aus dem Ordner „Job Radar“ das Projekt „Job Radar“ anlegen, die Zeile aus der Anleitung in seine Anweisungen kopieren und in einem neuen Chat des Projekts `/weiter` tippen. In diesem Projekt laufen alle Chats (Einrichtung, „Job Radar Tagesrunde“, ein Chat je Bewerbung, „Job Radar Pflege“). Das Repo ist seit dem 2026-09-09 öffentlich, weil Cowork private GitHub-Repos nicht lädt (Issues #28125 und #61271 in anthropics/claude-code).
+**Cowork**, der Weg der Freunde: Customize, Plugins, Marketplace hinzufügen, `rprey711/job-radar-plugin`, Plugin „Job Radar“ installieren. Beim Installieren fragt Cowork nach der Anmeldung beim Connector. Danach in Cowork aus dem Ordner „Job Radar“ das Projekt „Job Radar“ anlegen, die Zeile aus der Einrichtung im Dashboard in seine Anweisungen kopieren und in einem neuen Chat des Projekts `/weiter` tippen. In diesem Projekt laufen alle Chats („Job Radar Einrichtung“, „Job Radar Tagesrunde“, ein Chat je Bewerbung, „Job Radar Pflege“). Das Repo ist seit dem 2026-09-09 öffentlich, weil Cowork private GitHub-Repos nicht lädt (Issues #28125 und #61271 in anthropics/claude-code).
 
 Beim Freund braucht es ein Konto im Job-Radar-Dashboard (Einladung von Raul) und Claude Pro mit der Claude-Desktop-App. PDF entsteht über LibreOffice, sonst über Word, sonst per Hand.
 
@@ -40,7 +40,7 @@ Danach in einem Ordner „Job Radar“ Claude Code starten und `/weiter` eingebe
 
 ## Vertrag mit dem Server
 
-Die Skills laden über `anleitung_laden` die Themen `weiter`, `bewerten` und `bewerbung` und melden beim Einrichten das Modul `ordner`. Alle Themen stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Schritte des Plans in `repo/plan.STEPS`. Ändert sich dort etwas, ändern sich hier die Skills. Modellnamen stehen nur in `model_tiers.py` auf dem Server und kommen über `job_radar_status` und `anleitung_laden`. Skills und Vorlagen nennen keinen, das prüft `test_no_model_names_in_plugin_texts`. Der Skill `bewerten` gibt in der Morgenbewertung `job_radar_status`, `anleitung_laden`, `profil_lesen`, `jobs_laden` und `jobs_aktualisieren` den Parameter `geplant=true` mit.
+Die Skills laden über `anleitung_laden` die Themen `weiter`, `bewerten` und `bewerbung` und melden beim Einrichten das Modul `ordner`. Alle Themen stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Schritte des Plans in `repo/plan.STEPS`. Ändert sich dort etwas, ändern sich hier die Skills. Modellnamen stehen nur in `model_tiers.py` auf dem Server und kommen über `job_radar_status` und `anleitung_laden`. Skills und Vorlagen nennen keinen, das prüft `test_no_model_names_in_plugin_texts`. Die Profilvorlagen tragen Überschriften, die die Abläufe des Servers beim Namen nennen, `SERVER_LIEST` in `tests/test_templates.py` hält sie fest. Die verbotenen Varianten des Glossars stehen dort als Kopie der Liste aus `glossar.py` des Servers (`GLOSSAR_VERBOTEN`), eine gemeinsame Datei gibt es nicht, weil beide Repos getrennt live gehen. Der Skill `bewerten` gibt in der Morgenbewertung `job_radar_status`, `anleitung_laden`, `profil_lesen`, `jobs_laden` und `jobs_aktualisieren` den Parameter `geplant=true` mit.
 
 Jeder Skill nennt Claude den Plugin-Pfad (`${CLAUDE_PLUGIN_ROOT}`), weil die Variable nur in Skill-Dateien ersetzt wird. Die Texte vom Server und `docs/WERKZEUGE.md` sprechen deshalb vom „Plugin-Pfad, den der Skill genannt hat“. Die Adresse in `.mcp.json` ist die des Servers. Bei einem Domainwechsel Version anheben.
 
@@ -48,7 +48,7 @@ Jeder Skill nennt Claude den Plugin-Pfad (`${CLAUDE_PLUGIN_ROOT}`), weil die Var
 
 Server und Plugin gehen getrennt live. Damit das ohne eigene Maschinerie klappt, gelten vier Regeln (Entscheidung E12 C).
 
-1. Was gebraucht wird, geht zuerst live. Braucht ein Server-Text etwas Neues aus dem Plugin, etwa ein Skript, ein Flag oder eine Vorlage, erscheint das Plugin-Release zuerst. Braucht ein Skill etwas Neues vom Server, etwa ein Thema, ein Werkzeug oder einen Parameter, geht der Server zuerst live. Bei 0.3.0 war das der Server, weil der Skill `weiter` das Thema `weiter` lädt.
+1. Was gebraucht wird, geht zuerst live. Braucht ein Server-Text etwas Neues aus dem Plugin, etwa ein Skript, ein Flag oder eine Vorlage, erscheint das Plugin-Release zuerst. Braucht ein Skill etwas Neues vom Server, etwa ein Thema, ein Werkzeug oder einen Parameter, geht der Server zuerst live. Bei 0.3.0 war das der Server, weil der Skill `weiter` das Thema `weiter` lädt. Bei 0.4.0 ist es das Plugin, weil die Servertexte von Phase 4 auf die neuen Namen in Skills und Ordnervorlagen verweisen. Der Skill `weiter` bietet `problem_melden` nur an, wenn der Server das Werkzeug hat, und braucht deshalb keinen neueren Server.
 2. Skript-Flags kommen nur hinzu. Keins wird umbenannt oder entfernt, weil Server-Texte und ältere Skills sie weiter aufrufen. Deshalb bleibt `einrichten.py --oberflaeche`, obwohl der Server die Oberfläche nicht mehr liest. `tests/test_script_flags.py` hält die Flags fest.
 3. Eine Prüfung der Plugin-Version gibt es nicht. Ein älteres Plugin läuft weiter, solange jedes Thema, das seine Skills laden, auf dem Server bestehen bleibt. Für 0.2.5 gilt das, weil sein Skill `einrichten` kein Thema lädt und alle übrigen Themen seiner Skills bleiben.
 4. Jedes Release bekommt einen Git-Tag `v<Version>` und einen Eintrag in `CHANGELOG.md`.
@@ -71,7 +71,7 @@ Die PDF-Tests laufen nur mit LibreOffice (`soffice` auf dem PATH, in `C:\Program
 4. Tag und GitHub-Release anlegen, mit dem Abschnitt aus `CHANGELOG.md` als Text:
 
 ```bash
-V=0.3.0
+V=0.4.0
 NOTES="$(mktemp)"
 awk -v v="$V" 'index($0, "## " v " ") == 1 {f=1; next} /^## /{f=0} f' CHANGELOG.md > "$NOTES"
 git tag -a "v$V" -m "Job Radar Plugin $V"
