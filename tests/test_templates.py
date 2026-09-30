@@ -453,7 +453,7 @@ def _texte_fuer_den_freund() -> dict[str, str]:
 
 
 FREUND = _texte_fuer_den_freund()
-FREUND_NAMEN = [name for name in sorted(FREUND) if not name.startswith("skills/")]
+FREUND_NAMEN = sorted(FREUND)
 
 
 @pytest.mark.parametrize("name", FREUND_NAMEN)

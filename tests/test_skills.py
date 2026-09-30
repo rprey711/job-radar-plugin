@@ -63,6 +63,20 @@ def test_skill_starts_on_its_command_and_its_sentence(skill: str):
         assert "argument-hint" not in meta
 
 
+WORT = re.compile(r"[^\W_]+")
+
+
+@pytest.mark.parametrize("skill", ALL)
+def test_skill_description_opens_with_a_short_menu_sentence(skill: str):
+    """Inventar Tabelle 9: the first sentence is what the command menu shows, at most twelve
+    words. The trigger sentences for Claude follow it."""
+    meta, _ = _frontmatter(skill)
+    first = re.split(r"(?<=[.!?])\s+", meta["description"], maxsplit=1)[0]
+    assert first.endswith(".")
+    assert len(WORT.findall(first)) <= 12, first
+    assert f"/{skill}" not in first
+
+
 @pytest.mark.parametrize("skill", ALL)
 def test_skill_names_the_plugin_path(skill: str):
     """${CLAUDE_PLUGIN_ROOT} wird nur in Skill-Dateien ersetzt, Server-Texte verweisen hierher."""
@@ -141,16 +155,38 @@ def test_weiter_ends_the_setup_with_the_next_step_from_the_status():
     closing = body.split("### 6. Abschluss", 1)[1].split("\n## ", 1)[0]
     for needle in (
         "naechster_schritt.text",
-        "Kurzprofil",
+        "Profilgespräch",
         "im selben Chat",
         "„weiter“",
         "/einrichtung",
         "Projekt „Job Radar“",
         "„Bei allem rund um Job Radar zuerst `job_radar_status` aufrufen, dann `anleitung_laden`.“",
-        "/anleitung/cowork",
     ):
         assert needle in closing, f"{needle} fehlt im Abschluss"
     assert "neue Aufgabe" not in closing, "die Einrichtung bleibt in einem Chat"
+    # The Anleitung pages go with phase 4 of the server, the Einrichtung shows the step.
+    assert "/anleitung" not in body
+    assert "Kurzprofil" not in body
+
+
+def test_weiter_offers_problem_melden_and_falls_back_to_raul():
+    """0.4.0 ships before the server has `problem_melden` (spec phase 4 „Plugin“), so the rule
+    names the tool as optional and keeps the old way to Raul."""
+    _, body = _frontmatter("weiter")
+    (rule,) = [row for row in _section(body, "Regeln").splitlines() if "problem_melden" in row]
+    for needle in (
+        "scheitert ein Werkzeug zweimal hintereinander",
+        "Gibt es das Werkzeug `problem_melden`",
+        "zusammen, zeig ihm die Meldung",
+        "erst nach seinem „ja“",
+        "Plugin-Version",
+        "nie Inhalte aus Profil, Lebenslauf oder Anzeigen",
+        "Gibt es das Werkzeug nicht, bitte den Freund, Raul Bescheid zu geben",
+    ):
+        assert needle in rule, f"{needle} fehlt in der Regel zu „Problem melden“"
+    setup = _section(body, "Einrichten")
+    assert "es Raul zu melden" not in setup
+    assert "biete an, das Problem zu melden, wie es unter „Regeln“ steht" in setup
 
 
 def test_weiter_keeps_the_python_install_for_claude_code_in_one_section():

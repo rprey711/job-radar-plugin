@@ -1,6 +1,6 @@
 ---
 name: bewerbung
-description: "Bewerbung für einen Go-Job oder für eine Anzeige, die der Freund selbst gefunden hat. Recherche, angepasster Lebenslauf und Anschreiben, im Chat iteriert und dann als DOCX und PDF gerendert, alles unter Bewerbungen/<Firma>/, die Dokumente beim Server gemeldet. Jede Bewerbung hat ihren eigenen Chat, der mit /bewerbung <Firma> beginnt, Interview und Review zu diesem Job laufen später dort weiter. Startet mit /bewerbung <Firma oder Link> oder auf Sätze wie „Bereite eine Bewerbung bei … vor“ oder „Schreib ein Anschreiben für …“."
+description: "Bereitet eine Bewerbung für einen Job oder eine selbst gefundene Anzeige vor. Recherche, angepasster Lebenslauf und Anschreiben, im Chat überarbeitet und dann als DOCX und PDF gespeichert, alles unter Bewerbungen/<Firma>/ und mit den Dokumenten im Dashboard. Jede Bewerbung hat ihren eigenen Chat, der mit /bewerbung <Firma> beginnt. Interview und Review zu diesem Job laufen später dort weiter. Startet mit /bewerbung <Firma oder Link> oder auf Sätze wie „Bereite eine Bewerbung bei … vor“ oder „Schreib ein Anschreiben für …“."
 argument-hint: "<Firma oder Link>"
 ---
 

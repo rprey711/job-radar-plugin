@@ -1,6 +1,6 @@
 ---
 name: bewerten
-description: "Bewertet neue Jobs mit Score, Begründung und Kategorie, in Seiten zu je zehn Jobs über die Werkzeuge und höchstens etwa 50 pro Durchgang. Startet mit /bewerten oder auf Sätze wie „Bewerte meine neuen Jobs“ oder „Bewerte die neuen Jobs“, als geplante Morgenbewertung auf „Morgenbewertung: Bewerte meine neuen Jobs“. Jobs ohne Beschreibung werden gesammelt gemeldet statt geraten. Die Ja-Nein-Entscheidung bleibt im Dashboard."
+description: "Bewertet neue Jobs mit Score, Begründung und Kategorie. Startet mit /bewerten oder auf Sätze wie „Bewerte meine neuen Jobs“ oder „Bewerte die neuen Jobs“, als geplante Morgenbewertung auf „Morgenbewertung: Bewerte meine neuen Jobs“. Arbeitet in Seiten zu je zehn Jobs und schafft höchstens etwa 50 pro Durchgang. Jobs ohne Beschreibung meldet Claude gesammelt, statt zu raten. Ja und Nein bleiben im Dashboard."
 ---
 
 # /bewerten
