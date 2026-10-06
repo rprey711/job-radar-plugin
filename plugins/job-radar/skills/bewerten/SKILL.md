@@ -1,6 +1,6 @@
 ---
 name: bewerten
-description: "Bewertet neue Jobs mit Score, Begründung und Kategorie. Startet mit /bewerten oder auf Sätze wie „Bewerte meine neuen Jobs“ oder „Bewerte die neuen Jobs“, als geplante Morgenbewertung auf „Morgenbewertung: Bewerte meine neuen Jobs“. Arbeitet in Seiten zu je zehn Jobs und schafft höchstens etwa 50 pro Durchgang. Jobs ohne Beschreibung meldet Claude gesammelt, statt zu raten. Ja und Nein bleiben im Dashboard."
+description: "Bewertet neue Jobs mit Score, Begründung und Kategorie. Startet mit /bewerten oder auf Sätze wie „Bewerte meine neuen Jobs“ oder „Bewerte die neuen Jobs“, als geplante Morgenbewertung auf „Morgenbewertung: Bewerte meine neuen Jobs“. Arbeitet in Seiten zu je zehn Jobs und schafft höchstens etwa 150 pro Durchgang. Jobs ohne Beschreibung meldet Claude gesammelt, statt zu raten. Ja und Nein bleiben im Dashboard."
 ---
 
 # /bewerten
@@ -18,7 +18,7 @@ Plugin-Pfad: `${CLAUDE_PLUGIN_ROOT}`. Dort liegen die Skripte unter `scripts/` u
 
 ## Als geplante Aufgabe
 
-Die Morgenbewertung, die `/weiter` anbietet, startet diesen Skill jeden Morgen mit dem Satz „Morgenbewertung: Bewerte meine neuen Jobs“. Sie läuft außerhalb des Projekts „Job Radar“, ohne Ordner und ohne jemanden, der antwortet. Dann entfallen die Schritte 2 und 4, du stellst keine Fragen und endest mit einem Satz, wie viele Jobs bewertet sind und wie viele offen bleiben.
+Die Morgenbewertung, die `/weiter` und `/bewerten` anbieten, startet diesen Skill jeden Morgen mit dem Satz „Morgenbewertung: Bewerte meine neuen Jobs“. Sie läuft außerhalb des Projekts „Job Radar“, ohne Ordner und ohne jemanden, der antwortet. Dann entfallen die Schritte 2 und 4, du stellst keine Fragen und endest mit einem Satz, wie viele Jobs bewertet sind und wie viele offen bleiben.
 
 Beginnt der Auftrag mit „Morgenbewertung:“, gib bei jedem Aufruf der Job-Radar-Werkzeuge `geplant=true` mit, also bei `job_radar_status`, `anleitung_laden`, `profil_lesen`, `jobs_laden` und `jobs_aktualisieren`. Dann zählt der Lauf nicht als Besuch des Freundes und hält den Sammler nicht wach.
 

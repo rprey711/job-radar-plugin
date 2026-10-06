@@ -214,7 +214,7 @@ def test_weiter_reads_no_package_and_no_tour():
 
 def test_bewerten_runs_as_the_morning_task_without_questions():
     meta, body = _frontmatter("bewerten")
-    assert "etwa 50" in meta["description"] and "bis 20" not in meta["description"]
+    assert "etwa 150" in meta["description"] and "bis 20" not in meta["description"]
     assert "„Morgenbewertung: Bewerte meine neuen Jobs“" in meta["description"]
     scheduled = _section(body, "Als geplante Aufgabe")
     assert "„Morgenbewertung: Bewerte meine neuen Jobs“" in scheduled

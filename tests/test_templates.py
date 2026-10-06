@@ -304,6 +304,7 @@ GLOSSAR_VERBOTEN: dict[int, tuple[str, ...]] = {
     39: ("Schreibstufe", "Routinestufe", "tokenbasiertes rollierendes Fenster"),
     40: ("Lernseite", "Lernseiten", "Anleitung"),
     44: ("Fehler melden", "Klappt nicht?"),
+    45: ("Cutoff", "Grenzwert", "Mindestscore", "Mindest-Score", "Score-Grenze", "Punktegrenze"),
 }
 # ordner/CLAUDE.md is Claude's standing instruction and names the skill it calls there.
 GLOSSAR_ERLAUBT: dict[str, frozenset[str]] = {"ordner/CLAUDE.md": frozenset({"Skill"})}

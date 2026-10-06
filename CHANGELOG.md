@@ -2,6 +2,13 @@
 
 Jedes Release des Plugins bekommt hier einen Abschnitt und einen Git-Tag `v<Version>`, die neueste Version steht oben. Versionen bis 0.2.5 haben keinen Abschnitt, ihre Änderungen stehen in der Git-Historie.
 
+## 0.4.1 (2026-10-07)
+
+Begleitet Phase 7 des Servers („Menge steuern“). Der Server geht zuerst live, weil erst er eine Runde von bis zu 150 Jobs zulässt und die Morgenbewertung am Ende von `/bewerten` anbietet.
+
+- Die Beschreibung von `/bewerten` nennt etwa 150 statt etwa 50 Jobs pro Durchgang.
+- Der Abschnitt „Als geplante Aufgabe“ sagt, dass `/weiter` und `/bewerten` die Morgenbewertung anbieten.
+
 ## 0.4.0 (2026-09-30)
 
 Die Texte, die Freunde vom Plugin lesen, tragen die Namen aus Phase 4. Das Plugin geht diesmal vor dem Server live, weil die Servertexte von Phase 4 auf diese Namen verweisen (E12 C). Vom Server braucht es nichts Neues.
