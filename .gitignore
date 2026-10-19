@@ -5,3 +5,6 @@ __pycache__/
 .ruff_cache/
 tests/_out/
 *.local.*
+.env
+.env.*
+!.env.example
