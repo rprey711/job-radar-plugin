@@ -66,9 +66,9 @@ Die PDF-Tests laufen nur mit LibreOffice (`soffice` auf dem PATH, in `C:\Program
 ## Release
 
 1. Braucht ein Skill etwas Neues vom Server, zuerst den Server ausrollen und `/health` prüfen (Regel 1).
-2. Version in `plugins/job-radar/.claude-plugin/plugin.json` und in `.claude-plugin/marketplace.json` gleich anheben, oben in `CHANGELOG.md` einen Abschnitt `## <Version> (<Datum>)` anlegen, committen. `tests/test_manifests.py` prüft, dass beide Versionen und der oberste Abschnitt übereinstimmen.
-3. Pushen und die CI abwarten.
-4. Tag und GitHub-Release anlegen, mit dem Abschnitt aus `CHANGELOG.md` als Text:
+2. Auf einem Zweig (`git switch -c release/<Version>`) die Version in `plugins/job-radar/.claude-plugin/plugin.json` und in `.claude-plugin/marketplace.json` gleich anheben, oben in `CHANGELOG.md` einen Abschnitt `## <Version> (<Datum>)` anlegen, committen. `tests/test_manifests.py` prüft, dass beide Versionen und der oberste Abschnitt übereinstimmen.
+3. Den Zweig pushen, auf GitHub einen Pull Request nach `main` öffnen und die CI abwarten. Raul führt ihn im Browser zusammen, GitHub löscht den Zweig danach selbst. `main` nimmt seit dem 20.10.2026 nur Pull Requests an, ohne Force-Push und ohne Löschen, auch für den Server (Audit 2026-10-17), damit niemand über einen übernommenen Server eine präparierte Version an die Nutzer ausliefert.
+4. Nach dem Zusammenführen `git switch main && git pull --ff-only`, dann Tag und GitHub-Release anlegen, mit dem Abschnitt aus `CHANGELOG.md` als Text:
 
 ```bash
 V=0.4.0
