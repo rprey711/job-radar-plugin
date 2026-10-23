@@ -12,7 +12,7 @@ Freunde arbeiten in Cowork und in der Claude-App auf dem Handy. Claude Code ist 
 |---|---|
 | `.claude-plugin/marketplace.json` | Marketplace-Manifest, ein Eintrag: `plugins/job-radar` |
 | `plugins/job-radar/.claude-plugin/plugin.json` | Plugin-Manifest, Version |
-| `plugins/job-radar/.mcp.json` | Connector `jobradar` auf `https://jobs.162-55-50-225.nip.io/mcp` (OAuth über die 401-Antwort des Servers, kein `oauth`-Schlüssel, siehe unten) |
+| `plugins/job-radar/.mcp.json` | Connector `jobradar` auf `https://jobs.srvrx.de/mcp` (OAuth über die 401-Antwort des Servers, kein `oauth`-Schlüssel, siehe unten) |
 | `plugins/job-radar/skills/` | drei Befehle: `/weiter` richtet Ordner und Verbindung ein und lädt danach die Weiche vom Server, `/bewerten` und `/bewerbung` holen ihr Skript vom Server |
 | `plugins/job-radar/scripts/` | `check_env.py`, `einrichten.py`, `read_docx.py`, `foto_aus_docx.py`, `cv_master.py`, `cover_master.py`, `to_pdf.py`, `_common.py` |
 | `plugins/job-radar/templates/` | DOCX-Vorlagen, Ordner-README und CLAUDE.md, Profilvorlagen |
@@ -42,7 +42,7 @@ Danach in einem Ordner „Job Radar“ Claude Code starten und `/weiter` eingebe
 
 Die Skills laden über `anleitung_laden` die Themen `weiter`, `bewerten` und `bewerbung` und melden beim Einrichten das Modul `ordner`. Alle Themen stehen in `connector/tools_status.TOPICS`, die Modulschlüssel für `job_radar_status(modul_erledigt=…)` in `repo/setup.MODULES`, die Schritte des Plans in `repo/plan.STEPS`. Ändert sich dort etwas, ändern sich hier die Skills. Modellnamen stehen nur in `model_tiers.py` auf dem Server und kommen über `job_radar_status` und `anleitung_laden`. Skills und Vorlagen nennen keinen, das prüft `test_no_model_names_in_plugin_texts`. Die Profilvorlagen tragen Überschriften, die die Abläufe des Servers beim Namen nennen, `SERVER_LIEST` in `tests/test_templates.py` hält sie fest. Die verbotenen Varianten des Glossars stehen dort als Kopie der Liste aus `glossar.py` des Servers (`GLOSSAR_VERBOTEN`), eine gemeinsame Datei gibt es nicht, weil beide Repos getrennt live gehen. Der Skill `bewerten` gibt in der Morgenbewertung `job_radar_status`, `anleitung_laden`, `profil_lesen`, `jobs_laden` und `jobs_aktualisieren` den Parameter `geplant=true` mit.
 
-Jeder Skill nennt Claude den Plugin-Pfad (`${CLAUDE_PLUGIN_ROOT}`), weil die Variable nur in Skill-Dateien ersetzt wird. Die Texte vom Server und `docs/WERKZEUGE.md` sprechen deshalb vom „Plugin-Pfad, den der Skill genannt hat“. Die Adresse in `.mcp.json` ist die des Servers und bleibt dauerhaft `jobs.162-55-50-225.nip.io`.
+Jeder Skill nennt Claude den Plugin-Pfad (`${CLAUDE_PLUGIN_ROOT}`), weil die Variable nur in Skill-Dateien ersetzt wird. Die Texte vom Server und `docs/WERKZEUGE.md` sprechen deshalb vom „Plugin-Pfad, den der Skill genannt hat“. Die Adresse in `.mcp.json` ist die des Servers, seit 0.4.2 (2026-10-23) `jobs.srvrx.de`.
 
 ## Regeln für Texte und Versionen
 
