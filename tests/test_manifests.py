@@ -43,7 +43,7 @@ def test_mcp_declaration_names_the_live_connector():
     data = _load(PLUGIN / ".mcp.json")
     server = data["mcpServers"]["jobradar"]
     assert server["type"] == "http"
-    assert server["url"] == "https://jobs.162-55-50-225.nip.io/mcp"
+    assert server["url"] == "https://jobs.srvrx.de/mcp"
     # Kein `oauth`-Schlüssel: Claude Code 2.1 verwirft die ganze Deklaration, wenn `oauth` ein
     # Boolean ist (live geprüft am 2026-09-07), und findet den OAuth-Server ohnehin über die
     # 401-Antwort und die Protected-Resource-Metadaten.

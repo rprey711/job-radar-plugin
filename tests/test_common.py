@@ -50,7 +50,7 @@ def test_plugin_metadata_comes_from_the_manifests():
             (_common.PLUGIN_ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8")
         )["version"]
     )
-    assert _common.dashboard_url() == "https://jobs.162-55-50-225.nip.io"
+    assert _common.dashboard_url() == "https://jobs.srvrx.de"
 
 
 def test_find_soffice_prefers_the_env_override(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):

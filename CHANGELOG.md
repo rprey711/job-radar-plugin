@@ -2,6 +2,12 @@
 
 Jedes Release des Plugins bekommt hier einen Abschnitt und einen Git-Tag `v<Version>`, die neueste Version steht oben. Versionen bis 0.2.5 haben keinen Abschnitt, ihre Änderungen stehen in der Git-Historie.
 
+## 0.4.2 (2026-10-23)
+
+Der Server ist von `jobs.162-55-50-225.nip.io` auf `jobs.srvrx.de` umgezogen und geht zuerst live. Die alte Adresse leitet die Weboberfläche um, der alte Connector antwortet mit 410, weil die Anmeldung an die Adresse gebunden ist.
+
+- `.mcp.json` nennt `https://jobs.srvrx.de/mcp`. Nach dem Update meldet sich der Connector einmal neu an.
+
 ## 0.4.1 (2026-10-07)
 
 Begleitet Phase 7 des Servers („Menge steuern“). Der Server geht zuerst live, weil erst er eine Runde von bis zu 150 Jobs zulässt und die Morgenbewertung am Ende von `/bewerten` anbietet.
